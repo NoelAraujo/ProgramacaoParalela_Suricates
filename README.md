@@ -1,1 +1,0 @@
-# ProgramacaoParalela_Suricates

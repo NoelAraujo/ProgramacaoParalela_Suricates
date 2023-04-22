@@ -1,0 +1,71 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Programação Paralela em Julia: uma História com Suricates"
+  author: "Noel Araujo Moreira"
+  date: "04/21/2023"
+  page-footer: "2023"
+  navbar:
+    pinned: true
+    background: "#1a1523"
+    foreground: "#ffffff"
+
+  search:
+    location: navbar
+    type: textbox
+
+  chapters:
+    - index.qmd
+    - part: PART_1/00_intro_story.qmd
+      chapters:
+        - PART_1/01_for_if.qmd
+        - PART_1/02_function.qmd
+        - PART_1/03_map.qmd
+        - PART_1/04_inline.qmd
+        - PART_1/05_named_tuples.qmd
+
+    - part: PART_2/00_going_travelling.qmd
+      chapters:
+        - PART_2/06_edge_detection.qmd
+        - PART_2/07_at_threads.qmd
+        - PART_2/08_at_spawn.qmd
+        - PART_2/09_spatial_divison.qmd
+        - PART_2/10_threadsx.qmd
+        - PART_2/11_parallel_stencil.qmd
+        - PART_2/12_benchmarks.qmd
+
+    - part: PART_3/00_going_for_work.qmd
+      chapters:
+        - PART_3/13_pmap.qmd
+        - PART_3/14_at_spawnat.qmd
+        - PART_3/15_shared_arrays.qmd
+        - PART_3/16_distributed_arrays.qmd
+        - PART_3/17_pipeline.qmd
+        - PART_3/18_spmd.qmd
+
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    code-block-bg: "#282a36"
+    code-copy: true
+    code-overflow: wrap
+    toc-title: " "
+    smooth-scroll: true
+    fig-align: center
+    callout-appearance: simple
+    highlight-style: oblivion
+
+execute:
+  echo: true
+  warning: true
+  cache: true
+  eval: false
+
+jupyter: julia-1.9

@@ -1,0 +1,7 @@
+# Resumo
+
+Depois de ler a jornada de Daisy, agora você tem um conhecimento básico das ferramentas mais úteis em Julia para criar programas paralelos.
+
+Mas sempre há mais a aprender! Julia é uma linguagem em constante evolução, e sempre há novos recursos e ferramentas para explorar.
+
+Lembre-se de que a programação é uma habilidade que requer prática e perseverança. Não tenha medo de experimentar técnicas novas e não desanime se encontrar obstáculos ao longo do caminho.

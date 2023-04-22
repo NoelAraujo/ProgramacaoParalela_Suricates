@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Programação Paralela em Julia: uma História com Suricates - 18&nbsp; SPMD</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../PART_3/17_pipeline.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Programação Paralela em Julia: uma História com Suricates</span>
+    </a>
+  </div>
+          <div class="quarto-toggle-container ms-auto">
+              <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+          </div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>SPMD</code></span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link"><strong>Bem-vindo</strong></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../PART_1/00_intro_story.html" class="sidebar-item-text sidebar-link">Part 1 - A Caçada</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_1/01_for_if.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><code>for</code> and <code>if</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_1/02_function.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>function</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_1/03_map.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><code>map</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_1/04_inline.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inplace Operations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_1/05_named_tuples.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tuplas Nomeadas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../PART_2/00_going_travelling.html" class="sidebar-item-text sidebar-link">Part 2 - Os Mapas</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_2/06_edge_detection.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Detecção de Bordas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_2/07_at_threads.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>Threads.@threads</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_2/08_at_spawn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>Threads.@spawn</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_2/09_spatial_divison.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Divisão Espacial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_2/10_threadsx.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>ThreadsX</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_2/11_parallel_stencil.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><code>ParallelStencil</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_2/12_benchmarks.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Benchmarks</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../PART_3/00_going_for_work.html" class="sidebar-item-text sidebar-link">Part 3 - Ao Trabalho</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_3/13_pmap.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title"><code>pmap</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_3/14_at_spawnat.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title"><code>@spawnat</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_3/15_shared_arrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><code>SharedArrays</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_3/16_distributed_arrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><code>DistributedArray</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_3/17_pipeline.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><code>pipeline</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_3/18_spmd.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>SPMD</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+   
+  <ul>
+  <li><a href="#primeiro-teste" id="toc-primeiro-teste" class="nav-link active" data-scroll-target="#primeiro-teste"><span class="toc-section-number">18.1</span>  Primeiro Teste</a></li>
+  <li><a href="#segundo-teste" id="toc-segundo-teste" class="nav-link" data-scroll-target="#segundo-teste"><span class="toc-section-number">18.2</span>  Segundo Teste</a></li>
+  <li><a href="#isto-não-é-um-teste" id="toc-isto-não-é-um-teste" class="nav-link" data-scroll-target="#isto-não-é-um-teste"><span class="toc-section-number">18.3</span>  <strong>Isto Não é um Teste</strong></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>SPMD</code></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Daisy está rapidamente subindo ao topo, literalmente. Após seu sucesso com o projeto de túnel de profundidade, seu chefe falou muito bem de suas habilidades com seus superiores, e Daisy foi promovida ao dever de <code>Sentinela Real</code> da gangue. Em seu novo cargo, ela é responsável por manter a guarda e procurar possíveis ameaças ou perigos. Depois que uma ameaça é encontrada, todos os suricates em serviço são notificados e, se possível, eles oferecer assistência.</p>
+<p>Daisy imediatamente começou a imaginar possíveis algoritmos para melhorar seu novo emprego. Ela sabia que a comunicação seria ainda mais complexa do que antes. Buscando ajuda de Martin, ele disse para Daisy escrever um código semelhante ao que ela usou com programação de placas de vídeo, no qual todos os processos recebem o mesmo código, executariam ao mesmo tempo, mas tem resultados diferentes. Essa abordagem é conhecida como <code>Singel Program Multiple Data</code> ou <code>SPMD</code>.</p>
+<p>Daisy recordou desse nome na documentação do pacote <code>DistributedArrays.jl</code>. Esse pacote oferecia uma interface para esse recurso, mas Daisy nunca havia prestado a devida atenção a ele antes.</p>
+<section id="primeiro-teste" class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="primeiro-teste"><span class="header-section-number">18.1</span> Primeiro Teste</h2>
+<p>Ela começou seus testes, começando com uma simulação. Ela iria supor que uma cobra foi avistada por uma Sentinela Real, e então precisaria notificar todos as outras Sentinelas, compartilhando informações sobre a posição da cobra em uma matriz.</p>
+<div class="callout-tip callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Sintaxe: <code>bcast</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Em SPMD, esse conceito de transmitir a todos os processos algum valor, é conhecido como <code>broadcast</code>, e no pacote <code>DistributedArrays.jl</code>, é necessário usar o comando <code>bcast</code>.</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">using</span> <span class="bu">Distributed</span>, <span class="bu">DistributedArrays</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">addprocs</span>(<span class="fl">3</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="pp">@everywhere</span> <span class="im">using</span> <span class="bu">DistributedArrays</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="pp">@everywhere</span> <span class="im">using</span> <span class="bu">DistributedArrays.SPMD</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="pp">@everywhere</span> <span class="kw">function</span> <span class="fu">spmd_teste_bcast</span>()</span>
+<span id="cb1-8"><a href="#cb1-8"></a>    <span class="cf">if</span> <span class="fu">myid</span>() <span class="op">==</span> <span class="fl">2</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>        <span class="co"># matriz com dados da cobra</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>        A <span class="op">=</span> [<span class="fu">i*</span>(<span class="fl">1.0</span> <span class="op">+</span> <span class="cn">im</span><span class="op">*</span><span class="fl">2.0</span>) for i <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>]</span>
+<span id="cb1-11"><a href="#cb1-11"></a>    <span class="cf">else</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>        <span class="co"># Não se esqueça de definir a variável `A`, mesmo que</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>        <span class="co"># você não a usa antes do `bcast` os nenhum processos</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>        A <span class="op">=</span> <span class="cn">nothing</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>    <span class="cf">end</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>    <span class="fu">print</span>(<span class="st">"Antes bcast, '</span><span class="sc">$</span>(<span class="fu">myid</span>())<span class="st">' tem A = </span><span class="sc">$</span>A<span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17"></a></span>
+<span id="cb1-18"><a href="#cb1-18"></a>     <span class="co">## Processo `2` envia 'A' para toda a rede</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a>     <span class="co">## A rede recebe 'novoA'</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a>    novoA <span class="op">=</span> <span class="fu">bcast</span>(A, <span class="fl">2</span>)</span>
+<span id="cb1-21"><a href="#cb1-21"></a></span>
+<span id="cb1-22"><a href="#cb1-22"></a>    <span class="co"># É necessário parar e esperar que todos</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>    <span class="co"># os processos tenham o mesmo dado</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a>    <span class="fu">barrier</span>(;pids<span class="op">=</span>[<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>])</span>
+<span id="cb1-25"><a href="#cb1-25"></a></span>
+<span id="cb1-26"><a href="#cb1-26"></a>    <span class="fu">print</span>(<span class="st">"Depois bcast, '</span><span class="sc">$</span>(<span class="fu">myid</span>())<span class="st">' tem A = </span><span class="sc">$</span>novoA<span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb1-27"><a href="#cb1-27"></a>    <span class="cn">nothing</span></span>
+<span id="cb1-28"><a href="#cb1-28"></a><span class="kw">end</span></span>
+<span id="cb1-29"><a href="#cb1-29"></a><span class="fu">spmd</span>(spmd_teste_bcast; pids<span class="op">=</span><span class="fu">workers</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      From worker 4:    Antes bcast, '4' tem A = nothing</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      From worker 2:    Antes bcast, '2' tem A = ComplexF64[1.0 + 2.0im, 2.0 + 4.0im, 3.0 + 6.0im]
+      From worker 3:    Antes bcast, '3' tem A = nothing</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      From worker 2:    Depois bcast, '2' tem A = ComplexF64[1.0 + 2.0im, 2.0 + 4.0im, 3.0 + 6.0im]</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      From worker 4:    Depois bcast, '4' tem A = ComplexF64[1.0 + 2.0im, 2.0 + 4.0im, 3.0 + 6.0im]
+      From worker 3:    Depois bcast, '3' tem A = ComplexF64[1.0 + 2.0im, 2.0 + 4.0im, 3.0 + 6.0im]</code></pre>
+</div>
+</div>
+</section>
+<section id="segundo-teste" class="level2" data-number="18.2">
+<h2 data-number="18.2" class="anchored" data-anchor-id="segundo-teste"><span class="header-section-number">18.2</span> Segundo Teste</h2>
+<p>Daisy consegue comunicar a todos a respeito da ameaça, mas como que ela vai saber quem irá ajudar a combate-lá? Para isso, ela precisou dos comandos <code>sendto</code> e <code>recvfrom</code> - ‘<em>enviar para</em>’ e ‘<em>receber de</em>’ em uma tradução livre. Seu novo código é uma modificação do anterior, para ter certeza que todos os Sentinelas conseguem enviar mensagens.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1"></a><span class="pp">@everywhere</span> <span class="kw">function</span> <span class="fu">spmd_teste_send_recv</span>()</span>
+<span id="cb6-2"><a href="#cb6-2"></a>    <span class="co"># primeiro encontra a cobra</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="cf">if</span> <span class="fu">myid</span>() <span class="op">==</span> <span class="fl">2</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>        <span class="fu">println</span>(<span class="st">"</span><span class="sc">$</span>(<span class="fu">myid</span>())<span class="st"> achou a cobra"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5"></a>        cobra <span class="op">=</span> <span class="fl">2</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="cf">else</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>        cobra <span class="op">=</span> <span class="cn">nothing</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>    <span class="cf">end</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a></span>
+<span id="cb6-10"><a href="#cb6-10"></a>    <span class="co"># notifica todos os sentinelas</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>    aonde_esta_cobra <span class="op">=</span> <span class="fu">bcast</span>(cobra, <span class="fl">2</span>)</span>
+<span id="cb6-12"><a href="#cb6-12"></a>    <span class="fu">barrier</span>(;pids<span class="op">=</span>[<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>])</span>
+<span id="cb6-13"><a href="#cb6-13"></a></span>
+<span id="cb6-14"><a href="#cb6-14"></a>    <span class="co"># dependendo do nome, a sentinela toma</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a>    <span class="co"># uma ação diferente</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>    <span class="cf">if</span> <span class="fu">myid</span>() <span class="op">≠</span> <span class="fl">2</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a>        <span class="co"># outras sentinelas dizem que escutaram</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a>        mensagem <span class="op">=</span> <span class="st">"</span><span class="sc">$</span>(<span class="fu">myid</span>())<span class="st"> entendeu o recado"</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a>        <span class="fu">sendto</span>(aonde_esta_cobra, mensagem)</span>
+<span id="cb6-20"><a href="#cb6-20"></a>    <span class="cf">elseif</span> <span class="fu">myid</span>() <span class="op">==</span> <span class="fl">2</span></span>
+<span id="cb6-21"><a href="#cb6-21"></a>        <span class="co"># sentinela 2 fica esperando todas</span></span>
+<span id="cb6-22"><a href="#cb6-22"></a>        <span class="co"># falaram que entenderam</span></span>
+<span id="cb6-23"><a href="#cb6-23"></a></span>
+<span id="cb6-24"><a href="#cb6-24"></a>        outras_sentinelas <span class="op">=</span> [<span class="fl">3</span>,<span class="fl">4</span>]</span>
+<span id="cb6-25"><a href="#cb6-25"></a>        <span class="cf">for</span> sentinela <span class="op">=</span> outras_sentinelas</span>
+<span id="cb6-26"><a href="#cb6-26"></a>            mensagem <span class="op">=</span> <span class="fu">recvfrom</span>(sentinela)</span>
+<span id="cb6-27"><a href="#cb6-27"></a>            <span class="fu">println</span>(mensagem)</span>
+<span id="cb6-28"><a href="#cb6-28"></a>        <span class="cf">end</span></span>
+<span id="cb6-29"><a href="#cb6-29"></a>    <span class="cf">end</span></span>
+<span id="cb6-30"><a href="#cb6-30"></a>    <span class="fu">barrier</span>(;pids<span class="op">=</span>[<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>])</span>
+<span id="cb6-31"><a href="#cb6-31"></a></span>
+<span id="cb6-32"><a href="#cb6-32"></a>    <span class="cn">nothing</span></span>
+<span id="cb6-33"><a href="#cb6-33"></a><span class="kw">end</span></span>
+<span id="cb6-34"><a href="#cb6-34"></a></span>
+<span id="cb6-35"><a href="#cb6-35"></a><span class="fu">spmd</span>(spmd_teste_send_recv; pids<span class="op">=</span><span class="fu">workers</span>())</span>
+<span id="cb6-36"><a href="#cb6-36"></a><span class="fu">rmprocs</span>();</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      From worker 2:    2 achou a cobra</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      From worker 2:    3 entendeu o recado
+      From worker 2:    4 entendeu o recado</code></pre>
+</div>
+</div>
+</section>
+<section id="isto-não-é-um-teste" class="level2" data-number="18.3">
+<h2 data-number="18.3" class="anchored" data-anchor-id="isto-não-é-um-teste"><span class="header-section-number">18.3</span> <strong>Isto Não é um Teste</strong></h2>
+<p>Agora Daisy tem condições de fazer um código realistico. Quando uma cobra é avistada, todos os sentinelas são notificados, e eles deveriam ir até o a serpente para formar um pequeno exército. Se a maioria comparecer ao local, o exército consegue fazer gritos o suficiente para espantar o inimigo. Do contrário, a cobra terá um suricate no seu cardápio.</p>
+<p>O código final de Daisy levou tudo isso em conta, cada sentinela tem 50% de chance de enfrentar a cobra, do mesmo jeito que seus pais também lhe fazia ficar em casa metado tempo.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">using</span> <span class="bu">Distributed</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">addprocs</span>(<span class="fl">5</span>)</span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="pp">@everywhere</span> <span class="im">using</span> <span class="bu">DistributedArrays</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="pp">@everywhere</span> <span class="im">using</span> <span class="bu">DistributedArrays.SPMD</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="pp">@everywhere</span> <span class="kw">function</span> <span class="fu">spmd_snake_drill</span>()</span>
+<span id="cb9-7"><a href="#cb9-7"></a>    sentinela <span class="op">=</span> <span class="fu">myid</span>()</span>
+<span id="cb9-8"><a href="#cb9-8"></a>    <span class="cf">if</span> sentinela <span class="op">==</span> <span class="fl">2</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a>        cobra <span class="op">=</span> <span class="fl">2</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a>        <span class="fu">println</span>(<span class="st">"Sentinela '</span><span class="sc">$</span>(sentinela)<span class="st">' avistou uma cobra."</span>)</span>
+<span id="cb9-11"><a href="#cb9-11"></a>    <span class="cf">else</span></span>
+<span id="cb9-12"><a href="#cb9-12"></a>        cobra <span class="op">=</span> <span class="cn">nothing</span></span>
+<span id="cb9-13"><a href="#cb9-13"></a>    <span class="cf">end</span></span>
+<span id="cb9-14"><a href="#cb9-14"></a></span>
+<span id="cb9-15"><a href="#cb9-15"></a>    <span class="co"># notificar todos os sentinelas</span></span>
+<span id="cb9-16"><a href="#cb9-16"></a>    aonde_esta_cobra <span class="op">=</span> <span class="fu">bcast</span>(cobra, <span class="fl">2</span>)</span>
+<span id="cb9-17"><a href="#cb9-17"></a>    <span class="fu">barrier</span>(;pids<span class="op">=</span>[<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>])</span>
+<span id="cb9-18"><a href="#cb9-18"></a></span>
+<span id="cb9-19"><a href="#cb9-19"></a></span>
+<span id="cb9-20"><a href="#cb9-20"></a>    <span class="cf">if</span> sentinela <span class="op">≠</span> <span class="fl">2</span></span>
+<span id="cb9-21"><a href="#cb9-21"></a>        exercito <span class="op">=</span> <span class="cn">nothing</span></span>
+<span id="cb9-22"><a href="#cb9-22"></a>        <span class="fu">println</span>(<span class="st">"Sentinela '</span><span class="sc">$</span>(sentinela)<span class="st">' escutou o recado..."</span>)</span>
+<span id="cb9-23"><a href="#cb9-23"></a>        <span class="cf">if</span> <span class="fu">rand</span>() <span class="op">&gt;</span> <span class="fl">0.5</span></span>
+<span id="cb9-24"><a href="#cb9-24"></a>            <span class="fu">println</span>(<span class="st">" e '</span><span class="sc">$</span>(sentinela)<span class="st">' pode ajudar."</span>)</span>
+<span id="cb9-25"><a href="#cb9-25"></a>            podeAjudar <span class="op">=</span> <span class="cn">true</span></span>
+<span id="cb9-26"><a href="#cb9-26"></a>            <span class="fu">sendto</span>(aonde_esta_cobra, podeAjudar)</span>
+<span id="cb9-27"><a href="#cb9-27"></a>        <span class="cf">else</span></span>
+<span id="cb9-28"><a href="#cb9-28"></a>            <span class="fu">println</span>(<span class="st">" e '</span><span class="sc">$</span>(sentinela)<span class="st">' não pode ajudar."</span>)</span>
+<span id="cb9-29"><a href="#cb9-29"></a>            podeAjudar <span class="op">=</span> <span class="cn">false</span></span>
+<span id="cb9-30"><a href="#cb9-30"></a>            <span class="fu">sendto</span>(aonde_esta_cobra, podeAjudar )</span>
+<span id="cb9-31"><a href="#cb9-31"></a>        <span class="cf">end</span></span>
+<span id="cb9-32"><a href="#cb9-32"></a>    <span class="cf">elseif</span> sentinela <span class="op">==</span> <span class="fl">2</span></span>
+<span id="cb9-33"><a href="#cb9-33"></a>        <span class="co"># todos os membros do exército</span></span>
+<span id="cb9-34"><a href="#cb9-34"></a>        exercito <span class="op">=</span> [<span class="fl">2</span>] <span class="co"># o sentinela 2 vai participar</span></span>
+<span id="cb9-35"><a href="#cb9-35"></a></span>
+<span id="cb9-36"><a href="#cb9-36"></a>        outras_sentinelas <span class="op">=</span> [<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>]</span>
+<span id="cb9-37"><a href="#cb9-37"></a>        <span class="cf">for</span> sentinela <span class="op">=</span> outras_sentinelas</span>
+<span id="cb9-38"><a href="#cb9-38"></a>            podeAjudar <span class="op">=</span> <span class="fu">recvfrom</span>(sentinela)</span>
+<span id="cb9-39"><a href="#cb9-39"></a>            <span class="cf">if</span> podeAjudar</span>
+<span id="cb9-40"><a href="#cb9-40"></a>                <span class="fu">push!</span>(exercito, sentinela)</span>
+<span id="cb9-41"><a href="#cb9-41"></a>                <span class="fu">println</span>(<span class="st">"'</span><span class="sc">$</span>(sentinela)<span class="st">' chegou para ajudar."</span>)</span>
+<span id="cb9-42"><a href="#cb9-42"></a>            <span class="cf">end</span></span>
+<span id="cb9-43"><a href="#cb9-43"></a>        <span class="cf">end</span></span>
+<span id="cb9-44"><a href="#cb9-44"></a>        <span class="fu">println</span>(<span class="st">"O exército </span><span class="sc">$</span>(exercito)<span class="st"> irá lutar!"</span>)</span>
+<span id="cb9-45"><a href="#cb9-45"></a>        <span class="fu">println</span>(<span class="st">"-------"</span>)</span>
+<span id="cb9-46"><a href="#cb9-46"></a>    <span class="cf">end</span></span>
+<span id="cb9-47"><a href="#cb9-47"></a>    <span class="fu">barrier</span>(;pids<span class="op">=</span>[<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>])</span>
+<span id="cb9-48"><a href="#cb9-48"></a></span>
+<span id="cb9-49"><a href="#cb9-49"></a></span>
+<span id="cb9-50"><a href="#cb9-50"></a>    <span class="cf">if</span> sentinela <span class="op">==</span> <span class="fl">2</span></span>
+<span id="cb9-51"><a href="#cb9-51"></a>        qtd_suricates <span class="op">=</span> <span class="fl">5</span></span>
+<span id="cb9-52"><a href="#cb9-52"></a>        <span class="co">## Se a maioria dos suricates estiver</span></span>
+<span id="cb9-53"><a href="#cb9-53"></a>        <span class="co">## no exército, eles ganham</span></span>
+<span id="cb9-54"><a href="#cb9-54"></a>        <span class="cf">if</span> <span class="fu">length</span>(exercito) <span class="op">&gt;</span> qtd_suricates<span class="op">÷</span><span class="fl">2</span></span>
+<span id="cb9-55"><a href="#cb9-55"></a>            <span class="fu">println</span>(<span class="st">"--&gt; Exército venceu."</span>)</span>
+<span id="cb9-56"><a href="#cb9-56"></a>            <span class="fu">println</span>(<span class="st">"A cobra foi derrotada."</span>)</span>
+<span id="cb9-57"><a href="#cb9-57"></a>        <span class="cf">else</span></span>
+<span id="cb9-58"><a href="#cb9-58"></a>            <span class="fu">println</span>(<span class="st">"--&gt; O exército perdeu."</span>)</span>
+<span id="cb9-59"><a href="#cb9-59"></a>            <span class="fu">println</span>(<span class="st">"A cobra teve sua refeição."</span>)</span>
+<span id="cb9-60"><a href="#cb9-60"></a>        <span class="cf">end</span></span>
+<span id="cb9-61"><a href="#cb9-61"></a>    <span class="cf">end</span></span>
+<span id="cb9-62"><a href="#cb9-62"></a>    <span class="cn">nothing</span></span>
+<span id="cb9-63"><a href="#cb9-63"></a><span class="kw">end</span></span>
+<span id="cb9-64"><a href="#cb9-64"></a></span>
+<span id="cb9-65"><a href="#cb9-65"></a><span class="fu">spmd</span>(spmd_snake_drill; pids<span class="op">=</span><span class="fu">workers</span>())</span>
+<span id="cb9-66"><a href="#cb9-66"></a><span class="fu">rmprocs</span>();</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../PART_3/17_pipeline.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><code>pipeline</code></span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">2023</div>
+  </div>
+</footer>
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

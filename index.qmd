@@ -1,0 +1,10 @@
+# **Bem-vindo** {.unnumbered}
+
+Esta é uma série de tutoriais sobre programação paralela em Julia, apresentados em formato de narrativa semelhante a uma história. Portanto, todo o código apresentado está interligado com a história.
+
+Espero que goste e, mais importante, que aprenda algo novo.
+
+----
+This is a Quarto book.
+
+To learn more about Quarto books visit <https://quarto.org/docs/books>.

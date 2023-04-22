@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Programação Paralela em Julia: uma História com Suricates - 17&nbsp; pipeline</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../PART_3/18_spmd.html" rel="next">
+<link href="../PART_3/16_distributed_arrays.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Programação Paralela em Julia: uma História com Suricates</span>
+    </a>
+  </div>
+          <div class="quarto-toggle-container ms-auto">
+              <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+          </div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><code>pipeline</code></span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link"><strong>Bem-vindo</strong></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../PART_1/00_intro_story.html" class="sidebar-item-text sidebar-link">Part 1 - A Caçada</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_1/01_for_if.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><code>for</code> and <code>if</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_1/02_function.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>function</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_1/03_map.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><code>map</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_1/04_inline.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inplace Operations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_1/05_named_tuples.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tuplas Nomeadas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../PART_2/00_going_travelling.html" class="sidebar-item-text sidebar-link">Part 2 - Os Mapas</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_2/06_edge_detection.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Detecção de Bordas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_2/07_at_threads.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>Threads.@threads</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_2/08_at_spawn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>Threads.@spawn</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_2/09_spatial_divison.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Divisão Espacial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_2/10_threadsx.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>ThreadsX</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_2/11_parallel_stencil.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><code>ParallelStencil</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_2/12_benchmarks.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Benchmarks</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../PART_3/00_going_for_work.html" class="sidebar-item-text sidebar-link">Part 3 - Ao Trabalho</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_3/13_pmap.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title"><code>pmap</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_3/14_at_spawnat.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title"><code>@spawnat</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_3/15_shared_arrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><code>SharedArrays</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_3/16_distributed_arrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><code>DistributedArray</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_3/17_pipeline.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><code>pipeline</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../PART_3/18_spmd.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>SPMD</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+   
+  <ul>
+  <li><a href="#remotechannel" id="toc-remotechannel" class="nav-link active" data-scroll-target="#remotechannel"><span class="toc-section-number">17.1</span>  <code>RemoteChannel</code></a></li>
+  <li><a href="#nova-escavação" id="toc-nova-escavação" class="nav-link" data-scroll-target="#nova-escavação"><span class="toc-section-number">17.2</span>  Nova Escavação</a></li>
+  <li><a href="#mapa-de-profundidade" id="toc-mapa-de-profundidade" class="nav-link" data-scroll-target="#mapa-de-profundidade"><span class="toc-section-number">17.3</span>  Mapa de Profundidade</a></li>
+  <li><a href="#fuli" id="toc-fuli" class="nav-link" data-scroll-target="#fuli"><span class="toc-section-number">17.4</span>  Fuli</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><code>pipeline</code></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Fuli, o novo gerente, planeja construir um túnel mais profundo enquanto segue as regras da Organização Internacional do Trabalho. Para evitar sobrecarregar qualquer suricate com o novo empreendimento, Fuli decide dividir o trabalho em estágios, onde cada escavador completa seu estágio antes de entregar o túnel para o próximo escavador. São necessários 3 estágios: nos dois primeiros estágios, os suricates se concentram na escavação. O terceiro estágio é dedicado a criação de um mapa do progresso. O gerente fornece a posição inicial do túnel e, no final do dia, ele visita o canteiro de obras para receber o mapa com o progresso.</p>
+<p>Daisy recebeu a noticia com espanto, e critou uma figura ilustrando os estágios em formato de <code>linha de produção</code>, ou <code>arquitetura de pipeline</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pipeline_pt.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Créditos dos ícones: <a href="https://www.flaticon.com/free-icons/maps">maps</a>, <a href="https://www.flaticon.com/free-icons/shovel">shovel</a> e <a href="https://www.flaticon.com/free-icons/meerkat">meerkat</a>.</figcaption><p></p>
+</figure>
+</div>
+<section id="remotechannel" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="remotechannel"><span class="header-section-number">17.1</span> <code>RemoteChannel</code></h2>
+<p>A suricata enfrenta um novo desafio de programação, agora a comunicação entre os processos é crucial. Ela procura a ajuda de Martin e descobre que todos os pacotes anteriores que ela utilizou, já possuiam algum nível de comunicação nos bastidores, mas agora ela precisa aprender esses truques por si mesma. Em Julia, a comunicação entre processos é feita com <code>Channel</code>, e para processos em computadores diferentes, com <code>RemoteChannel</code>.</p>
+<div class="callout-tip callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Sintaxe: <code>remotechannels</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Um <code>RemoteChannel</code> é um canal de comunicação entre processos que funciona com uma <code>fila</code>, logo, a primeira mensagem a ser colocada, é a primeira ser retirada (<code>FIFO</code>). Todos os processos podem escrever dados com <code>pu!</code>, e efetuar leitura com <code>take!</code>.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Distributed</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addprocs</span>(<span class="fl">3</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># todos os processos podem</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ler e escrever até 4 mensagens</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>RC <span class="op">=</span> <span class="fu">RemoteChannel</span>(() <span class="op">-&gt;</span> <span class="fu">Channel</span>(<span class="fl">4</span>))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># uso o comando `put!`</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">## líder</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">put!</span>(RC, <span class="st">"mensagem 1"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">## trabalhadores</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="pp">@spawnat</span> <span class="fl">2</span> <span class="fu">put!</span>(RC, <span class="st">"mensagem 2"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="pp">@spawnat</span> <span class="fl">3</span> <span class="fu">put!</span>(RC, <span class="st">"mensagem 3"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="pp">@spawnat</span> <span class="fl">4</span> <span class="fu">put!</span>(RC, <span class="st">"mensagem 4"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># ler dados é com o `take!`</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="pp">@everywhere</span> <span class="kw">function</span> <span class="fu">ler_dado</span>(RC)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    mensagem <span class="op">=</span> <span class="fu">take!</span>(RC)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(mensagem)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># cada processo para faz uma leitura</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">## líder</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">ler_dado</span>(RC);</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">## trabalhadores</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="pp">@spawnat</span> <span class="fl">2</span> <span class="fu">ler_dado</span>(RC);</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="pp">@spawnat</span> <span class="fl">3</span> <span class="fu">ler_dado</span>(RC);</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="pp">@spawnat</span> <span class="fl">4</span> <span class="fu">ler_dado</span>(RC);</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">rmprocs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Atenção</strong> Se você pede a leitura dos dados, a execução do programa fica travada esperando pelos dados. Então no exemplo, após a leitura das 4 mensagens, se fosse requisitado uma nova leitura, o código ficaria travado indefinitivamente.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="op">...</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@spawnat</span> <span class="fl">3</span> <span class="fu">ler_dado</span>(RC);</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@spawnat</span> <span class="fl">4</span> <span class="fu">ler_dado</span>(RC);</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># A fila esta vazia, portanto uma nova leitura</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># iria ficar aguardando infinitamente algum dado</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ler_dado</span>(RC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>Martin alerta Daisy que suas funções precisam virar serviços, ela precisará criar funções que rodam eternamente, apenas esperando por requisições, só assim, ela pipelines funcionarem. A solução mais simples é criar funções dentro de bloco <code>while true ... end</code>.</p>
+<div class="callout-tip callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Sintaxe: Serviços Remotos
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Você vai aproveitar do fato que <code>take!</code> fica aguardando dados por tempo indeterminado, mas não no nó líder (processo 1), mas apenas nos trabalhadores remotos, já que assim não atrapalha a execução do seu programa.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Distributed</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addprocs</span>(<span class="fl">2</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="pp">@everywhere</span> <span class="kw">function</span> <span class="fu">ler_dado</span>(RC)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="cn">true</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        mensagem <span class="op">=</span> <span class="fu">take!</span>(RC)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sleep</span>(<span class="fl">1</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(mensagem)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="cn">nothing</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># canal aceita apenas 4 dado por vez</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>RC <span class="op">=</span> <span class="fu">RemoteChannel</span>(() <span class="op">-&gt;</span> <span class="fu">Channel</span>(<span class="fl">4</span>))</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># apenas o processo '2' ficará</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># travado esperando por dados</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="pp">@spawnat</span> <span class="fl">2</span> <span class="fu">ler_dado</span>(RC)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">put!</span>(RC, <span class="st">"mensagem 1"</span>);</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="fu">put!</span>(RC, <span class="st">"mensagem 2"</span>);</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="pp">@spawnat</span> <span class="fl">3</span> <span class="fu">put!</span>(RC, <span class="st">"mensagem 3"</span>);</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="pp">@spawnat</span> <span class="fl">3</span> <span class="fu">put!</span>(RC, <span class="st">"mensagem 4"</span>);</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fu">rmprocs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>Task (done) @0x00007f419d7b4c90</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Daisy atualizou seu desenho para ser mais técnica, e incluir o que aprendeu.</p>
+<p><img src="pipeline_process_pt.png" class="img-fluid"></p>
+</section>
+<section id="nova-escavação" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="nova-escavação"><span class="header-section-number">17.2</span> Nova Escavação</h2>
+<p>Criar túneis acontecerá em 2 estágios, logo, Daisy pegou os códigos antigos, e os adaptou para o novo desafio. Dessa vez ela reparou que poderia ser muito mais eficiente. Se no lugar ter uma matriz com <code>0</code> e <code>1</code>, ela poderia ter apenas um vetor contendo a posição exata da escavação (apenas a posição do indice aonde ficaria registrado o valor <code>1</code>).</p>
+<p>Abaixo, Daisy escreveu seu código para as primeiras etapas.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">using</span> <span class="bu">Distributed</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">addprocs</span>(<span class="fl">3</span>)</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="pp">@everywhere</span> <span class="kw">function</span> <span class="fu">etapa_1</span>(</span>
+<span id="cb5-5"><a href="#cb5-5"></a>                        qtd_camadas, tamanho_região,</span>
+<span id="cb5-6"><a href="#cb5-6"></a>                        RC_entrada, RC_saida)</span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="cf">while</span> <span class="cn">true</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>        ponto_partida <span class="op">=</span> <span class="fu">take!</span>(RC_entrada)</span>
+<span id="cb5-9"><a href="#cb5-9"></a>        <span class="fu">println</span>(<span class="st">"[Começou] Primeira Etapa"</span>)</span>
+<span id="cb5-10"><a href="#cb5-10"></a></span>
+<span id="cb5-11"><a href="#cb5-11"></a>        pontos_escavação <span class="op">=</span> [ponto_partida]</span>
+<span id="cb5-12"><a href="#cb5-12"></a>        <span class="fu">escavar!</span>(pontos_escavação,</span>
+<span id="cb5-13"><a href="#cb5-13"></a>            qtd_camadas, tamanho_região)</span>
+<span id="cb5-14"><a href="#cb5-14"></a></span>
+<span id="cb5-15"><a href="#cb5-15"></a>        <span class="fu">put!</span>(RC_saida, pontos_escavação)</span>
+<span id="cb5-16"><a href="#cb5-16"></a>        <span class="fu">println</span>(<span class="st">"[Terminado] Primeira Etapa"</span>)</span>
+<span id="cb5-17"><a href="#cb5-17"></a>    <span class="cf">end</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a><span class="kw">end</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a></span>
+<span id="cb5-20"><a href="#cb5-20"></a><span class="pp">@everywhere</span> <span class="kw">function</span> <span class="fu">etapa_2</span>(</span>
+<span id="cb5-21"><a href="#cb5-21"></a>                        qtd_camadas, tamanho_região,</span>
+<span id="cb5-22"><a href="#cb5-22"></a>                        RC_entrada, RC_saida)</span>
+<span id="cb5-23"><a href="#cb5-23"></a>    <span class="cf">while</span> <span class="cn">true</span></span>
+<span id="cb5-24"><a href="#cb5-24"></a>        <span class="co"># recebe as etapas anteriores</span></span>
+<span id="cb5-25"><a href="#cb5-25"></a>        pontos_escavação <span class="op">=</span> <span class="fu">take!</span>(RC_entrada)</span>
+<span id="cb5-26"><a href="#cb5-26"></a>        <span class="fu">println</span>(<span class="st">"[Começou] Segundo Etapa"</span>)</span>
+<span id="cb5-27"><a href="#cb5-27"></a></span>
+<span id="cb5-28"><a href="#cb5-28"></a>        <span class="fu">escavar!</span>(pontos_escavação,</span>
+<span id="cb5-29"><a href="#cb5-29"></a>            qtd_camadas, tamanho_região)</span>
+<span id="cb5-30"><a href="#cb5-30"></a></span>
+<span id="cb5-31"><a href="#cb5-31"></a>        <span class="fu">put!</span>(RC_saida, pontos_escavação)</span>
+<span id="cb5-32"><a href="#cb5-32"></a>        <span class="fu">println</span>(<span class="st">"[Terminado] Segundo Etapa"</span>)</span>
+<span id="cb5-33"><a href="#cb5-33"></a>    <span class="cf">end</span></span>
+<span id="cb5-34"><a href="#cb5-34"></a><span class="kw">end</span></span>
+<span id="cb5-35"><a href="#cb5-35"></a></span>
+<span id="cb5-36"><a href="#cb5-36"></a><span class="pp">@everywhere</span> <span class="pp">@inline</span> <span class="kw">function</span> <span class="fu">escavar!</span>(</span>
+<span id="cb5-37"><a href="#cb5-37"></a>    pontos_escavação, qtd_camadas,</span>
+<span id="cb5-38"><a href="#cb5-38"></a>    tamanho_região)</span>
+<span id="cb5-39"><a href="#cb5-39"></a></span>
+<span id="cb5-40"><a href="#cb5-40"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span>qtd_camadas</span>
+<span id="cb5-41"><a href="#cb5-41"></a>        ultima_posicao <span class="op">=</span> pontos_escavação[<span class="kw">end</span>]</span>
+<span id="cb5-42"><a href="#cb5-42"></a></span>
+<span id="cb5-43"><a href="#cb5-43"></a>        esquerda <span class="op">=</span> ultima_posicao <span class="op">-</span> <span class="fl">1</span></span>
+<span id="cb5-44"><a href="#cb5-44"></a>        meio <span class="op">=</span> ultima_posicao</span>
+<span id="cb5-45"><a href="#cb5-45"></a>        direita <span class="op">=</span> ultima_posicao <span class="op">+</span> <span class="fl">1</span></span>
+<span id="cb5-46"><a href="#cb5-46"></a></span>
+<span id="cb5-47"><a href="#cb5-47"></a>        <span class="cf">if</span> esquerda <span class="op">&lt;</span> <span class="fl">1</span></span>
+<span id="cb5-48"><a href="#cb5-48"></a>            possiveis_posições <span class="op">=</span> [direita,</span>
+<span id="cb5-49"><a href="#cb5-49"></a>                meio]</span>
+<span id="cb5-50"><a href="#cb5-50"></a>        <span class="cf">elseif</span> direita <span class="op">&gt;</span> tamanho_região</span>
+<span id="cb5-51"><a href="#cb5-51"></a>            possiveis_posições <span class="op">=</span> [meio,</span>
+<span id="cb5-52"><a href="#cb5-52"></a>                esquerda]</span>
+<span id="cb5-53"><a href="#cb5-53"></a>        <span class="cf">else</span></span>
+<span id="cb5-54"><a href="#cb5-54"></a>            possiveis_posições <span class="op">=</span> [esquerda,</span>
+<span id="cb5-55"><a href="#cb5-55"></a>                meio,</span>
+<span id="cb5-56"><a href="#cb5-56"></a>                direita]</span>
+<span id="cb5-57"><a href="#cb5-57"></a>        <span class="cf">end</span></span>
+<span id="cb5-58"><a href="#cb5-58"></a>        aonde_escavar <span class="op">=</span> <span class="fu">rand</span>(possiveis_posições)</span>
+<span id="cb5-59"><a href="#cb5-59"></a>        <span class="fu">push!</span>(pontos_escavação, aonde_escavar)</span>
+<span id="cb5-60"><a href="#cb5-60"></a>    <span class="cf">end</span></span>
+<span id="cb5-61"><a href="#cb5-61"></a>    <span class="cf">return</span> <span class="cn">nothing</span></span>
+<span id="cb5-62"><a href="#cb5-62"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="mapa-de-profundidade" class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="mapa-de-profundidade"><span class="header-section-number">17.3</span> Mapa de Profundidade</h2>
+<p>Para a terceira fase, Fuli precisava de um mapa agradável aos olhos, já que ele iria apresentar os resultados em formato de relatório aos investidores - e suricates investidores também tem medo de ver números brutos.</p>
+<p>Baseada em sua experiência com detecção de bordas, Daisy decidiu criar um mapa pintado de vermelho aonde foi escavado, e quanto mais profundo, mais escuro ficam as cores.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1"></a><span class="pp">@everywhere</span> <span class="im">using</span> <span class="bu">Images</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="pp">@everywhere</span> <span class="kw">function</span> <span class="fu">etapa_3</span>(</span>
+<span id="cb6-3"><a href="#cb6-3"></a>                        qtd_camadas, tamanho_região,</span>
+<span id="cb6-4"><a href="#cb6-4"></a>                        RC_entrada, RC_saida)</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="cf">while</span> <span class="cn">true</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>        <span class="co"># recebe o túnel completo</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>        pontos_escavação <span class="op">=</span> <span class="fu">take!</span>(RC_entrada)</span>
+<span id="cb6-8"><a href="#cb6-8"></a>        <span class="fu">println</span>(<span class="st">"[Começou] Terceira Etapa"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9"></a></span>
+<span id="cb6-10"><a href="#cb6-10"></a>        <span class="co"># mais profundo == mais escuro</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>        alphas <span class="op">=</span> <span class="fu">range</span>(<span class="fl">1.0</span>, <span class="fl">0.25</span>, length <span class="op">=</span> <span class="fl">2</span>qtd_camadas)</span>
+<span id="cb6-12"><a href="#cb6-12"></a>        mapa <span class="op">=</span> [<span class="fu">RGBA</span>(<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>)</span>
+<span id="cb6-13"><a href="#cb6-13"></a>            for i <span class="op">∈</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>qtd_camadas, j <span class="op">∈</span> <span class="fl">1</span><span class="op">:</span>tamanho_região]</span>
+<span id="cb6-14"><a href="#cb6-14"></a></span>
+<span id="cb6-15"><a href="#cb6-15"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="fu">eachindex</span>(pontos_escavação)</span>
+<span id="cb6-16"><a href="#cb6-16"></a>            <span class="co"># mostra a divisão entre etapas</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a>            <span class="co"># com uma cor diferente</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a>            <span class="cf">if</span> i <span class="op">==</span> qtd_camadas</span>
+<span id="cb6-19"><a href="#cb6-19"></a>                mapa[i, <span class="op">:</span>] <span class="op">.=</span> <span class="fu">RGBA</span>(<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">0.7</span>)</span>
+<span id="cb6-20"><a href="#cb6-20"></a>            <span class="cf">end</span></span>
+<span id="cb6-21"><a href="#cb6-21"></a></span>
+<span id="cb6-22"><a href="#cb6-22"></a>            mapa[i, pontos_escavação[i]] <span class="op">=</span> <span class="fu">RGBA</span>(<span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>,</span>
+<span id="cb6-23"><a href="#cb6-23"></a>                                                alphas[i])</span>
+<span id="cb6-24"><a href="#cb6-24"></a>        <span class="cf">end</span></span>
+<span id="cb6-25"><a href="#cb6-25"></a></span>
+<span id="cb6-26"><a href="#cb6-26"></a>        mapa_maior <span class="op">=</span> <span class="fu">imresize</span>(mapa, (<span class="fl">500</span>, <span class="fl">250</span>))</span>
+<span id="cb6-27"><a href="#cb6-27"></a>        <span class="fu">put!</span>(RC_saida, mapa_maior)</span>
+<span id="cb6-28"><a href="#cb6-28"></a>        <span class="fu">println</span>(<span class="st">"[Terminado] Terceira Etapa"</span>)</span>
+<span id="cb6-29"><a href="#cb6-29"></a>    <span class="cf">end</span></span>
+<span id="cb6-30"><a href="#cb6-30"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="fuli" class="level2" data-number="17.4">
+<h2 data-number="17.4" class="anchored" data-anchor-id="fuli"><span class="header-section-number">17.4</span> Fuli</h2>
+<p>Daisy pegou seu último desenho e o traduziu para códigos. Ela precisava de 4 canais remotos. Uma vez criados, ela notificou cada suricate com as dimensões do projeto, para que eles ficassem aguardando instruções.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1"></a>RC_1 <span class="op">=</span> <span class="fu">RemoteChannel</span>(() <span class="op">-&gt;</span> <span class="fu">Channel</span>(<span class="fl">1</span>))</span>
+<span id="cb7-2"><a href="#cb7-2"></a>RC_2 <span class="op">=</span> <span class="fu">RemoteChannel</span>(() <span class="op">-&gt;</span> <span class="fu">Channel</span>(<span class="fl">1</span>))</span>
+<span id="cb7-3"><a href="#cb7-3"></a>RC_3 <span class="op">=</span> <span class="fu">RemoteChannel</span>(() <span class="op">-&gt;</span> <span class="fu">Channel</span>(<span class="fl">1</span>))</span>
+<span id="cb7-4"><a href="#cb7-4"></a>RC_4 <span class="op">=</span> <span class="fu">RemoteChannel</span>(() <span class="op">-&gt;</span> <span class="fu">Channel</span>(<span class="fl">1</span>))</span>
+<span id="cb7-5"><a href="#cb7-5"></a></span>
+<span id="cb7-6"><a href="#cb7-6"></a>qtd_camadas, comprimento <span class="op">=</span> <span class="fl">25</span>, <span class="fl">30</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="pp">@spawnat</span> <span class="fl">2</span> <span class="fu">etapa_1</span>(qtd_camadas, comprimento, RC_1, RC_2)</span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="pp">@spawnat</span> <span class="fl">3</span> <span class="fu">etapa_2</span>(qtd_camadas, comprimento, RC_2, RC_3)</span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="pp">@spawnat</span> <span class="fl">4</span> <span class="fu">etapa_3</span>(qtd_camadas, comprimento, RC_3, RC_4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Com tudo preparado, Fuli apareceu, e disse que o ponto de partida de escavação seria bem no centro do terreno.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1"></a>partida_da_escavação <span class="op">=</span> <span class="fl">15</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">put!</span>(RC_1, partida_da_escavação)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>No final do dia, Fuli estava de volta, agora ele queria o mapa dos resultados, antes que todos os suricates fossem dispensados para casa.</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1"></a>mapa_tunel <span class="op">=</span> <span class="fu">take!</span>(RC_4)</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">save</span>(<span class="st">"tunnel_map.png"</span>, mapa_tunel)</span>
+<span id="cb9-3"><a href="#cb9-3"></a></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="fu">rmprocs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="tunnel_map.png" class="img-fluid"></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../PART_3/16_distributed_arrays.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><code>DistributedArray</code></span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../PART_3/18_spmd.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><code>SPMD</code></span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">2023</div>
+  </div>
+</footer>
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
