@@ -331,7 +331,7 @@ Número de Threads
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>O número de Threads usados para a execução paralela é determinado pela variável de ambiente <code>julia_num_threads</code>. Você pode verificar quantos threads você tem disponível chamando a função <code>threads.nthreads()</code></p>
+<p>O número de Threads usados para a execução paralela é determinado pela variável de ambiente <code>JULIA_NUM_THREADS</code>. Você pode verificar quantos threads você tem disponível chamando a função <code>threads.nthreads()</code></p>
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="bu">Threads</span>.<span class="fu">nthreads</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -383,21 +383,22 @@ Sintaxe: <code>@inline</code>
 <span id="cb2-12"><a href="#cb2-12"></a>    <span class="cf">return</span> imagem_nova</span>
 <span id="cb2-13"><a href="#cb2-13"></a><span class="kw">end</span></span>
 <span id="cb2-14"><a href="#cb2-14"></a></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="pp">@inline</span> <span class="kw">function</span> <span class="fu">kernel_bordas!</span>(imagem, imagem_nova, tipo_matrix, threshold, x, y)</span>
-<span id="cb2-16"><a href="#cb2-16"></a>    atual <span class="op">=</span> imagem[x,y]</span>
-<span id="cb2-17"><a href="#cb2-17"></a>    acima    <span class="op">=</span> imagem[x<span class="op">-</span><span class="fl">1</span>,y]</span>
-<span id="cb2-18"><a href="#cb2-18"></a>    esquerda  <span class="op">=</span> imagem[x,y<span class="op">-</span><span class="fl">1</span>]</span>
-<span id="cb2-19"><a href="#cb2-19"></a></span>
-<span id="cb2-20"><a href="#cb2-20"></a>    <span class="cf">if</span> <span class="fu">abs</span>(atual<span class="op">-</span>esquerda) <span class="op">≥</span> threshold <span class="op">&amp;&amp;</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a>        <span class="fu">abs</span>(atual<span class="op">-</span>acima) <span class="op">≥</span> threshold</span>
-<span id="cb2-22"><a href="#cb2-22"></a>        <span class="co"># se é uma borda, anota com '1'</span></span>
-<span id="cb2-23"><a href="#cb2-23"></a>        imagem_nova[x,y] <span class="op">=</span> <span class="fu">one</span>(tipo_matrix)</span>
-<span id="cb2-24"><a href="#cb2-24"></a>    <span class="cf">end</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a>    <span class="cf">return</span> <span class="cn">nothing</span></span>
-<span id="cb2-26"><a href="#cb2-26"></a><span class="kw">end</span></span>
-<span id="cb2-27"><a href="#cb2-27"></a></span>
-<span id="cb2-28"><a href="#cb2-28"></a>bordas_paralelo_v1 <span class="op">=</span> <span class="fu">bordas_at_threads</span>(imagem, threshold)</span>
-<span id="cb2-29"><a href="#cb2-29"></a><span class="pp">@assert</span> <span class="fu">all</span>(bordas <span class="op">.≈</span> bordas_paralelo_v1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="pp">@inline</span> <span class="kw">function</span> <span class="fu">kernel_bordas!</span>(imagem, imagem_nova,</span>
+<span id="cb2-16"><a href="#cb2-16"></a>                tipo_matrix, threshold, x, y)</span>
+<span id="cb2-17"><a href="#cb2-17"></a>    atual <span class="op">=</span> imagem[x,y]</span>
+<span id="cb2-18"><a href="#cb2-18"></a>    acima    <span class="op">=</span> imagem[x<span class="op">-</span><span class="fl">1</span>,y]</span>
+<span id="cb2-19"><a href="#cb2-19"></a>    esquerda  <span class="op">=</span> imagem[x,y<span class="op">-</span><span class="fl">1</span>]</span>
+<span id="cb2-20"><a href="#cb2-20"></a></span>
+<span id="cb2-21"><a href="#cb2-21"></a>    <span class="cf">if</span> <span class="fu">abs</span>(atual<span class="op">-</span>esquerda) <span class="op">≥</span> threshold <span class="op">&amp;&amp;</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a>        <span class="fu">abs</span>(atual<span class="op">-</span>acima) <span class="op">≥</span> threshold</span>
+<span id="cb2-23"><a href="#cb2-23"></a>        <span class="co"># se é uma borda, anota com '1'</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a>        imagem_nova[x,y] <span class="op">=</span> <span class="fu">one</span>(tipo_matrix)</span>
+<span id="cb2-25"><a href="#cb2-25"></a>    <span class="cf">end</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a>    <span class="cf">return</span> <span class="cn">nothing</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a><span class="kw">end</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a></span>
+<span id="cb2-29"><a href="#cb2-29"></a>bordas_paralelo_v1 <span class="op">=</span> <span class="fu">bordas_at_threads</span>(imagem, threshold)</span>
+<span id="cb2-30"><a href="#cb2-30"></a><span class="pp">@assert</span> <span class="fu">all</span>(bordas <span class="op">.≈</span> bordas_paralelo_v1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A função <code>all()</code> é usada para verificar se todos os elementos nas duas imagens são (aproximadamente) iguais usando o operador <code>≈</code>. Se o teste passar, significa que a implementação paralela produz a mesma saída que a implementação serial.</p>
 

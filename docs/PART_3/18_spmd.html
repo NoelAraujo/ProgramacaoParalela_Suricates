@@ -346,7 +346,7 @@ Sintaxe: <code>bcast</code>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="1">
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">using</span> <span class="bu">Distributed</span>, <span class="bu">DistributedArrays</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">addprocs</span>(<span class="fl">3</span>)</span>
 <span id="cb1-3"><a href="#cb1-3"></a></span>
@@ -395,7 +395,7 @@ Sintaxe: <code>bcast</code>
 <section id="segundo-teste" class="level2" data-number="18.2">
 <h2 data-number="18.2" class="anchored" data-anchor-id="segundo-teste"><span class="header-section-number">18.2</span> Segundo Teste</h2>
 <p>Daisy consegue comunicar a todos a respeito da ameaça, mas como que ela vai saber quem irá ajudar a combate-lá? Para isso, ela precisou dos comandos <code>sendto</code> e <code>recvfrom</code> - ‘<em>enviar para</em>’ e ‘<em>receber de</em>’ em uma tradução livre. Seu novo código é uma modificação do anterior, para ter certeza que todos os Sentinelas conseguem enviar mensagens.</p>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1"></a><span class="pp">@everywhere</span> <span class="kw">function</span> <span class="fu">spmd_teste_send_recv</span>()</span>
 <span id="cb6-2"><a href="#cb6-2"></a>    <span class="co"># primeiro encontra a cobra</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a>    <span class="cf">if</span> <span class="fu">myid</span>() <span class="op">==</span> <span class="fl">2</span></span>
@@ -445,7 +445,7 @@ Sintaxe: <code>bcast</code>
 <h2 data-number="18.3" class="anchored" data-anchor-id="isto-não-é-um-teste"><span class="header-section-number">18.3</span> <strong>Isto Não é um Teste</strong></h2>
 <p>Agora Daisy tem condições de fazer um código realistico. Quando uma cobra é avistada, todos os sentinelas são notificados, e eles deveriam ir até o a serpente para formar um pequeno exército. Se a maioria comparecer ao local, o exército consegue fazer gritos o suficiente para espantar o inimigo. Do contrário, a cobra terá um suricate no seu cardápio.</p>
 <p>O código final de Daisy levou tudo isso em conta, cada sentinela tem 50% de chance de enfrentar a cobra, do mesmo jeito que seus pais também lhe fazia ficar em casa metado tempo.</p>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">using</span> <span class="bu">Distributed</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="fu">addprocs</span>(<span class="fl">5</span>)</span>
 <span id="cb9-3"><a href="#cb9-3"></a><span class="pp">@everywhere</span> <span class="im">using</span> <span class="bu">DistributedArrays</span></span>
