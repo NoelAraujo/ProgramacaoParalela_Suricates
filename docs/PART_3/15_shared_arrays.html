@@ -129,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -156,9 +156,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
       <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -173,7 +173,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_1/00_intro_story.html" class="sidebar-item-text sidebar-link">Part 1 - A Caçada</a>
+            <a href="../PART_1/00_intro_story.html" class="sidebar-item-text sidebar-link">Parte 1</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -208,7 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_2/00_going_travelling.html" class="sidebar-item-text sidebar-link">Part 2 - Os Mapas</a>
+            <a href="../PART_2/00_going_travelling.html" class="sidebar-item-text sidebar-link">Parte 2</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -253,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_3/00_going_for_work.html" class="sidebar-item-text sidebar-link">Part 3 - Ao Trabalho</a>
+            <a href="../PART_3/00_going_for_work.html" class="sidebar-item-text sidebar-link">Parte 3</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -306,7 +306,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -430,40 +430,36 @@ findfirst(y) = 3</code></pre>
 <span id="cb4-13"><a href="#cb4-13"></a>        direita <span class="op">=</span> ultima_posicao <span class="op">+</span> <span class="fl">1</span></span>
 <span id="cb4-14"><a href="#cb4-14"></a></span>
 <span id="cb4-15"><a href="#cb4-15"></a>        <span class="cf">if</span> esquerda <span class="op">&lt;</span> <span class="fl">1</span></span>
-<span id="cb4-16"><a href="#cb4-16"></a>            possiveis_posições <span class="op">=</span> [direita,</span>
-<span id="cb4-17"><a href="#cb4-17"></a>                                  meio]</span>
-<span id="cb4-18"><a href="#cb4-18"></a>        <span class="cf">elseif</span> direita <span class="op">&gt;</span> colunas</span>
-<span id="cb4-19"><a href="#cb4-19"></a>            possiveis_posições <span class="op">=</span> [meio,</span>
-<span id="cb4-20"><a href="#cb4-20"></a>                                  esquerda]</span>
-<span id="cb4-21"><a href="#cb4-21"></a>        <span class="cf">else</span></span>
-<span id="cb4-22"><a href="#cb4-22"></a>            possiveis_posições <span class="op">=</span> [esquerda,</span>
-<span id="cb4-23"><a href="#cb4-23"></a>                                  meio,</span>
-<span id="cb4-24"><a href="#cb4-24"></a>                                  direita]</span>
-<span id="cb4-25"><a href="#cb4-25"></a>        <span class="cf">end</span></span>
-<span id="cb4-26"><a href="#cb4-26"></a></span>
-<span id="cb4-27"><a href="#cb4-27"></a>        local_para_escavar <span class="op">=</span> <span class="fu">rand</span>(possiveis_posições)</span>
-<span id="cb4-28"><a href="#cb4-28"></a>        terreno[i, local_para_escavar] <span class="op">=</span> <span class="fu">one</span>(<span class="fu">eltype</span>(terreno))</span>
-<span id="cb4-29"><a href="#cb4-29"></a>    <span class="cf">end</span></span>
-<span id="cb4-30"><a href="#cb4-30"></a><span class="kw">end</span></span>
-<span id="cb4-31"><a href="#cb4-31"></a></span>
-<span id="cb4-32"><a href="#cb4-32"></a>terreno <span class="op">=</span> <span class="fu">zeros</span>(<span class="dt">Bool</span>, <span class="fl">10</span>, <span class="fl">6</span>)</span>
-<span id="cb4-33"><a href="#cb4-33"></a><span class="fu">escavar_tunel!</span>(terreno)</span>
-<span id="cb4-34"><a href="#cb4-34"></a></span>
-<span id="cb4-35"><a href="#cb4-35"></a><span class="co"># Somente para visualização no terminal</span></span>
-<span id="cb4-36"><a href="#cb4-36"></a><span class="im">using</span> <span class="bu">SparseArrays</span></span>
-<span id="cb4-37"><a href="#cb4-37"></a><span class="fu">sparse</span>(terreno)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-16"><a href="#cb4-16"></a>            possiveis_posições <span class="op">=</span> [direita, meio]</span>
+<span id="cb4-17"><a href="#cb4-17"></a>        <span class="cf">elseif</span> direita <span class="op">&gt;</span> colunas</span>
+<span id="cb4-18"><a href="#cb4-18"></a>            possiveis_posições <span class="op">=</span> [meio, esquerda]</span>
+<span id="cb4-19"><a href="#cb4-19"></a>        <span class="cf">else</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a>            possiveis_posições <span class="op">=</span> [esquerda, meio, direita]</span>
+<span id="cb4-21"><a href="#cb4-21"></a>        <span class="cf">end</span></span>
+<span id="cb4-22"><a href="#cb4-22"></a></span>
+<span id="cb4-23"><a href="#cb4-23"></a>        local_para_escavar <span class="op">=</span> <span class="fu">rand</span>(possiveis_posições)</span>
+<span id="cb4-24"><a href="#cb4-24"></a>        terreno[i, local_para_escavar] <span class="op">=</span> <span class="fu">one</span>(<span class="fu">eltype</span>(terreno))</span>
+<span id="cb4-25"><a href="#cb4-25"></a>    <span class="cf">end</span></span>
+<span id="cb4-26"><a href="#cb4-26"></a><span class="kw">end</span></span>
+<span id="cb4-27"><a href="#cb4-27"></a></span>
+<span id="cb4-28"><a href="#cb4-28"></a>terreno <span class="op">=</span> <span class="fu">zeros</span>(<span class="dt">Bool</span>, <span class="fl">10</span>, <span class="fl">6</span>)</span>
+<span id="cb4-29"><a href="#cb4-29"></a><span class="fu">escavar_tunel!</span>(terreno)</span>
+<span id="cb4-30"><a href="#cb4-30"></a></span>
+<span id="cb4-31"><a href="#cb4-31"></a><span class="co"># Somente para visualização no terminal</span></span>
+<span id="cb4-32"><a href="#cb4-32"></a><span class="im">using</span> <span class="bu">SparseArrays</span></span>
+<span id="cb4-33"><a href="#cb4-33"></a><span class="fu">sparse</span>(terreno)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>10×6 SparseMatrixCSC{Bool, Int64} with 10 stored entries:
- ⋅  ⋅  ⋅  1  ⋅  ⋅
- ⋅  ⋅  ⋅  1  ⋅  ⋅
- ⋅  ⋅  ⋅  1  ⋅  ⋅
- ⋅  ⋅  ⋅  1  ⋅  ⋅
  ⋅  ⋅  ⋅  ⋅  1  ⋅
- ⋅  ⋅  ⋅  1  ⋅  ⋅
- ⋅  ⋅  1  ⋅  ⋅  ⋅
- ⋅  ⋅  ⋅  1  ⋅  ⋅
- ⋅  ⋅  ⋅  ⋅  1  ⋅
- ⋅  ⋅  ⋅  ⋅  ⋅  1</code></pre>
+ ⋅  ⋅  ⋅  ⋅  ⋅  1
+ ⋅  ⋅  ⋅  ⋅  ⋅  1
+ ⋅  ⋅  ⋅  ⋅  ⋅  1
+ ⋅  ⋅  ⋅  ⋅  ⋅  1
+ ⋅  ⋅  ⋅  ⋅  ⋅  1
+ ⋅  ⋅  ⋅  ⋅  ⋅  1
+ ⋅  ⋅  ⋅  ⋅  ⋅  1
+ ⋅  ⋅  ⋅  ⋅  ⋅  1
+ ⋅  ⋅  ⋅  ⋅  1  ⋅</code></pre>
 </div>
 </div>
 </section>
@@ -490,38 +486,34 @@ findfirst(y) = 3</code></pre>
 <span id="cb6-16"><a href="#cb6-16"></a>        direita <span class="op">=</span> ultima_posicao <span class="op">+</span> <span class="fl">1</span></span>
 <span id="cb6-17"><a href="#cb6-17"></a></span>
 <span id="cb6-18"><a href="#cb6-18"></a>        <span class="cf">if</span> esquerda <span class="op">&lt;</span> parte_local[<span class="fl">1</span>]</span>
-<span id="cb6-19"><a href="#cb6-19"></a>            possiveis_posições <span class="op">=</span> [direita,</span>
-<span id="cb6-20"><a href="#cb6-20"></a>                                meio]</span>
-<span id="cb6-21"><a href="#cb6-21"></a>        <span class="cf">elseif</span> direita <span class="op">&gt;</span> parte_local[<span class="kw">end</span>]</span>
-<span id="cb6-22"><a href="#cb6-22"></a>            possiveis_posições <span class="op">=</span> [meio,</span>
-<span id="cb6-23"><a href="#cb6-23"></a>                                esquerda]</span>
-<span id="cb6-24"><a href="#cb6-24"></a>        <span class="cf">else</span></span>
-<span id="cb6-25"><a href="#cb6-25"></a>            possiveis_posições <span class="op">=</span> [esquerda,</span>
-<span id="cb6-26"><a href="#cb6-26"></a>                                meio,</span>
-<span id="cb6-27"><a href="#cb6-27"></a>                                direita]</span>
-<span id="cb6-28"><a href="#cb6-28"></a>        <span class="cf">end</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a>            possiveis_posições <span class="op">=</span> [direita, meio]</span>
+<span id="cb6-20"><a href="#cb6-20"></a>        <span class="cf">elseif</span> direita <span class="op">&gt;</span> parte_local[<span class="kw">end</span>]</span>
+<span id="cb6-21"><a href="#cb6-21"></a>            possiveis_posições <span class="op">=</span> [meio, esquerda]</span>
+<span id="cb6-22"><a href="#cb6-22"></a>        <span class="cf">else</span></span>
+<span id="cb6-23"><a href="#cb6-23"></a>            possiveis_posições <span class="op">=</span> [esquerda, meio, direita]</span>
+<span id="cb6-24"><a href="#cb6-24"></a>        <span class="cf">end</span></span>
+<span id="cb6-25"><a href="#cb6-25"></a></span>
+<span id="cb6-26"><a href="#cb6-26"></a>        local_para_escavar <span class="op">=</span> <span class="fu">rand</span>(possiveis_posições)</span>
+<span id="cb6-27"><a href="#cb6-27"></a>        terreno[i, local_para_escavar] <span class="op">=</span> <span class="fu">one</span>(<span class="fu">eltype</span>(terreno))</span>
+<span id="cb6-28"><a href="#cb6-28"></a>    <span class="cf">end</span></span>
 <span id="cb6-29"><a href="#cb6-29"></a></span>
-<span id="cb6-30"><a href="#cb6-30"></a>        local_para_escavar <span class="op">=</span> <span class="fu">rand</span>(possiveis_posições)</span>
-<span id="cb6-31"><a href="#cb6-31"></a>        terreno[i, local_para_escavar] <span class="op">=</span> <span class="fu">one</span>(<span class="fu">eltype</span>(terreno))</span>
-<span id="cb6-32"><a href="#cb6-32"></a>    <span class="cf">end</span></span>
+<span id="cb6-30"><a href="#cb6-30"></a>   <span class="cf">return</span> <span class="cn">nothing</span></span>
+<span id="cb6-31"><a href="#cb6-31"></a><span class="kw">end</span></span>
+<span id="cb6-32"><a href="#cb6-32"></a></span>
 <span id="cb6-33"><a href="#cb6-33"></a></span>
-<span id="cb6-34"><a href="#cb6-34"></a>   <span class="cf">return</span> <span class="cn">nothing</span></span>
-<span id="cb6-35"><a href="#cb6-35"></a><span class="kw">end</span></span>
-<span id="cb6-36"><a href="#cb6-36"></a></span>
-<span id="cb6-37"><a href="#cb6-37"></a></span>
-<span id="cb6-38"><a href="#cb6-38"></a><span class="co"># suricate `4` ficou doente</span></span>
-<span id="cb6-39"><a href="#cb6-39"></a><span class="co"># então suricate `2` precisou compensar</span></span>
-<span id="cb6-40"><a href="#cb6-40"></a>rochoso <span class="op">=</span> <span class="fu">SharedMatrix</span><span class="dt">{Bool}</span>((<span class="fl">16</span>,<span class="fl">8</span><span class="op">+</span><span class="fl">3</span><span class="op">+</span><span class="fl">6</span>), pids <span class="op">=</span> [<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">5</span>])</span>
-<span id="cb6-41"><a href="#cb6-41"></a>escavadores <span class="op">=</span> [(nome<span class="op">=</span><span class="fl">2</span>, parte_local<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span>),</span>
-<span id="cb6-42"><a href="#cb6-42"></a>            (nome<span class="op">=</span><span class="fl">3</span>, parte_local<span class="op">=</span><span class="fl">9</span><span class="op">:</span><span class="fl">11</span>),</span>
-<span id="cb6-43"><a href="#cb6-43"></a>            (nome<span class="op">=</span><span class="fl">5</span>, parte_local<span class="op">=</span><span class="fl">12</span><span class="op">:</span><span class="fl">17</span>)</span>
-<span id="cb6-44"><a href="#cb6-44"></a>            ]</span>
-<span id="cb6-45"><a href="#cb6-45"></a><span class="cf">for</span> s <span class="kw">in</span> escavadores</span>
-<span id="cb6-46"><a href="#cb6-46"></a>    <span class="pp">@spawnat</span> s.nome <span class="fu">escavar_tunel!</span>(rochoso, s.parte_local)</span>
-<span id="cb6-47"><a href="#cb6-47"></a><span class="cf">end</span></span>
-<span id="cb6-48"><a href="#cb6-48"></a></span>
-<span id="cb6-49"><a href="#cb6-49"></a><span class="fu">sparse</span>(rochoso)</span>
-<span id="cb6-50"><a href="#cb6-50"></a><span class="fu">rmprocs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-34"><a href="#cb6-34"></a><span class="co"># suricate `4` ficou doente</span></span>
+<span id="cb6-35"><a href="#cb6-35"></a><span class="co"># então suricate `2` precisou compensar</span></span>
+<span id="cb6-36"><a href="#cb6-36"></a>rochoso <span class="op">=</span> <span class="fu">SharedMatrix</span><span class="dt">{Bool}</span>((<span class="fl">16</span>,<span class="fl">8</span><span class="op">+</span><span class="fl">3</span><span class="op">+</span><span class="fl">6</span>), pids <span class="op">=</span> [<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">5</span>])</span>
+<span id="cb6-37"><a href="#cb6-37"></a>escavadores <span class="op">=</span> [(nome<span class="op">=</span><span class="fl">2</span>, parte_local<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span>),</span>
+<span id="cb6-38"><a href="#cb6-38"></a>               (nome<span class="op">=</span><span class="fl">3</span>, parte_local<span class="op">=</span><span class="fl">9</span><span class="op">:</span><span class="fl">11</span>),</span>
+<span id="cb6-39"><a href="#cb6-39"></a>               (nome<span class="op">=</span><span class="fl">5</span>, parte_local<span class="op">=</span><span class="fl">12</span><span class="op">:</span><span class="fl">17</span>)</span>
+<span id="cb6-40"><a href="#cb6-40"></a>              ]</span>
+<span id="cb6-41"><a href="#cb6-41"></a><span class="cf">for</span> s <span class="kw">in</span> escavadores</span>
+<span id="cb6-42"><a href="#cb6-42"></a>    <span class="pp">@spawnat</span> s.nome <span class="fu">escavar_tunel!</span>(rochoso, s.parte_local)</span>
+<span id="cb6-43"><a href="#cb6-43"></a><span class="cf">end</span></span>
+<span id="cb6-44"><a href="#cb6-44"></a></span>
+<span id="cb6-45"><a href="#cb6-45"></a><span class="fu">sparse</span>(rochoso)</span>
+<span id="cb6-46"><a href="#cb6-46"></a><span class="fu">rmprocs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -776,7 +768,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
       <a href="../PART_3/14_at_spawnat.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title"><code>@spawnat</code></span></span>

@@ -129,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -156,9 +156,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
       <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -173,7 +173,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_1/00_intro_story.html" class="sidebar-item-text sidebar-link">Part 1 - A Caçada</a>
+            <a href="../PART_1/00_intro_story.html" class="sidebar-item-text sidebar-link">Parte 1</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -208,7 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_2/00_going_travelling.html" class="sidebar-item-text sidebar-link">Part 2 - Os Mapas</a>
+            <a href="../PART_2/00_going_travelling.html" class="sidebar-item-text sidebar-link">Parte 2</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -253,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_3/00_going_for_work.html" class="sidebar-item-text sidebar-link">Part 3 - Ao Trabalho</a>
+            <a href="../PART_3/00_going_for_work.html" class="sidebar-item-text sidebar-link">Parte 3</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -295,11 +295,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
 </nav>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -343,25 +343,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-8"><a href="#cb1-8"></a><span class="co"># Se você já tem placa Nvidia configurada, pode usar essa linha</span></span>
 <span id="cb1-9"><a href="#cb1-9"></a><span class="co"># @init_parallel_stencil(CUDA, Float32, 2);</span></span>
 <span id="cb1-10"><a href="#cb1-10"></a></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="pp">@parallel_indices</span> (x,y) <span class="kw">function</span> <span class="fu">_novo_kernel!</span>(imagem,</span>
-<span id="cb1-12"><a href="#cb1-12"></a>                                    imagem_nova, threshold)</span>
-<span id="cb1-13"><a href="#cb1-13"></a>    T <span class="op">=</span> <span class="fu">eltype</span>(imagem)</span>
-<span id="cb1-14"><a href="#cb1-14"></a>    altura, comprimento <span class="op">=</span> <span class="fu">size</span>(imagem)</span>
-<span id="cb1-15"><a href="#cb1-15"></a></span>
-<span id="cb1-16"><a href="#cb1-16"></a>    <span class="cf">if</span> (    x <span class="op">&gt;=</span> <span class="fl">2</span>  <span class="op">&amp;&amp;</span> x <span class="op">&lt;=</span> altura <span class="op">&amp;&amp;</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a>            y <span class="op">&gt;=</span> <span class="fl">2</span>  <span class="op">&amp;&amp;</span> y <span class="op">&lt;=</span> comprimento )</span>
-<span id="cb1-18"><a href="#cb1-18"></a></span>
-<span id="cb1-19"><a href="#cb1-19"></a>        atual <span class="op">=</span> imagem[x,y]</span>
-<span id="cb1-20"><a href="#cb1-20"></a>        acima    <span class="op">=</span> imagem[x<span class="op">-</span><span class="fl">1</span>,y]</span>
-<span id="cb1-21"><a href="#cb1-21"></a>        esquerda  <span class="op">=</span> imagem[x,y<span class="op">-</span><span class="fl">1</span>]</span>
-<span id="cb1-22"><a href="#cb1-22"></a></span>
-<span id="cb1-23"><a href="#cb1-23"></a>        <span class="cf">if</span> <span class="fu">abs</span>(atual<span class="op">-</span>esquerda) <span class="op">≥</span> threshold <span class="op">&amp;&amp;</span></span>
-<span id="cb1-24"><a href="#cb1-24"></a>            <span class="fu">abs</span>(atual<span class="op">-</span>acima) <span class="op">≥</span> threshold</span>
-<span id="cb1-25"><a href="#cb1-25"></a>            imagem_nova[x,y] <span class="op">=</span> <span class="fu">one</span>(T)</span>
-<span id="cb1-26"><a href="#cb1-26"></a>        <span class="cf">end</span></span>
-<span id="cb1-27"><a href="#cb1-27"></a>    <span class="cf">end</span></span>
-<span id="cb1-28"><a href="#cb1-28"></a>    <span class="cf">return</span></span>
-<span id="cb1-29"><a href="#cb1-29"></a><span class="kw">end</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="pp">@parallel_indices</span> (x,y) <span class="kw">function</span> <span class="fu">_novo_kernel!</span>(imagem, imagem_nova, threshold)</span>
+<span id="cb1-12"><a href="#cb1-12"></a>    T <span class="op">=</span> <span class="fu">eltype</span>(imagem)</span>
+<span id="cb1-13"><a href="#cb1-13"></a>    altura, comprimento <span class="op">=</span> <span class="fu">size</span>(imagem)</span>
+<span id="cb1-14"><a href="#cb1-14"></a></span>
+<span id="cb1-15"><a href="#cb1-15"></a>    <span class="cf">if</span> (    x <span class="op">&gt;=</span> <span class="fl">2</span>  <span class="op">&amp;&amp;</span> x <span class="op">&lt;=</span> altura <span class="op">&amp;&amp;</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>            y <span class="op">&gt;=</span> <span class="fl">2</span>  <span class="op">&amp;&amp;</span> y <span class="op">&lt;=</span> comprimento )</span>
+<span id="cb1-17"><a href="#cb1-17"></a></span>
+<span id="cb1-18"><a href="#cb1-18"></a>        atual <span class="op">=</span> imagem[x,y]</span>
+<span id="cb1-19"><a href="#cb1-19"></a>        acima    <span class="op">=</span> imagem[x<span class="op">-</span><span class="fl">1</span>,y]</span>
+<span id="cb1-20"><a href="#cb1-20"></a>        esquerda  <span class="op">=</span> imagem[x,y<span class="op">-</span><span class="fl">1</span>]</span>
+<span id="cb1-21"><a href="#cb1-21"></a></span>
+<span id="cb1-22"><a href="#cb1-22"></a>        <span class="cf">if</span> <span class="fu">abs</span>(atual<span class="op">-</span>esquerda) <span class="op">≥</span> threshold <span class="op">&amp;&amp;</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>            <span class="fu">abs</span>(atual<span class="op">-</span>acima) <span class="op">≥</span> threshold</span>
+<span id="cb1-24"><a href="#cb1-24"></a>            imagem_nova[x,y] <span class="op">=</span> <span class="fu">one</span>(T)</span>
+<span id="cb1-25"><a href="#cb1-25"></a>        <span class="cf">end</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>    <span class="cf">end</span></span>
+<span id="cb1-27"><a href="#cb1-27"></a>    <span class="cf">return</span> <span class="cn">nothing</span></span>
+<span id="cb1-28"><a href="#cb1-28"></a><span class="kw">end</span></span>
+<span id="cb1-29"><a href="#cb1-29"></a></span>
 <span id="cb1-30"><a href="#cb1-30"></a><span class="kw">function</span> <span class="fu">bordas_ParStencil!</span>(imagem, threshold)</span>
 <span id="cb1-31"><a href="#cb1-31"></a>    imagem_nova <span class="op">=</span> <span class="pp">@zeros</span>(<span class="fu">size</span>(imagem)<span class="op">...</span>)</span>
 <span id="cb1-32"><a href="#cb1-32"></a>    <span class="pp">@parallel</span> <span class="fu">_novo_kernel!</span>(imagem, imagem_nova, threshold)</span>
@@ -371,7 +371,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-36"><a href="#cb1-36"></a></span>
 <span id="cb1-37"><a href="#cb1-37"></a></span>
 <span id="cb1-38"><a href="#cb1-38"></a>bordas_paralelo_v5 <span class="op">=</span> <span class="fu">bordas_ParStencil!</span>(imagem, threshold)</span>
-<span id="cb1-39"><a href="#cb1-39"></a><span class="pp">@assert</span> <span class="fu">all</span>(bordas <span class="op">.≈</span> bordas_paralelo_v4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-39"><a href="#cb1-39"></a><span class="pp">@assert</span> <span class="fu">all</span>(bordas <span class="op">.≈</span> bordas_paralelo_v5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -625,7 +625,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
+<nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
       <a href="../PART_2/10_threadsx.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>ThreadsX</code></span></span>

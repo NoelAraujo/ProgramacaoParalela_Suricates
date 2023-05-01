@@ -129,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -156,9 +156,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
       <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -173,7 +173,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_1/00_intro_story.html" class="sidebar-item-text sidebar-link">Part 1 - A Caçada</a>
+            <a href="../PART_1/00_intro_story.html" class="sidebar-item-text sidebar-link">Parte 1</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -208,7 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_2/00_going_travelling.html" class="sidebar-item-text sidebar-link">Part 2 - Os Mapas</a>
+            <a href="../PART_2/00_going_travelling.html" class="sidebar-item-text sidebar-link">Parte 2</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -253,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_3/00_going_for_work.html" class="sidebar-item-text sidebar-link">Part 3 - Ao Trabalho</a>
+            <a href="../PART_3/00_going_for_work.html" class="sidebar-item-text sidebar-link">Parte 3</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -295,11 +295,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
 </nav>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -364,7 +364,8 @@ Sintaxe: <code>@inline</code>
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Fazer uma chamada de função pode ser levemente mais demorado do que um programa contendo todos os comandos. Se <strong>você</strong> quer escrever em formato modular, com várias funções, mas o código final produzido pelo compialdor se torne um código extenso, com todas as funções encapsuladas em apenas um código, você pode dizer isso ao compilador com a macro <code>@inline</code>.</p>
+<p>Fazer uma chamada de função pode ser levemente mais demorado do que um programa contendo todos os comandos.</p>
+<p>Se <strong>você</strong> quer escrever em formato modular, com várias funções, mas o código final produzido pelo compialdor se torne um código extenso, com todas as funções encapsuladas em apenas um código, você pode dizer isso ao compilador com a macro <code>@inline</code>.</p>
 </div>
 </div>
 </div>
@@ -376,31 +377,30 @@ Sintaxe: <code>@inline</code>
 <span id="cb2-5"><a href="#cb2-5"></a></span>
 <span id="cb2-6"><a href="#cb2-6"></a>    <span class="bu">Threads</span>.<span class="pp">@threads</span> <span class="cf">for</span> y <span class="op">=</span> <span class="fl">2</span><span class="op">:</span>comprimento</span>
 <span id="cb2-7"><a href="#cb2-7"></a>        <span class="cf">for</span> x <span class="op">=</span> <span class="fl">2</span><span class="op">:</span>altura</span>
-<span id="cb2-8"><a href="#cb2-8"></a>            <span class="fu">kernel_bordas!</span>(imagem, imagem_nova,</span>
-<span id="cb2-9"><a href="#cb2-9"></a>                    T, threshold, x, y)</span>
-<span id="cb2-10"><a href="#cb2-10"></a>        <span class="cf">end</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>    <span class="cf">end</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a>    <span class="cf">return</span> imagem_nova</span>
-<span id="cb2-13"><a href="#cb2-13"></a><span class="kw">end</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="pp">@inline</span> <span class="kw">function</span> <span class="fu">kernel_bordas!</span>(imagem, imagem_nova,</span>
-<span id="cb2-16"><a href="#cb2-16"></a>                tipo_matrix, threshold, x, y)</span>
-<span id="cb2-17"><a href="#cb2-17"></a>    atual <span class="op">=</span> imagem[x,y]</span>
-<span id="cb2-18"><a href="#cb2-18"></a>    acima    <span class="op">=</span> imagem[x<span class="op">-</span><span class="fl">1</span>,y]</span>
-<span id="cb2-19"><a href="#cb2-19"></a>    esquerda  <span class="op">=</span> imagem[x,y<span class="op">-</span><span class="fl">1</span>]</span>
-<span id="cb2-20"><a href="#cb2-20"></a></span>
-<span id="cb2-21"><a href="#cb2-21"></a>    <span class="cf">if</span> <span class="fu">abs</span>(atual<span class="op">-</span>esquerda) <span class="op">≥</span> threshold <span class="op">&amp;&amp;</span></span>
-<span id="cb2-22"><a href="#cb2-22"></a>        <span class="fu">abs</span>(atual<span class="op">-</span>acima) <span class="op">≥</span> threshold</span>
-<span id="cb2-23"><a href="#cb2-23"></a>        <span class="co"># se é uma borda, anota com '1'</span></span>
-<span id="cb2-24"><a href="#cb2-24"></a>        imagem_nova[x,y] <span class="op">=</span> <span class="fu">one</span>(tipo_matrix)</span>
-<span id="cb2-25"><a href="#cb2-25"></a>    <span class="cf">end</span></span>
-<span id="cb2-26"><a href="#cb2-26"></a>    <span class="cf">return</span> <span class="cn">nothing</span></span>
-<span id="cb2-27"><a href="#cb2-27"></a><span class="kw">end</span></span>
-<span id="cb2-28"><a href="#cb2-28"></a></span>
-<span id="cb2-29"><a href="#cb2-29"></a>bordas_paralelo_v1 <span class="op">=</span> <span class="fu">bordas_at_threads</span>(imagem, threshold)</span>
-<span id="cb2-30"><a href="#cb2-30"></a><span class="pp">@assert</span> <span class="fu">all</span>(bordas <span class="op">.≈</span> bordas_paralelo_v1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-8"><a href="#cb2-8"></a>            <span class="fu">kernel_bordas!</span>(imagem, imagem_nova, T, threshold, x, y)</span>
+<span id="cb2-9"><a href="#cb2-9"></a>        <span class="cf">end</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>    <span class="cf">end</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="cf">return</span> imagem_nova</span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="kw">end</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="pp">@inline</span> <span class="kw">function</span> <span class="fu">kernel_bordas!</span>(imagem, imagem_nova, tipo_matrix, threshold, x, y)</span>
+<span id="cb2-15"><a href="#cb2-15"></a>    atual <span class="op">=</span> imagem[x,y]</span>
+<span id="cb2-16"><a href="#cb2-16"></a>    acima    <span class="op">=</span> imagem[x<span class="op">-</span><span class="fl">1</span>,y]</span>
+<span id="cb2-17"><a href="#cb2-17"></a>    esquerda  <span class="op">=</span> imagem[x,y<span class="op">-</span><span class="fl">1</span>]</span>
+<span id="cb2-18"><a href="#cb2-18"></a></span>
+<span id="cb2-19"><a href="#cb2-19"></a>    <span class="cf">if</span> <span class="fu">abs</span>(atual<span class="op">-</span>esquerda) <span class="op">≥</span> threshold <span class="op">&amp;&amp;</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a>        <span class="fu">abs</span>(atual<span class="op">-</span>acima) <span class="op">≥</span> threshold</span>
+<span id="cb2-21"><a href="#cb2-21"></a>        <span class="co"># se é uma borda, anota com '1'</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a>        imagem_nova[x,y] <span class="op">=</span> <span class="fu">one</span>(tipo_matrix)</span>
+<span id="cb2-23"><a href="#cb2-23"></a>    <span class="cf">end</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a>    <span class="cf">return</span> <span class="cn">nothing</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a><span class="kw">end</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a></span>
+<span id="cb2-27"><a href="#cb2-27"></a>bordas_paralelo_v1 <span class="op">=</span> <span class="fu">bordas_at_threads</span>(imagem, threshold)</span>
+<span id="cb2-28"><a href="#cb2-28"></a><span class="co"># testar que código sequencial e paralelo produze o mesmo resultado</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a><span class="pp">@assert</span> <span class="fu">all</span>(bordas <span class="op">.≈</span> bordas_paralelo_v1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>A função <code>all()</code> é usada para verificar se todos os elementos nas duas imagens são (aproximadamente) iguais usando o operador <code>≈</code>. Se o teste passar, significa que a implementação paralela produz a mesma saída que a implementação serial.</p>
+<p>A função <code>all()</code> é usada para verificar se todos os elementos nas duas imagens são (aproximadamente) iguais usando o operador <code>≈</code> (<code>\approx + TAB</code>). Se o teste passar, significa que a implementação paralela produz a mesma saída que a implementação serial.</p>
 
 
 
@@ -653,7 +653,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
+<nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
       <a href="../PART_2/06_edge_detection.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Detecção de Bordas</span></span>

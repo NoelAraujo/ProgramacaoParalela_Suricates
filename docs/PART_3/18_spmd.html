@@ -128,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -155,9 +155,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
       <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -172,7 +172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_1/00_intro_story.html" class="sidebar-item-text sidebar-link">Part 1 - A Caçada</a>
+            <a href="../PART_1/00_intro_story.html" class="sidebar-item-text sidebar-link">Parte 1</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -207,7 +207,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_2/00_going_travelling.html" class="sidebar-item-text sidebar-link">Part 2 - Os Mapas</a>
+            <a href="../PART_2/00_going_travelling.html" class="sidebar-item-text sidebar-link">Parte 2</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -252,7 +252,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_3/00_going_for_work.html" class="sidebar-item-text sidebar-link">Part 3 - Ao Trabalho</a>
+            <a href="../PART_3/00_going_for_work.html" class="sidebar-item-text sidebar-link">Parte 3</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -300,12 +300,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#primeiro-teste" id="toc-primeiro-teste" class="nav-link active" data-scroll-target="#primeiro-teste"><span class="toc-section-number">18.1</span>  Primeiro Teste</a></li>
   <li><a href="#segundo-teste" id="toc-segundo-teste" class="nav-link" data-scroll-target="#segundo-teste"><span class="toc-section-number">18.2</span>  Segundo Teste</a></li>
-  <li><a href="#isto-não-é-um-teste" id="toc-isto-não-é-um-teste" class="nav-link" data-scroll-target="#isto-não-é-um-teste"><span class="toc-section-number">18.3</span>  <strong>Isto Não é um Teste</strong></a></li>
+  <li><a href="#último-teste" id="toc-último-teste" class="nav-link" data-scroll-target="#último-teste"><span class="toc-section-number">18.3</span>  Último Teste</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -325,7 +325,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <p>Daisy está rapidamente subindo ao topo, literalmente. Após seu sucesso com o projeto de túnel de profundidade, seu chefe falou muito bem de suas habilidades com seus superiores, e Daisy foi promovida ao dever de <code>Sentinela Real</code> da gangue. Em seu novo cargo, ela é responsável por manter a guarda e procurar possíveis ameaças ou perigos. Depois que uma ameaça é encontrada, todos os suricates em serviço são notificados e, se possível, eles oferecer assistência.</p>
-<p>Daisy imediatamente começou a imaginar possíveis algoritmos para melhorar seu novo emprego. Ela sabia que a comunicação seria ainda mais complexa do que antes. Buscando ajuda de Martin, ele disse para Daisy escrever um código semelhante ao que ela usou com programação de placas de vídeo, no qual todos os processos recebem o mesmo código, executariam ao mesmo tempo, mas tem resultados diferentes. Essa abordagem é conhecida como <code>Singel Program Multiple Data</code> ou <code>SPMD</code>.</p>
+<p>Daisy imediatamente começou a imaginar possíveis algoritmos para melhorar seu novo emprego. Ela sabia que a comunicação seria ainda mais complexa do que antes. Buscando ajuda de Martin, ele disse para Daisy escrever um código semelhante ao que ela usou com programação de placas de vídeo, no qual todos os processos recebem o mesmo código, executariam ao mesmo tempo, mas tem resultados diferentes. Essa abordagem é conhecida como <code>Single Program Multiple Data</code> ou <code>SPMD</code>.</p>
 <p>Daisy recordou desse nome na documentação do pacote <code>DistributedArrays.jl</code>. Esse pacote oferecia uma interface para esse recurso, mas Daisy nunca havia prestado a devida atenção a ele antes.</p>
 <section id="primeiro-teste" class="level2" data-number="18.1">
 <h2 data-number="18.1" class="anchored" data-anchor-id="primeiro-teste"><span class="header-section-number">18.1</span> Primeiro Teste</h2>
@@ -346,7 +346,7 @@ Sintaxe: <code>bcast</code>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">using</span> <span class="bu">Distributed</span>, <span class="bu">DistributedArrays</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">addprocs</span>(<span class="fl">3</span>)</span>
 <span id="cb1-3"><a href="#cb1-3"></a></span>
@@ -376,142 +376,128 @@ Sintaxe: <code>bcast</code>
 <span id="cb1-27"><a href="#cb1-27"></a>    <span class="cn">nothing</span></span>
 <span id="cb1-28"><a href="#cb1-28"></a><span class="kw">end</span></span>
 <span id="cb1-29"><a href="#cb1-29"></a><span class="fu">spmd</span>(spmd_teste_bcast; pids<span class="op">=</span><span class="fu">workers</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      From worker 4:    Antes bcast, '4' tem A = nothing</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      From worker 2:    Antes bcast, '2' tem A = ComplexF64[1.0 + 2.0im, 2.0 + 4.0im, 3.0 + 6.0im]
-      From worker 3:    Antes bcast, '3' tem A = nothing</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      From worker 2:    Depois bcast, '2' tem A = ComplexF64[1.0 + 2.0im, 2.0 + 4.0im, 3.0 + 6.0im]</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      From worker 4:    Depois bcast, '4' tem A = ComplexF64[1.0 + 2.0im, 2.0 + 4.0im, 3.0 + 6.0im]
-      From worker 3:    Depois bcast, '3' tem A = ComplexF64[1.0 + 2.0im, 2.0 + 4.0im, 3.0 + 6.0im]</code></pre>
-</div>
 </div>
 </section>
 <section id="segundo-teste" class="level2" data-number="18.2">
 <h2 data-number="18.2" class="anchored" data-anchor-id="segundo-teste"><span class="header-section-number">18.2</span> Segundo Teste</h2>
 <p>Daisy consegue comunicar a todos a respeito da ameaça, mas como que ela vai saber quem irá ajudar a combate-lá? Para isso, ela precisou dos comandos <code>sendto</code> e <code>recvfrom</code> - ‘<em>enviar para</em>’ e ‘<em>receber de</em>’ em uma tradução livre. Seu novo código é uma modificação do anterior, para ter certeza que todos os Sentinelas conseguem enviar mensagens.</p>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1"></a><span class="pp">@everywhere</span> <span class="kw">function</span> <span class="fu">spmd_teste_send_recv</span>()</span>
-<span id="cb6-2"><a href="#cb6-2"></a>    <span class="co"># primeiro encontra a cobra</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>    <span class="cf">if</span> <span class="fu">myid</span>() <span class="op">==</span> <span class="fl">2</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a>        <span class="fu">println</span>(<span class="st">"</span><span class="sc">$</span>(<span class="fu">myid</span>())<span class="st"> achou a cobra"</span>)</span>
-<span id="cb6-5"><a href="#cb6-5"></a>        cobra <span class="op">=</span> <span class="fl">2</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a>    <span class="cf">else</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a>        cobra <span class="op">=</span> <span class="cn">nothing</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a>    <span class="cf">end</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a></span>
-<span id="cb6-10"><a href="#cb6-10"></a>    <span class="co"># notifica todos os sentinelas</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a>    aonde_esta_cobra <span class="op">=</span> <span class="fu">bcast</span>(cobra, <span class="fl">2</span>)</span>
-<span id="cb6-12"><a href="#cb6-12"></a>    <span class="fu">barrier</span>(;pids<span class="op">=</span>[<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>])</span>
-<span id="cb6-13"><a href="#cb6-13"></a></span>
-<span id="cb6-14"><a href="#cb6-14"></a>    <span class="co"># dependendo do nome, a sentinela toma</span></span>
-<span id="cb6-15"><a href="#cb6-15"></a>    <span class="co"># uma ação diferente</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a>    <span class="cf">if</span> <span class="fu">myid</span>() <span class="op">≠</span> <span class="fl">2</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a>        <span class="co"># outras sentinelas dizem que escutaram</span></span>
-<span id="cb6-18"><a href="#cb6-18"></a>        mensagem <span class="op">=</span> <span class="st">"</span><span class="sc">$</span>(<span class="fu">myid</span>())<span class="st"> entendeu o recado"</span></span>
-<span id="cb6-19"><a href="#cb6-19"></a>        <span class="fu">sendto</span>(aonde_esta_cobra, mensagem)</span>
-<span id="cb6-20"><a href="#cb6-20"></a>    <span class="cf">elseif</span> <span class="fu">myid</span>() <span class="op">==</span> <span class="fl">2</span></span>
-<span id="cb6-21"><a href="#cb6-21"></a>        <span class="co"># sentinela 2 fica esperando todas</span></span>
-<span id="cb6-22"><a href="#cb6-22"></a>        <span class="co"># falaram que entenderam</span></span>
-<span id="cb6-23"><a href="#cb6-23"></a></span>
-<span id="cb6-24"><a href="#cb6-24"></a>        outras_sentinelas <span class="op">=</span> [<span class="fl">3</span>,<span class="fl">4</span>]</span>
-<span id="cb6-25"><a href="#cb6-25"></a>        <span class="cf">for</span> sentinela <span class="op">=</span> outras_sentinelas</span>
-<span id="cb6-26"><a href="#cb6-26"></a>            mensagem <span class="op">=</span> <span class="fu">recvfrom</span>(sentinela)</span>
-<span id="cb6-27"><a href="#cb6-27"></a>            <span class="fu">println</span>(mensagem)</span>
-<span id="cb6-28"><a href="#cb6-28"></a>        <span class="cf">end</span></span>
-<span id="cb6-29"><a href="#cb6-29"></a>    <span class="cf">end</span></span>
-<span id="cb6-30"><a href="#cb6-30"></a>    <span class="fu">barrier</span>(;pids<span class="op">=</span>[<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>])</span>
-<span id="cb6-31"><a href="#cb6-31"></a></span>
-<span id="cb6-32"><a href="#cb6-32"></a>    <span class="cn">nothing</span></span>
-<span id="cb6-33"><a href="#cb6-33"></a><span class="kw">end</span></span>
-<span id="cb6-34"><a href="#cb6-34"></a></span>
-<span id="cb6-35"><a href="#cb6-35"></a><span class="fu">spmd</span>(spmd_teste_send_recv; pids<span class="op">=</span><span class="fu">workers</span>())</span>
-<span id="cb6-36"><a href="#cb6-36"></a><span class="fu">rmprocs</span>();</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      From worker 2:    2 achou a cobra</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      From worker 2:    3 entendeu o recado
-      From worker 2:    4 entendeu o recado</code></pre>
-</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1"></a><span class="pp">@everywhere</span> <span class="kw">function</span> <span class="fu">spmd_teste_send_recv</span>()</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="co"># primeiro encontra a cobra</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>    <span class="cf">if</span> <span class="fu">myid</span>() <span class="op">==</span> <span class="fl">2</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>        <span class="fu">println</span>(<span class="st">"</span><span class="sc">$</span>(<span class="fu">myid</span>())<span class="st"> achou a cobra"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5"></a>        cobra <span class="op">=</span> <span class="fl">2</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>    <span class="cf">else</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>        cobra <span class="op">=</span> <span class="cn">nothing</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>    <span class="cf">end</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a></span>
+<span id="cb2-10"><a href="#cb2-10"></a>    <span class="co"># notifica todos os sentinelas</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>    aonde_esta_cobra <span class="op">=</span> <span class="fu">bcast</span>(cobra, <span class="fl">2</span>)</span>
+<span id="cb2-12"><a href="#cb2-12"></a>    <span class="fu">barrier</span>(;pids<span class="op">=</span>[<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>])</span>
+<span id="cb2-13"><a href="#cb2-13"></a></span>
+<span id="cb2-14"><a href="#cb2-14"></a>    <span class="co"># dependendo do nome, a sentinela toma</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>    <span class="co"># uma ação diferente</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>    <span class="cf">if</span> <span class="fu">myid</span>() <span class="op">≠</span> <span class="fl">2</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>        <span class="co"># outras sentinelas dizem que escutaram</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>        mensagem <span class="op">=</span> <span class="st">"</span><span class="sc">$</span>(<span class="fu">myid</span>())<span class="st"> entendeu o recado"</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a>        <span class="fu">sendto</span>(aonde_esta_cobra, mensagem)</span>
+<span id="cb2-20"><a href="#cb2-20"></a>    <span class="cf">elseif</span> <span class="fu">myid</span>() <span class="op">==</span> <span class="fl">2</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a>        <span class="co"># sentinela 2 fica esperando todas</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a>        <span class="co"># falaram que entenderam</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a></span>
+<span id="cb2-24"><a href="#cb2-24"></a>        outras_sentinelas <span class="op">=</span> [<span class="fl">3</span>,<span class="fl">4</span>]</span>
+<span id="cb2-25"><a href="#cb2-25"></a>        <span class="cf">for</span> sentinela <span class="op">=</span> outras_sentinelas</span>
+<span id="cb2-26"><a href="#cb2-26"></a>            mensagem <span class="op">=</span> <span class="fu">recvfrom</span>(sentinela)</span>
+<span id="cb2-27"><a href="#cb2-27"></a>            <span class="fu">println</span>(mensagem)</span>
+<span id="cb2-28"><a href="#cb2-28"></a>        <span class="cf">end</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a>    <span class="cf">end</span></span>
+<span id="cb2-30"><a href="#cb2-30"></a>    <span class="fu">barrier</span>(;pids<span class="op">=</span>[<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>])</span>
+<span id="cb2-31"><a href="#cb2-31"></a></span>
+<span id="cb2-32"><a href="#cb2-32"></a>    <span class="cn">nothing</span></span>
+<span id="cb2-33"><a href="#cb2-33"></a><span class="kw">end</span></span>
+<span id="cb2-34"><a href="#cb2-34"></a></span>
+<span id="cb2-35"><a href="#cb2-35"></a><span class="fu">spmd</span>(spmd_teste_send_recv; pids<span class="op">=</span><span class="fu">workers</span>())</span>
+<span id="cb2-36"><a href="#cb2-36"></a><span class="fu">rmprocs</span>();</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="isto-não-é-um-teste" class="level2" data-number="18.3">
-<h2 data-number="18.3" class="anchored" data-anchor-id="isto-não-é-um-teste"><span class="header-section-number">18.3</span> <strong>Isto Não é um Teste</strong></h2>
-<p>Agora Daisy tem condições de fazer um código realistico. Quando uma cobra é avistada, todos os sentinelas são notificados, e eles deveriam ir até o a serpente para formar um pequeno exército. Se a maioria comparecer ao local, o exército consegue fazer gritos o suficiente para espantar o inimigo. Do contrário, a cobra terá um suricate no seu cardápio.</p>
-<p>O código final de Daisy levou tudo isso em conta, cada sentinela tem 50% de chance de enfrentar a cobra, do mesmo jeito que seus pais também lhe fazia ficar em casa metado tempo.</p>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">using</span> <span class="bu">Distributed</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">addprocs</span>(<span class="fl">5</span>)</span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="pp">@everywhere</span> <span class="im">using</span> <span class="bu">DistributedArrays</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="pp">@everywhere</span> <span class="im">using</span> <span class="bu">DistributedArrays.SPMD</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a></span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="pp">@everywhere</span> <span class="kw">function</span> <span class="fu">spmd_snake_drill</span>()</span>
-<span id="cb9-7"><a href="#cb9-7"></a>    sentinela <span class="op">=</span> <span class="fu">myid</span>()</span>
-<span id="cb9-8"><a href="#cb9-8"></a>    <span class="cf">if</span> sentinela <span class="op">==</span> <span class="fl">2</span></span>
-<span id="cb9-9"><a href="#cb9-9"></a>        cobra <span class="op">=</span> <span class="fl">2</span></span>
-<span id="cb9-10"><a href="#cb9-10"></a>        <span class="fu">println</span>(<span class="st">"Sentinela '</span><span class="sc">$</span>(sentinela)<span class="st">' avistou uma cobra."</span>)</span>
-<span id="cb9-11"><a href="#cb9-11"></a>    <span class="cf">else</span></span>
-<span id="cb9-12"><a href="#cb9-12"></a>        cobra <span class="op">=</span> <span class="cn">nothing</span></span>
-<span id="cb9-13"><a href="#cb9-13"></a>    <span class="cf">end</span></span>
-<span id="cb9-14"><a href="#cb9-14"></a></span>
-<span id="cb9-15"><a href="#cb9-15"></a>    <span class="co"># notificar todos os sentinelas</span></span>
-<span id="cb9-16"><a href="#cb9-16"></a>    aonde_esta_cobra <span class="op">=</span> <span class="fu">bcast</span>(cobra, <span class="fl">2</span>)</span>
-<span id="cb9-17"><a href="#cb9-17"></a>    <span class="fu">barrier</span>(;pids<span class="op">=</span>[<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>])</span>
-<span id="cb9-18"><a href="#cb9-18"></a></span>
-<span id="cb9-19"><a href="#cb9-19"></a></span>
-<span id="cb9-20"><a href="#cb9-20"></a>    <span class="cf">if</span> sentinela <span class="op">≠</span> <span class="fl">2</span></span>
-<span id="cb9-21"><a href="#cb9-21"></a>        exercito <span class="op">=</span> <span class="cn">nothing</span></span>
-<span id="cb9-22"><a href="#cb9-22"></a>        <span class="fu">println</span>(<span class="st">"Sentinela '</span><span class="sc">$</span>(sentinela)<span class="st">' escutou o recado..."</span>)</span>
-<span id="cb9-23"><a href="#cb9-23"></a>        <span class="cf">if</span> <span class="fu">rand</span>() <span class="op">&gt;</span> <span class="fl">0.5</span></span>
-<span id="cb9-24"><a href="#cb9-24"></a>            <span class="fu">println</span>(<span class="st">" e '</span><span class="sc">$</span>(sentinela)<span class="st">' pode ajudar."</span>)</span>
-<span id="cb9-25"><a href="#cb9-25"></a>            podeAjudar <span class="op">=</span> <span class="cn">true</span></span>
-<span id="cb9-26"><a href="#cb9-26"></a>            <span class="fu">sendto</span>(aonde_esta_cobra, podeAjudar)</span>
-<span id="cb9-27"><a href="#cb9-27"></a>        <span class="cf">else</span></span>
-<span id="cb9-28"><a href="#cb9-28"></a>            <span class="fu">println</span>(<span class="st">" e '</span><span class="sc">$</span>(sentinela)<span class="st">' não pode ajudar."</span>)</span>
-<span id="cb9-29"><a href="#cb9-29"></a>            podeAjudar <span class="op">=</span> <span class="cn">false</span></span>
-<span id="cb9-30"><a href="#cb9-30"></a>            <span class="fu">sendto</span>(aonde_esta_cobra, podeAjudar )</span>
-<span id="cb9-31"><a href="#cb9-31"></a>        <span class="cf">end</span></span>
-<span id="cb9-32"><a href="#cb9-32"></a>    <span class="cf">elseif</span> sentinela <span class="op">==</span> <span class="fl">2</span></span>
-<span id="cb9-33"><a href="#cb9-33"></a>        <span class="co"># todos os membros do exército</span></span>
-<span id="cb9-34"><a href="#cb9-34"></a>        exercito <span class="op">=</span> [<span class="fl">2</span>] <span class="co"># o sentinela 2 vai participar</span></span>
-<span id="cb9-35"><a href="#cb9-35"></a></span>
-<span id="cb9-36"><a href="#cb9-36"></a>        outras_sentinelas <span class="op">=</span> [<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>]</span>
-<span id="cb9-37"><a href="#cb9-37"></a>        <span class="cf">for</span> sentinela <span class="op">=</span> outras_sentinelas</span>
-<span id="cb9-38"><a href="#cb9-38"></a>            podeAjudar <span class="op">=</span> <span class="fu">recvfrom</span>(sentinela)</span>
-<span id="cb9-39"><a href="#cb9-39"></a>            <span class="cf">if</span> podeAjudar</span>
-<span id="cb9-40"><a href="#cb9-40"></a>                <span class="fu">push!</span>(exercito, sentinela)</span>
-<span id="cb9-41"><a href="#cb9-41"></a>                <span class="fu">println</span>(<span class="st">"'</span><span class="sc">$</span>(sentinela)<span class="st">' chegou para ajudar."</span>)</span>
-<span id="cb9-42"><a href="#cb9-42"></a>            <span class="cf">end</span></span>
-<span id="cb9-43"><a href="#cb9-43"></a>        <span class="cf">end</span></span>
-<span id="cb9-44"><a href="#cb9-44"></a>        <span class="fu">println</span>(<span class="st">"O exército </span><span class="sc">$</span>(exercito)<span class="st"> irá lutar!"</span>)</span>
-<span id="cb9-45"><a href="#cb9-45"></a>        <span class="fu">println</span>(<span class="st">"-------"</span>)</span>
-<span id="cb9-46"><a href="#cb9-46"></a>    <span class="cf">end</span></span>
-<span id="cb9-47"><a href="#cb9-47"></a>    <span class="fu">barrier</span>(;pids<span class="op">=</span>[<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>])</span>
-<span id="cb9-48"><a href="#cb9-48"></a></span>
-<span id="cb9-49"><a href="#cb9-49"></a></span>
-<span id="cb9-50"><a href="#cb9-50"></a>    <span class="cf">if</span> sentinela <span class="op">==</span> <span class="fl">2</span></span>
-<span id="cb9-51"><a href="#cb9-51"></a>        qtd_suricates <span class="op">=</span> <span class="fl">5</span></span>
-<span id="cb9-52"><a href="#cb9-52"></a>        <span class="co">## Se a maioria dos suricates estiver</span></span>
-<span id="cb9-53"><a href="#cb9-53"></a>        <span class="co">## no exército, eles ganham</span></span>
-<span id="cb9-54"><a href="#cb9-54"></a>        <span class="cf">if</span> <span class="fu">length</span>(exercito) <span class="op">&gt;</span> qtd_suricates<span class="op">÷</span><span class="fl">2</span></span>
-<span id="cb9-55"><a href="#cb9-55"></a>            <span class="fu">println</span>(<span class="st">"--&gt; Exército venceu."</span>)</span>
-<span id="cb9-56"><a href="#cb9-56"></a>            <span class="fu">println</span>(<span class="st">"A cobra foi derrotada."</span>)</span>
-<span id="cb9-57"><a href="#cb9-57"></a>        <span class="cf">else</span></span>
-<span id="cb9-58"><a href="#cb9-58"></a>            <span class="fu">println</span>(<span class="st">"--&gt; O exército perdeu."</span>)</span>
-<span id="cb9-59"><a href="#cb9-59"></a>            <span class="fu">println</span>(<span class="st">"A cobra teve sua refeição."</span>)</span>
-<span id="cb9-60"><a href="#cb9-60"></a>        <span class="cf">end</span></span>
-<span id="cb9-61"><a href="#cb9-61"></a>    <span class="cf">end</span></span>
-<span id="cb9-62"><a href="#cb9-62"></a>    <span class="cn">nothing</span></span>
-<span id="cb9-63"><a href="#cb9-63"></a><span class="kw">end</span></span>
-<span id="cb9-64"><a href="#cb9-64"></a></span>
-<span id="cb9-65"><a href="#cb9-65"></a><span class="fu">spmd</span>(spmd_snake_drill; pids<span class="op">=</span><span class="fu">workers</span>())</span>
-<span id="cb9-66"><a href="#cb9-66"></a><span class="fu">rmprocs</span>();</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="último-teste" class="level2" data-number="18.3">
+<h2 data-number="18.3" class="anchored" data-anchor-id="último-teste"><span class="header-section-number">18.3</span> Último Teste</h2>
+<p>Agora Daisy tem condições de fazer um código realistico.</p>
+<p>Quando uma cobra é avistada, todos os sentinelas são notificados. Todos os suriciates deveriam ir até a serpente para formar um pequeno exército. Contudo, alguns suricates têm medo, e permanecem em suas posições.</p>
+<p><strong>Se a maioria comparecer ao local, o exército consegue fazer gritos o suficiente para espantar o inimigo. Do contrário, a cobra terá um suricate no seu cardápio.</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="sentinelas.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>O código final de Daisy levou tudo isso em conta, cada sentinela tem 50% de chance de enfrentar a cobra - do mesmo jeito que seus pais lhe faziam ficar em casa.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">using</span> <span class="bu">Distributed</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">addprocs</span>(<span class="fl">5</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="pp">@everywhere</span> <span class="im">using</span> <span class="bu">DistributedArrays</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="pp">@everywhere</span> <span class="im">using</span> <span class="bu">DistributedArrays.SPMD</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="pp">@everywhere</span> <span class="kw">function</span> <span class="fu">spmd_snake_drill</span>()</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    sentinela <span class="op">=</span> <span class="fu">myid</span>()</span>
+<span id="cb3-8"><a href="#cb3-8"></a>    <span class="cf">if</span> sentinela <span class="op">==</span> <span class="fl">2</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>        cobra <span class="op">=</span> <span class="fl">2</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>        <span class="fu">println</span>(<span class="st">"Sentinela '</span><span class="sc">$</span>(sentinela)<span class="st">' avistou uma cobra."</span>)</span>
+<span id="cb3-11"><a href="#cb3-11"></a>    <span class="cf">else</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a>        cobra <span class="op">=</span> <span class="cn">nothing</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a>    <span class="cf">end</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a></span>
+<span id="cb3-15"><a href="#cb3-15"></a>    <span class="co"># notificar todos os sentinelas</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a>    aonde_esta_cobra <span class="op">=</span> <span class="fu">bcast</span>(cobra, <span class="fl">2</span>)</span>
+<span id="cb3-17"><a href="#cb3-17"></a>    <span class="fu">barrier</span>(;pids<span class="op">=</span>[<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>])</span>
+<span id="cb3-18"><a href="#cb3-18"></a></span>
+<span id="cb3-19"><a href="#cb3-19"></a></span>
+<span id="cb3-20"><a href="#cb3-20"></a>    <span class="cf">if</span> sentinela <span class="op">≠</span> <span class="fl">2</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a>        exercito <span class="op">=</span> <span class="cn">nothing</span></span>
+<span id="cb3-22"><a href="#cb3-22"></a>        <span class="fu">println</span>(<span class="st">"Sentinela '</span><span class="sc">$</span>(sentinela)<span class="st">' escutou o recado..."</span>)</span>
+<span id="cb3-23"><a href="#cb3-23"></a>        <span class="cf">if</span> <span class="fu">rand</span>() <span class="op">&gt;</span> <span class="fl">0.5</span></span>
+<span id="cb3-24"><a href="#cb3-24"></a>            <span class="fu">println</span>(<span class="st">" e '</span><span class="sc">$</span>(sentinela)<span class="st">' pode ajudar."</span>)</span>
+<span id="cb3-25"><a href="#cb3-25"></a>            podeAjudar <span class="op">=</span> <span class="cn">true</span></span>
+<span id="cb3-26"><a href="#cb3-26"></a>            <span class="fu">sendto</span>(aonde_esta_cobra, podeAjudar)</span>
+<span id="cb3-27"><a href="#cb3-27"></a>        <span class="cf">else</span></span>
+<span id="cb3-28"><a href="#cb3-28"></a>            <span class="fu">println</span>(<span class="st">" e '</span><span class="sc">$</span>(sentinela)<span class="st">' não pode ajudar."</span>)</span>
+<span id="cb3-29"><a href="#cb3-29"></a>            podeAjudar <span class="op">=</span> <span class="cn">false</span></span>
+<span id="cb3-30"><a href="#cb3-30"></a>            <span class="fu">sendto</span>(aonde_esta_cobra, podeAjudar )</span>
+<span id="cb3-31"><a href="#cb3-31"></a>        <span class="cf">end</span></span>
+<span id="cb3-32"><a href="#cb3-32"></a>    <span class="cf">elseif</span> sentinela <span class="op">==</span> <span class="fl">2</span></span>
+<span id="cb3-33"><a href="#cb3-33"></a>        <span class="co"># todos os membros do exército</span></span>
+<span id="cb3-34"><a href="#cb3-34"></a>        exercito <span class="op">=</span> [<span class="fl">2</span>] <span class="co"># o sentinela 2 vai participar</span></span>
+<span id="cb3-35"><a href="#cb3-35"></a></span>
+<span id="cb3-36"><a href="#cb3-36"></a>        outras_sentinelas <span class="op">=</span> [<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>]</span>
+<span id="cb3-37"><a href="#cb3-37"></a>        <span class="cf">for</span> sentinela <span class="op">=</span> outras_sentinelas</span>
+<span id="cb3-38"><a href="#cb3-38"></a>            podeAjudar <span class="op">=</span> <span class="fu">recvfrom</span>(sentinela)</span>
+<span id="cb3-39"><a href="#cb3-39"></a>            <span class="cf">if</span> podeAjudar</span>
+<span id="cb3-40"><a href="#cb3-40"></a>                <span class="fu">push!</span>(exercito, sentinela)</span>
+<span id="cb3-41"><a href="#cb3-41"></a>                <span class="fu">println</span>(<span class="st">"'</span><span class="sc">$</span>(sentinela)<span class="st">' chegou para ajudar."</span>)</span>
+<span id="cb3-42"><a href="#cb3-42"></a>            <span class="cf">end</span></span>
+<span id="cb3-43"><a href="#cb3-43"></a>        <span class="cf">end</span></span>
+<span id="cb3-44"><a href="#cb3-44"></a>        <span class="fu">println</span>(<span class="st">"O exército </span><span class="sc">$</span>(exercito)<span class="st"> irá lutar!"</span>)</span>
+<span id="cb3-45"><a href="#cb3-45"></a>        <span class="fu">println</span>(<span class="st">"-------"</span>)</span>
+<span id="cb3-46"><a href="#cb3-46"></a>    <span class="cf">end</span></span>
+<span id="cb3-47"><a href="#cb3-47"></a>    <span class="fu">barrier</span>(;pids<span class="op">=</span>[<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>])</span>
+<span id="cb3-48"><a href="#cb3-48"></a></span>
+<span id="cb3-49"><a href="#cb3-49"></a></span>
+<span id="cb3-50"><a href="#cb3-50"></a>    <span class="cf">if</span> sentinela <span class="op">==</span> <span class="fl">2</span></span>
+<span id="cb3-51"><a href="#cb3-51"></a>        qtd_suricates <span class="op">=</span> <span class="fl">5</span></span>
+<span id="cb3-52"><a href="#cb3-52"></a>        <span class="co">## Se a maioria dos suricates estiver</span></span>
+<span id="cb3-53"><a href="#cb3-53"></a>        <span class="co">## no exército, eles ganham</span></span>
+<span id="cb3-54"><a href="#cb3-54"></a>        <span class="cf">if</span> <span class="fu">length</span>(exercito) <span class="op">&gt;</span> qtd_suricates<span class="op">÷</span><span class="fl">2</span></span>
+<span id="cb3-55"><a href="#cb3-55"></a>            <span class="fu">println</span>(<span class="st">"--&gt; Exército venceu."</span>)</span>
+<span id="cb3-56"><a href="#cb3-56"></a>            <span class="fu">println</span>(<span class="st">"A cobra foi derrotada."</span>)</span>
+<span id="cb3-57"><a href="#cb3-57"></a>        <span class="cf">else</span></span>
+<span id="cb3-58"><a href="#cb3-58"></a>            <span class="fu">println</span>(<span class="st">"--&gt; O exército perdeu."</span>)</span>
+<span id="cb3-59"><a href="#cb3-59"></a>            <span class="fu">println</span>(<span class="st">"A cobra teve sua refeição."</span>)</span>
+<span id="cb3-60"><a href="#cb3-60"></a>        <span class="cf">end</span></span>
+<span id="cb3-61"><a href="#cb3-61"></a>    <span class="cf">end</span></span>
+<span id="cb3-62"><a href="#cb3-62"></a>    <span class="cn">nothing</span></span>
+<span id="cb3-63"><a href="#cb3-63"></a><span class="kw">end</span></span>
+<span id="cb3-64"><a href="#cb3-64"></a></span>
+<span id="cb3-65"><a href="#cb3-65"></a><span class="fu">spmd</span>(spmd_snake_drill; pids<span class="op">=</span><span class="fu">workers</span>())</span>
+<span id="cb3-66"><a href="#cb3-66"></a><span class="fu">rmprocs</span>();</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -766,7 +752,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
       <a href="../PART_3/17_pipeline.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><code>pipeline</code></span></span>

@@ -129,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -156,9 +156,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
       <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -173,7 +173,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_1/00_intro_story.html" class="sidebar-item-text sidebar-link">Part 1 - A Caçada</a>
+            <a href="../PART_1/00_intro_story.html" class="sidebar-item-text sidebar-link">Parte 1</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -208,7 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_2/00_going_travelling.html" class="sidebar-item-text sidebar-link">Part 2 - Os Mapas</a>
+            <a href="../PART_2/00_going_travelling.html" class="sidebar-item-text sidebar-link">Parte 2</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -253,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_3/00_going_for_work.html" class="sidebar-item-text sidebar-link">Part 3 - Ao Trabalho</a>
+            <a href="../PART_3/00_going_for_work.html" class="sidebar-item-text sidebar-link">Parte 3</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -305,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -340,14 +340,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-5"><a href="#cb1-5"></a>exemplo <span class="op">=</span> <span class="fu">dzeros</span>(<span class="dt">Int64</span>, <span class="fl">3</span>, <span class="fl">6</span>)</span>
 <span id="cb1-6"><a href="#cb1-6"></a></span>
 <span id="cb1-7"><a href="#cb1-7"></a><span class="pp">@everywhere</span> <span class="kw">function</span> <span class="fu">ver_indices_globais</span>(exemplo)</span>
-<span id="cb1-8"><a href="#cb1-8"></a>    Δx, Δy <span class="op">=</span> DistributedArrays.<span class="fu">localindices</span>(exemplo)</span>
-<span id="cb1-9"><a href="#cb1-9"></a>    <span class="fu">println</span>(<span class="st">"índices Globais: Δx = </span><span class="sc">$</span>(Δx)<span class="st">, Δy = </span><span class="sc">$</span>(Δy)<span class="st">"</span>)</span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="kw">end</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="cf">for</span> w <span class="kw">in</span> <span class="fu">workers</span>()</span>
-<span id="cb1-13"><a href="#cb1-13"></a>    <span class="pp">@spawnat</span> w <span class="fu">ver_indices_globais</span>(exemplo)</span>
-<span id="cb1-14"><a href="#cb1-14"></a><span class="cf">end</span></span>
-<span id="cb1-15"><a href="#cb1-15"></a><span class="fu">sleep</span>(<span class="fl">1</span>) <span class="co"># para dar tempo da mensagem aparecer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a>    Δx, Δy <span class="op">=</span> DistributedArrays.<span class="fu">localindices</span>(exemplo)</span>
+<span id="cb1-10"><a href="#cb1-10"></a>    <span class="fu">println</span>(<span class="st">"índices Globais: Δx = </span><span class="sc">$</span>(Δx)<span class="st">, Δy = </span><span class="sc">$</span>(Δy)<span class="st">"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="kw">end</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="cf">for</span> w <span class="kw">in</span> <span class="fu">workers</span>()</span>
+<span id="cb1-14"><a href="#cb1-14"></a>    <span class="pp">@spawnat</span> w <span class="fu">ver_indices_globais</span>(exemplo)</span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="cf">end</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="fu">sleep</span>(<span class="fl">1</span>) <span class="co"># para dar tempo da mensagem aparecer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      From worker 2:    índices Globais: Δx = 1:3, Δy = 1:3
       From worker 3:    índices Globais: Δx = 1:3, Δy = 4:6</code></pre>
@@ -383,28 +384,26 @@ Sintaxe: <code>distribute</code>
 <p>Uma vez que Daisy conhece os índices globais, os índices locais são iguais aos comprimento de cada intervalo. Fuli alerta Daisy, para escrever em matrizes distribuidas, só podem ser utilizados indices locais, e além disso, com uma palavra chave especial, <code>localpart</code>, então Daisy deveria ter cuidado, e não confundir o <code>parte_local</code> que ela já havia criado anteriormente - talvez uma mudança de nome de variáveis seriam bem vindas, Daisy precisaria falar com seu mestre.</p>
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1"></a><span class="pp">@everywhere</span> <span class="kw">function</span> <span class="fu">escrever_indice_local!</span>(exemplo)</span>
-<span id="cb5-2"><a href="#cb5-2"></a>    Δx, Δy <span class="op">=</span> DistributedArrays.<span class="fu">localindices</span>(exemplo)</span>
-<span id="cb5-3"><a href="#cb5-3"></a>    indice_local_x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu">length</span>(Δx)</span>
-<span id="cb5-4"><a href="#cb5-4"></a>    indice_local_y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu">length</span>(Δy)</span>
-<span id="cb5-5"><a href="#cb5-5"></a></span>
-<span id="cb5-6"><a href="#cb5-6"></a>    <span class="cf">for</span> x <span class="kw">in</span> indice_local_x, y <span class="kw">in</span> indice_local_y</span>
-<span id="cb5-7"><a href="#cb5-7"></a>        <span class="fu">localpart</span>(exemplo)[x, y] <span class="op">=</span> <span class="fu">myid</span>()</span>
-<span id="cb5-8"><a href="#cb5-8"></a>    <span class="cf">end</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="kw">end</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a>exemplo <span class="op">=</span> <span class="fu">dzeros</span>(<span class="dt">Int64</span>, <span class="fl">3</span>, <span class="fl">6</span>)</span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="cf">for</span> w <span class="kw">in</span> <span class="fu">workers</span>()</span>
-<span id="cb5-12"><a href="#cb5-12"></a>    <span class="pp">@spawnat</span> w <span class="fu">escrever_indice_local!</span>(exemplo)</span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="cf">end</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="fu">display</span>(exemplo);</span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="fu">rmprocs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a>    Δx, Δy <span class="op">=</span> DistributedArrays.<span class="fu">localindices</span>(exemplo)</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    indice_local_x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu">length</span>(Δx)</span>
+<span id="cb5-5"><a href="#cb5-5"></a>    indice_local_y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu">length</span>(Δy)</span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="cf">for</span> x <span class="kw">in</span> indice_local_x, y <span class="kw">in</span> indice_local_y</span>
+<span id="cb5-8"><a href="#cb5-8"></a>        <span class="fu">localpart</span>(exemplo)[x, y] <span class="op">=</span> <span class="fu">myid</span>()</span>
+<span id="cb5-9"><a href="#cb5-9"></a>    <span class="cf">end</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="kw">end</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a>exemplo <span class="op">=</span> <span class="fu">dzeros</span>(<span class="dt">Int64</span>, <span class="fl">3</span>, <span class="fl">6</span>)</span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="cf">for</span> w <span class="kw">in</span> <span class="fu">workers</span>()</span>
+<span id="cb5-13"><a href="#cb5-13"></a>    <span class="pp">@spawnat</span> w <span class="fu">escrever_indice_local!</span>(exemplo)</span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="cf">end</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="fu">display</span>(exemplo);</span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="fu">rmprocs</span>();</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>3×6 DArray{Int64, 2, Matrix{Int64}}:
  2  2  2  3  3  3
  2  2  2  3  3  3
  2  2  2  3  3  3</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>Task (done) @0x00007f8377af1c30</code></pre>
 </div>
 </div>
 </section>
@@ -425,12 +424,12 @@ Sintaxe: <code>try</code>
 <div class="callout-body-container callout-body">
 <p>Um bloco <code>try-catch</code> funciona como esperado de outras linguagens de programação, sua utilização básica consiste em apenas colocar o seu código dentro do bloco <code>try</code>.</p>
 <div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb8" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>try</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sqrt</span>(<span class="op">-</span><span class="fl">1</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>catch</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"Não é possível fazer sqrt(-1)"</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"Tente sqrt(Complex(-1))"</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>try</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sqrt</span>(<span class="op">-</span><span class="fl">1</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>catch</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"Não é possível fazer sqrt(-1)"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"Tente sqrt(Complex(-1))"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Não é possível fazer sqrt(-1)
 Tente sqrt(Complex(-1))</code></pre>
@@ -440,86 +439,79 @@ Tente sqrt(Complex(-1))</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">using</span> <span class="bu">Distributed</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">addprocs</span>(<span class="fl">3</span>)</span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="pp">@everywhere</span> <span class="im">using</span> <span class="bu">DistributedArrays</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="pp">@everywhere</span> <span class="kw">function</span> <span class="fu">d_escavar_tunel!</span>(terreno)</span>
-<span id="cb10-6"><a href="#cb10-6"></a>    try</span>
-<span id="cb10-7"><a href="#cb10-7"></a>        Δx, Δy <span class="op">=</span> DistributedArrays.<span class="fu">localindices</span>(terreno)</span>
-<span id="cb10-8"><a href="#cb10-8"></a></span>
-<span id="cb10-9"><a href="#cb10-9"></a>        qtd_camadas <span class="op">=</span> <span class="fu">length</span>(Δx)</span>
-<span id="cb10-10"><a href="#cb10-10"></a>        tamanho_região <span class="op">=</span> <span class="fu">length</span>(Δy)</span>
-<span id="cb10-11"><a href="#cb10-11"></a></span>
-<span id="cb10-12"><a href="#cb10-12"></a>        <span class="co"># primeira linha é a linha do solo</span></span>
-<span id="cb10-13"><a href="#cb10-13"></a>        ponto_partida <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">1</span><span class="op">:</span>tamanho_região)</span>
-<span id="cb10-14"><a href="#cb10-14"></a></span>
-<span id="cb10-15"><a href="#cb10-15"></a>        <span class="co"># '1' == escavar a posição</span></span>
-<span id="cb10-16"><a href="#cb10-16"></a>        escavar <span class="op">=</span> <span class="fu">one</span>(<span class="fu">eltype</span>(terreno))</span>
-<span id="cb10-17"><a href="#cb10-17"></a>        <span class="fu">localpart</span>(terreno)[<span class="fl">1</span>, ponto_partida] <span class="op">=</span> escavar</span>
-<span id="cb10-18"><a href="#cb10-18"></a></span>
-<span id="cb10-19"><a href="#cb10-19"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span>qtd_camadas</span>
-<span id="cb10-20"><a href="#cb10-20"></a>            ulitma_camada <span class="op">=</span> <span class="fu">localpart</span>(terreno)[i<span class="op">-</span><span class="fl">1</span>, <span class="op">:</span>]</span>
-<span id="cb10-21"><a href="#cb10-21"></a></span>
-<span id="cb10-22"><a href="#cb10-22"></a>            <span class="co"># garante que o código funcione para outros</span></span>
-<span id="cb10-23"><a href="#cb10-23"></a>            <span class="co"># tipos de matrizes, lém de matriz</span></span>
-<span id="cb10-24"><a href="#cb10-24"></a>            <span class="co"># com `true`/`false`</span></span>
-<span id="cb10-25"><a href="#cb10-25"></a>            ultima_posicao <span class="op">=</span> <span class="fu">findfirst</span>(</span>
-<span id="cb10-26"><a href="#cb10-26"></a>                ulitma_camada <span class="op">.==</span> escavar</span>
-<span id="cb10-27"><a href="#cb10-27"></a>                )</span>
-<span id="cb10-28"><a href="#cb10-28"></a></span>
-<span id="cb10-29"><a href="#cb10-29"></a>            esquerda <span class="op">=</span> ultima_posicao <span class="op">-</span> <span class="fl">1</span></span>
-<span id="cb10-30"><a href="#cb10-30"></a>            meio <span class="op">=</span> ultima_posicao</span>
-<span id="cb10-31"><a href="#cb10-31"></a>            direita <span class="op">=</span> ultima_posicao <span class="op">+</span> <span class="fl">1</span></span>
-<span id="cb10-32"><a href="#cb10-32"></a></span>
-<span id="cb10-33"><a href="#cb10-33"></a>            <span class="cf">if</span> esquerda <span class="op">&lt;</span> <span class="fl">1</span></span>
-<span id="cb10-34"><a href="#cb10-34"></a>                possiveis_posições <span class="op">=</span> [direita,</span>
-<span id="cb10-35"><a href="#cb10-35"></a>                                    meio]</span>
-<span id="cb10-36"><a href="#cb10-36"></a>            <span class="cf">elseif</span> direita <span class="op">&gt;</span> tamanho_região</span>
-<span id="cb10-37"><a href="#cb10-37"></a>                possiveis_posições <span class="op">=</span> [meio,</span>
-<span id="cb10-38"><a href="#cb10-38"></a>                                    esquerda]</span>
-<span id="cb10-39"><a href="#cb10-39"></a>            <span class="cf">else</span></span>
-<span id="cb10-40"><a href="#cb10-40"></a>                possiveis_posições <span class="op">=</span> [esquerda,</span>
-<span id="cb10-41"><a href="#cb10-41"></a>                                    meio,</span>
-<span id="cb10-42"><a href="#cb10-42"></a>                                    direita]</span>
-<span id="cb10-43"><a href="#cb10-43"></a>            <span class="cf">end</span></span>
-<span id="cb10-44"><a href="#cb10-44"></a></span>
-<span id="cb10-45"><a href="#cb10-45"></a>            aonde_escavar <span class="op">=</span> <span class="fu">rand</span>(possiveis_posições)</span>
-<span id="cb10-46"><a href="#cb10-46"></a>            <span class="fu">localpart</span>(terreno)[i, aonde_escavar] <span class="op">=</span> escavar</span>
-<span id="cb10-47"><a href="#cb10-47"></a>        <span class="cf">end</span></span>
-<span id="cb10-48"><a href="#cb10-48"></a>    catch</span>
-<span id="cb10-49"><a href="#cb10-49"></a>        <span class="fu">println</span>(<span class="st">"Aconteceu um Erro."</span>)</span>
-<span id="cb10-50"><a href="#cb10-50"></a>    <span class="kw">end</span></span>
-<span id="cb10-51"><a href="#cb10-51"></a></span>
-<span id="cb10-52"><a href="#cb10-52"></a>   <span class="cf">return</span> <span class="cn">nothing</span></span>
-<span id="cb10-53"><a href="#cb10-53"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">using</span> <span class="bu">Distributed</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">addprocs</span>(<span class="fl">3</span>)</span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="pp">@everywhere</span> <span class="im">using</span> <span class="bu">DistributedArrays</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="pp">@everywhere</span> <span class="kw">function</span> <span class="fu">d_escavar_tunel!</span>(terreno)</span>
+<span id="cb9-6"><a href="#cb9-6"></a>    try</span>
+<span id="cb9-7"><a href="#cb9-7"></a>        Δx, Δy <span class="op">=</span> DistributedArrays.<span class="fu">localindices</span>(terreno)</span>
+<span id="cb9-8"><a href="#cb9-8"></a></span>
+<span id="cb9-9"><a href="#cb9-9"></a>        qtd_camadas <span class="op">=</span> <span class="fu">length</span>(Δx)</span>
+<span id="cb9-10"><a href="#cb9-10"></a>        tamanho_região <span class="op">=</span> <span class="fu">length</span>(Δy)</span>
+<span id="cb9-11"><a href="#cb9-11"></a></span>
+<span id="cb9-12"><a href="#cb9-12"></a>        <span class="co"># primeira linha é a linha do solo</span></span>
+<span id="cb9-13"><a href="#cb9-13"></a>        ponto_partida <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">1</span><span class="op">:</span>tamanho_região)</span>
+<span id="cb9-14"><a href="#cb9-14"></a></span>
+<span id="cb9-15"><a href="#cb9-15"></a>        <span class="co"># '1' == escavar a posição</span></span>
+<span id="cb9-16"><a href="#cb9-16"></a>        escavar <span class="op">=</span> <span class="fu">one</span>(<span class="fu">eltype</span>(terreno))</span>
+<span id="cb9-17"><a href="#cb9-17"></a>        <span class="fu">localpart</span>(terreno)[<span class="fl">1</span>, ponto_partida] <span class="op">=</span> escavar</span>
+<span id="cb9-18"><a href="#cb9-18"></a></span>
+<span id="cb9-19"><a href="#cb9-19"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span>qtd_camadas</span>
+<span id="cb9-20"><a href="#cb9-20"></a>            ulitma_camada <span class="op">=</span> <span class="fu">localpart</span>(terreno)[i<span class="op">-</span><span class="fl">1</span>, <span class="op">:</span>]</span>
+<span id="cb9-21"><a href="#cb9-21"></a></span>
+<span id="cb9-22"><a href="#cb9-22"></a>            <span class="co"># garante que o código funcione para outros</span></span>
+<span id="cb9-23"><a href="#cb9-23"></a>            <span class="co"># tipos de matrizes, além dos tipos `true`/`false`</span></span>
+<span id="cb9-24"><a href="#cb9-24"></a>            ultima_posicao <span class="op">=</span> <span class="fu">findfirst</span>( ulitma_camada <span class="op">.==</span> escavar )</span>
+<span id="cb9-25"><a href="#cb9-25"></a></span>
+<span id="cb9-26"><a href="#cb9-26"></a>            esquerda <span class="op">=</span> ultima_posicao <span class="op">-</span> <span class="fl">1</span></span>
+<span id="cb9-27"><a href="#cb9-27"></a>            meio <span class="op">=</span> ultima_posicao</span>
+<span id="cb9-28"><a href="#cb9-28"></a>            direita <span class="op">=</span> ultima_posicao <span class="op">+</span> <span class="fl">1</span></span>
+<span id="cb9-29"><a href="#cb9-29"></a></span>
+<span id="cb9-30"><a href="#cb9-30"></a>            <span class="cf">if</span> esquerda <span class="op">&lt;</span> <span class="fl">1</span></span>
+<span id="cb9-31"><a href="#cb9-31"></a>                possiveis_posições <span class="op">=</span> [direita, meio]</span>
+<span id="cb9-32"><a href="#cb9-32"></a>            <span class="cf">elseif</span> direita <span class="op">&gt;</span> tamanho_região</span>
+<span id="cb9-33"><a href="#cb9-33"></a>                possiveis_posições <span class="op">=</span> [meio, esquerda]</span>
+<span id="cb9-34"><a href="#cb9-34"></a>            <span class="cf">else</span></span>
+<span id="cb9-35"><a href="#cb9-35"></a>                possiveis_posições <span class="op">=</span> [esquerda, meio, direita]</span>
+<span id="cb9-36"><a href="#cb9-36"></a>            <span class="cf">end</span></span>
+<span id="cb9-37"><a href="#cb9-37"></a></span>
+<span id="cb9-38"><a href="#cb9-38"></a>            aonde_escavar <span class="op">=</span> <span class="fu">rand</span>(possiveis_posições)</span>
+<span id="cb9-39"><a href="#cb9-39"></a>            <span class="fu">localpart</span>(terreno)[i, aonde_escavar] <span class="op">=</span> escavar</span>
+<span id="cb9-40"><a href="#cb9-40"></a>        <span class="cf">end</span></span>
+<span id="cb9-41"><a href="#cb9-41"></a>    catch</span>
+<span id="cb9-42"><a href="#cb9-42"></a>        <span class="fu">println</span>(<span class="st">"Aconteceu um Erro."</span>)</span>
+<span id="cb9-43"><a href="#cb9-43"></a>    <span class="kw">end</span></span>
+<span id="cb9-44"><a href="#cb9-44"></a></span>
+<span id="cb9-45"><a href="#cb9-45"></a>   <span class="cf">return</span> <span class="cn">nothing</span></span>
+<span id="cb9-46"><a href="#cb9-46"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A construção da matriz distribuída também requer um cuidado adicional, pois é possível controlar quais suricates vão participar da construção do túnel, e em quantas partes cada dimensão da matriz será particionada.</p>
 <div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1"></a><span class="co">## Preciso passar uma tupla com as dimensões da matriz</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>dimensões_terreno <span class="op">=</span> (<span class="fl">10</span>, <span class="fl">6</span>)</span>
-<span id="cb11-3"><a href="#cb11-3"></a></span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="co">## Um vetor com os processos que farão o trabalho</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a>escavadores <span class="op">=</span> <span class="fu">workers</span>()</span>
-<span id="cb11-6"><a href="#cb11-6"></a></span>
-<span id="cb11-7"><a href="#cb11-7"></a><span class="co"># Cada componente do vetor, corresponde a qtd</span></span>
-<span id="cb11-8"><a href="#cb11-8"></a><span class="co"># de particições em cada dimensão. Por exemplo</span></span>
-<span id="cb11-9"><a href="#cb11-9"></a><span class="co"># ['1', 2] = eixo 1 não tem divisão</span></span>
-<span id="cb11-10"><a href="#cb11-10"></a><span class="co"># [1, '3'] = eixo 2 é divido em 3 partes</span></span>
-<span id="cb11-11"><a href="#cb11-11"></a>divisões <span class="op">=</span> [<span class="fl">1</span>, <span class="fl">3</span>]</span>
-<span id="cb11-12"><a href="#cb11-12"></a></span>
-<span id="cb11-13"><a href="#cb11-13"></a><span class="co"># não tem função que cria matriz booleana,</span></span>
-<span id="cb11-14"><a href="#cb11-14"></a><span class="co"># então preciso usar a função `dfill`</span></span>
-<span id="cb11-15"><a href="#cb11-15"></a>terreno <span class="op">=</span> <span class="fu">dfill</span>(<span class="cn">false</span>, dimensões_terreno, escavadores, divisões)</span>
-<span id="cb11-16"><a href="#cb11-16"></a></span>
-<span id="cb11-17"><a href="#cb11-17"></a><span class="cf">for</span> w <span class="kw">in</span> <span class="fu">workers</span>()</span>
-<span id="cb11-18"><a href="#cb11-18"></a>    <span class="pp">@spawnat</span> w <span class="fu">d_escavar_tunel!</span>(terreno)</span>
-<span id="cb11-19"><a href="#cb11-19"></a><span class="cf">end</span></span>
-<span id="cb11-20"><a href="#cb11-20"></a></span>
-<span id="cb11-21"><a href="#cb11-21"></a><span class="im">using</span> <span class="bu">SparseArrays</span></span>
-<span id="cb11-22"><a href="#cb11-22"></a><span class="fu">sparse</span>(terreno)</span>
-<span id="cb11-23"><a href="#cb11-23"></a></span>
-<span id="cb11-24"><a href="#cb11-24"></a><span class="fu">rmprocs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">## Preciso passar uma tupla com as dimensões da matriz</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>dimensões_terreno <span class="op">=</span> (<span class="fl">10</span>, <span class="fl">6</span>)</span>
+<span id="cb10-3"><a href="#cb10-3"></a></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="co">## Um vetor com os processos que farão o trabalho</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>escavadores <span class="op">=</span> <span class="fu">workers</span>()</span>
+<span id="cb10-6"><a href="#cb10-6"></a></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="co"># Cada componente do vetor, corresponde a qtd</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="co"># de particições em cada dimensão. Por exemplo</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="co"># ['1', 2] = eixo 1 não tem divisão</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="co"># [1, '3'] = eixo 2 é divido em 3 partes</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a>divisões <span class="op">=</span> [<span class="fl">1</span>, <span class="fl">3</span>]</span>
+<span id="cb10-12"><a href="#cb10-12"></a></span>
+<span id="cb10-13"><a href="#cb10-13"></a><span class="co"># não tem função que cria matriz booleana,</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a><span class="co"># então preciso usar a função `dfill`</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a>terreno <span class="op">=</span> <span class="fu">dfill</span>(<span class="cn">false</span>, dimensões_terreno, escavadores, divisões)</span>
+<span id="cb10-16"><a href="#cb10-16"></a></span>
+<span id="cb10-17"><a href="#cb10-17"></a><span class="cf">for</span> w <span class="kw">in</span> <span class="fu">workers</span>()</span>
+<span id="cb10-18"><a href="#cb10-18"></a>    <span class="pp">@spawnat</span> w <span class="fu">d_escavar_tunel!</span>(terreno)</span>
+<span id="cb10-19"><a href="#cb10-19"></a><span class="cf">end</span></span>
+<span id="cb10-20"><a href="#cb10-20"></a></span>
+<span id="cb10-21"><a href="#cb10-21"></a><span class="im">using</span> <span class="bu">SparseArrays</span></span>
+<span id="cb10-22"><a href="#cb10-22"></a><span class="fu">sparse</span>(terreno)</span>
+<span id="cb10-23"><a href="#cb10-23"></a></span>
+<span id="cb10-24"><a href="#cb10-24"></a><span class="fu">rmprocs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -774,7 +766,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
       <a href="../PART_3/15_shared_arrays.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><code>SharedArrays</code></span></span>

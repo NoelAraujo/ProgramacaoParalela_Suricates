@@ -129,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -156,9 +156,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
       <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -173,7 +173,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_1/00_intro_story.html" class="sidebar-item-text sidebar-link">Part 1 - A Caçada</a>
+            <a href="../PART_1/00_intro_story.html" class="sidebar-item-text sidebar-link">Parte 1</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -208,7 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_2/00_going_travelling.html" class="sidebar-item-text sidebar-link">Part 2 - Os Mapas</a>
+            <a href="../PART_2/00_going_travelling.html" class="sidebar-item-text sidebar-link">Parte 2</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -253,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_3/00_going_for_work.html" class="sidebar-item-text sidebar-link">Part 3 - Ao Trabalho</a>
+            <a href="../PART_3/00_going_for_work.html" class="sidebar-item-text sidebar-link">Parte 3</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -295,11 +295,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
 </nav>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -320,10 +320,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <p>Cuidar dos suricates recém-nascidos foi super fácil para Daisy. Ela os deixava sair para brincar ou relaxar sob o sol. Mais tarde, quando eles voltaram, ela anotava quanto tempo cada suricate ficou brincando.</p>
 <p>Diferente dos outros programas que ela escreveu, dessa vez cada suricate esta em um local diferente, então seus códigos precisarão ser executados em computadores diferentes, ou seja, sem ajuda de multithreading. Martin diz a Daisy que Julia permite executar Julia em computadores diferentes nativamente (ou seja, não preicsa de outros programas), mas requer atenção aos detalhes. O recomendável é usar o pacote <code>Distributed.jl</code>, pois oferece as funções úteis para a grande maioria dos problemas.</p>
-<p>Para simplificar seus relatórios, Daisy atribuiu a cada suricate um número, começando com <code>2</code> (já que ela é o número <code>1</code>). Ela só permitiu que os recém-nascidos brincassem em quatro áreas seguras.</p>
-<p>Seu código será simples, Daisy só quer saber quanto tempo cada suricate ficou brincando. Cada playground terá um computador que irá receber o suricate bebe, anotará o tempo, e ao final, tem um vetor com todas as valores. A função ideal para fazer isso sem nenhum paralelismo é <code>map</code>, e Daisy encontrou sua versão equivalente em <code>Distributed.jl</code>, é a <code>pmap</code>.</p>
+<p>Para simplificar seus relatórios, Daisy atribuiu a cada suricate um número, começando com <code>2</code> (já que ela é o número <code>1</code>). Ela só permitiu que os recém-nascidos brincassem em quatro áreas seguras vigiadas por 4 <code>workers</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="regioes_seguras.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Daisy deseja um código simples, cada <code>worker</code> vai informar quanto tempo cada suricate filhote ficou brincando no sol. A função ideal para fazer isso sem nenhum paralelismo é <code>map</code>, e Daisy encontrou sua versão equivalente em <code>Distributed.jl</code>, é a <code>pmap</code>.</p>
 <div class="callout-tip callout callout-style-simple callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -332,7 +337,7 @@ Sintaxe: <code>Distributed</code>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Esse pacote é responsável por criar novas instâncias de Julia em máquinas remotas. Ficaremos com o caso mais simples, e usaremos apenas os vários Cores do seu processador para emular outros computadores.</p>
 <div class="cell" data-execution_count="2">
@@ -350,7 +355,7 @@ Sintaxe: <code>Distributed</code>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Sempre que você encontrar o comando <code>rmprocs</code> em algum exemplo, isso significa que é necessário <strong>encerrar a sessão atual do Julia</strong> e iniciar uma nova. Isso garante que não haja confusão com a quantidade de processos ativos e que os futuros tutoriais funcionem corretamente.</p>
+<p>Sempre que você encontrar o comando <code>rmprocs</code> em algum exemplo, isso significa que é necessário <strong>encerrar a sessão atual de Julia</strong> e iniciar uma nova. Isso garante que não haja confusão com a quantidade de processos ativos, e garante que futuros tutoriais funcionem corretamente.</p>
 </div>
 </div>
 </div>
@@ -369,25 +374,13 @@ Sintaxe: <code>Distributed</code>
 <span id="cb2-11"><a href="#cb2-11"></a>suricates <span class="op">=</span> [<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>] <span class="co"># os 'nomes' dos suricate são seus 'ids'</span></span>
 <span id="cb2-12"><a href="#cb2-12"></a>relatorio <span class="op">=</span> <span class="fu">pmap</span>(suricates) <span class="cf">do</span> suricate</span>
 <span id="cb2-13"><a href="#cb2-13"></a>    <span class="fu">brincar_no_sol</span>(suricate)</span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="cf">end</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      From worker 4:    suricate '3' brincou 1.37 horas</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      From worker 4:    suricate '6' brincou 1.72 horas
-      From worker 5:    suricate '4' brincou 0.51 horas</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      From worker 3:    suricate '2' brincou 0.35 horas
-      From worker 2:    suricate '5' brincou 0.18 horas</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>5-element Vector{Float64}:
- 0.35
- 1.37
- 0.51
- 0.18
- 1.72</code></pre>
+<pre><code>      From worker 2:    suricate '4' brincou 0.41 horas
+      From worker 3:    suricate '2' brincou 0.5 horas
+      From worker 4:    suricate '3' brincou 1.61 horas
+      From worker 5:    suricate '5' brincou 1.41 horas
+      From worker 3:    suricate '6' brincou 1.86 horas</code></pre>
 </div>
 </div>
 
@@ -642,10 +635,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
+<nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
       <a href="../PART_3/00_going_for_work.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Part 3 - Ao Trabalho</span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Parte 3</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

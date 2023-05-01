@@ -129,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -156,9 +156,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
       <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -173,7 +173,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_1/00_intro_story.html" class="sidebar-item-text sidebar-link">Part 1 - A Caçada</a>
+            <a href="../PART_1/00_intro_story.html" class="sidebar-item-text sidebar-link">Parte 1</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -208,7 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_2/00_going_travelling.html" class="sidebar-item-text sidebar-link">Part 2 - Os Mapas</a>
+            <a href="../PART_2/00_going_travelling.html" class="sidebar-item-text sidebar-link">Parte 2</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -253,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_3/00_going_for_work.html" class="sidebar-item-text sidebar-link">Part 3 - Ao Trabalho</a>
+            <a href="../PART_3/00_going_for_work.html" class="sidebar-item-text sidebar-link">Parte 3</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -295,16 +295,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
 </nav>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-   
-  <ul>
-  <li><a href="#sintaxe" id="toc-sintaxe" class="nav-link active" data-scroll-target="#sintaxe"><span class="toc-section-number">1.1</span>  Sintaxe</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -328,96 +323,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Para ajudá-la a acompanhar suas permissões de busca diárias, Daisy criou um aplicativo de celular que diariamente pergunta se ela pode caçar aos seus pais. E para ela conseguir se planejar, o aplicativo já faz a mesma pergunta para todos os dias da semana.</p>
 <p>Abaixo esta uma simplificação do código de Daisy, escrito em Julia. O código usava um loop for para percorrer cada dia da semana e um gerador de números aleatórios para determinar se Daisy tinha ou não permissão para sair de casa naquele dia.</p>
 <div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1"></a>dias_da_semana <span class="op">=</span> [<span class="st">"Segunda"</span>,<span class="st">"Terça"</span>, <span class="st">"Quarta"</span>,</span>
-<span id="cb1-2"><a href="#cb1-2"></a>                <span class="st">"Quinta"</span>, <span class="st">"Sexta"</span>,</span>
-<span id="cb1-3"><a href="#cb1-3"></a>                <span class="st">"Sábado"</span>, <span class="st">"Domingo"</span>]</span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="cf">for</span> dia <span class="kw">in</span> dias_da_semana</span>
-<span id="cb1-6"><a href="#cb1-6"></a>    <span class="co"># Daisy consegue permissão para sair</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a>    <span class="co"># de casa com probabilidade 50%</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>    permissão <span class="op">=</span> <span class="fu">rand</span>() <span class="op">&lt;</span> <span class="fl">0.5</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a>    <span class="cf">if</span> permissão <span class="op">==</span> <span class="cn">true</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a>        <span class="fu">println</span>(<span class="st">"Daisy PODE CAÇAR na </span><span class="sc">$</span>(dia)<span class="st">"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11"></a>    <span class="cf">else</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a>        <span class="fu">println</span>(<span class="st">"Daisy FICA EM CASA na </span><span class="sc">$</span>(dia)<span class="st">"</span>)</span>
-<span id="cb1-13"><a href="#cb1-13"></a>    <span class="cf">end</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="sintaxe" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="sintaxe"><span class="header-section-number">1.1</span> Sintaxe</h2>
-<p>Durante o texto serão apresentadas sintaxes para comandos pertinentes ao código de Daisy. Eles poderão estar no meio do texto e colapsados, basta clickar no icone para expandir o texto.</p>
-<div class="callout-tip callout callout-style-simple callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Sintaxe: if
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> condição_1 <span class="op">==</span> <span class="cn">true</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span>.</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">elseif</span> condição_2 <span class="op">==</span> <span class="cn">true</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span>.</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span>.</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Se a <code>condição_1</code> já for uma variável booleana (já é <code>true</code>/<code>false</code>), a comparação pode ser omitidida</p>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> condição_1</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span>.</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">elseif</span> condição_2</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span>.</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span>.</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-<p>Se a informação for muito relevante, ela pode estar expandida e com outra coloração.</p>
-<div class="callout-warning callout callout-style-simple callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Sintaxe: for
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
-<div class="callout-body-container callout-body">
-<p>Dado uma coleção qualquer, normalmente um Vetor, você pode acessar cada elemento da seguinte forma</p>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> coleção</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span>.</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Outra alternativa é ter uma variavel com o indice de cada elemento</p>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx <span class="kw">in</span> <span class="fu">eachindex</span>(coleção)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    elemento <span class="op">=</span> coleção[idx]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span>.</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>A maneira recomenda é produzir indices e valores de uma vez com <code>enumerate</code></p>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb6" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (idx, valor) <span class="kw">in</span> <span class="fu">enumerate</span>(coleção)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span>.</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1"></a>dias_da_semana <span class="op">=</span> [<span class="st">"Segunda"</span>,<span class="st">"Terça"</span>, <span class="st">"Quarta"</span>, <span class="st">"Quinta"</span>, <span class="st">"Sexta"</span>,<span class="st">"Sábado"</span>, <span class="st">"Domingo"</span>]</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="cf">for</span> dia <span class="kw">in</span> dias_da_semana</span>
+<span id="cb1-4"><a href="#cb1-4"></a>    <span class="co"># Daisy consegue permissão para sair</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>    <span class="co"># de casa com probabilidade 50%</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>    permissão <span class="op">=</span> <span class="fu">rand</span>() <span class="op">&lt;</span> <span class="fl">0.5</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>    <span class="cf">if</span> permissão <span class="op">==</span> <span class="cn">true</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>        <span class="fu">println</span>(<span class="st">"Daisy PODE CAÇAR na </span><span class="sc">$</span>(dia)<span class="st">"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9"></a>    <span class="cf">else</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>        <span class="fu">println</span>(<span class="st">"Daisy FICA EM CASA na </span><span class="sc">$</span>(dia)<span class="st">"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11"></a>    <span class="cf">end</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -668,10 +588,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
+<nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
       <a href="../PART_1/00_intro_story.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Part 1 - A Caçada</span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Parte 1</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

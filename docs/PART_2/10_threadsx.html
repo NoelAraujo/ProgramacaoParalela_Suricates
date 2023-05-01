@@ -129,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -156,9 +156,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
       <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -173,7 +173,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_1/00_intro_story.html" class="sidebar-item-text sidebar-link">Part 1 - A Caçada</a>
+            <a href="../PART_1/00_intro_story.html" class="sidebar-item-text sidebar-link">Parte 1</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -208,7 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_2/00_going_travelling.html" class="sidebar-item-text sidebar-link">Part 2 - Os Mapas</a>
+            <a href="../PART_2/00_going_travelling.html" class="sidebar-item-text sidebar-link">Parte 2</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -253,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_3/00_going_for_work.html" class="sidebar-item-text sidebar-link">Part 3 - Ao Trabalho</a>
+            <a href="../PART_3/00_going_for_work.html" class="sidebar-item-text sidebar-link">Parte 3</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -295,11 +295,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
 </nav>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -361,25 +361,21 @@ z = [2, 4, 6]</code></pre>
 <span id="cb3-5"><a href="#cb3-5"></a>    imagem_nova <span class="op">=</span> <span class="fu">zeros</span>(T, altura, comprimento)</span>
 <span id="cb3-6"><a href="#cb3-6"></a></span>
 <span id="cb3-7"><a href="#cb3-7"></a>    tamanho_região <span class="op">=</span> comprimento <span class="op">÷</span> <span class="bu">Threads</span>.<span class="fu">nthreads</span>()</span>
-<span id="cb3-8"><a href="#cb3-8"></a>    varias_regiões <span class="op">=</span> <span class="fu">collect</span>(</span>
-<span id="cb3-9"><a href="#cb3-9"></a>        <span class="bu">Base</span>.<span class="bu">Iterators</span>.<span class="fu">partition</span>(<span class="fl">2</span><span class="op">:</span>comprimento, tamanho_região)</span>
-<span id="cb3-10"><a href="#cb3-10"></a>        )</span>
-<span id="cb3-11"><a href="#cb3-11"></a>    ThreadsX.<span class="fu">foreach</span>(varias_regiões) <span class="cf">do</span> região_y</span>
-<span id="cb3-12"><a href="#cb3-12"></a>        <span class="cf">for</span> y <span class="op">=</span> região_y</span>
-<span id="cb3-13"><a href="#cb3-13"></a>            <span class="cf">for</span> x <span class="op">=</span> <span class="fl">2</span><span class="op">:</span>altura</span>
-<span id="cb3-14"><a href="#cb3-14"></a>                <span class="fu">kernel_bordas!</span>(imagem, imagem_nova,</span>
-<span id="cb3-15"><a href="#cb3-15"></a>                    T, threshold, x, y)</span>
-<span id="cb3-16"><a href="#cb3-16"></a>            <span class="cf">end</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a>        <span class="cf">end</span></span>
-<span id="cb3-18"><a href="#cb3-18"></a>    <span class="cf">end</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>    varias_regiões <span class="op">=</span> <span class="fu">collect</span>( <span class="bu">Base</span>.<span class="bu">Iterators</span>.<span class="fu">partition</span>(<span class="fl">2</span><span class="op">:</span>comprimento, tamanho_região) )</span>
+<span id="cb3-9"><a href="#cb3-9"></a>    ThreadsX.<span class="fu">foreach</span>(varias_regiões) <span class="cf">do</span> região_y</span>
+<span id="cb3-10"><a href="#cb3-10"></a>        <span class="cf">for</span> y <span class="op">=</span> região_y</span>
+<span id="cb3-11"><a href="#cb3-11"></a>            <span class="cf">for</span> x <span class="op">=</span> <span class="fl">2</span><span class="op">:</span>altura</span>
+<span id="cb3-12"><a href="#cb3-12"></a>                <span class="fu">kernel_bordas!</span>(imagem, imagem_nova, T, threshold, x, y)</span>
+<span id="cb3-13"><a href="#cb3-13"></a>            <span class="cf">end</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a>        <span class="cf">end</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a>    <span class="cf">end</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a></span>
+<span id="cb3-17"><a href="#cb3-17"></a>   <span class="cf">return</span> imagem_nova</span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="kw">end</span></span>
 <span id="cb3-19"><a href="#cb3-19"></a></span>
-<span id="cb3-20"><a href="#cb3-20"></a>   <span class="cf">return</span> imagem_nova</span>
-<span id="cb3-21"><a href="#cb3-21"></a><span class="kw">end</span></span>
-<span id="cb3-22"><a href="#cb3-22"></a></span>
-<span id="cb3-23"><a href="#cb3-23"></a>bordas_paralelo_v4 <span class="op">=</span> <span class="fu">bordas_ThreadsX</span>(imagem, threshold)</span>
-<span id="cb3-24"><a href="#cb3-24"></a><span class="pp">@assert</span> <span class="fu">all</span>(bordas <span class="op">.≈</span> bordas_paralelo_v4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-20"><a href="#cb3-20"></a>bordas_paralelo_v4 <span class="op">=</span> <span class="fu">bordas_ThreadsX</span>(imagem, threshold)</span>
+<span id="cb3-21"><a href="#cb3-21"></a><span class="pp">@assert</span> <span class="fu">all</span>(bordas <span class="op">.≈</span> bordas_paralelo_v4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Daisy não obteve um desempenho maior, pois seu código já explorou todo o paralelismo possível, ou não? Confira na próxima seção.</p>
 
 
 
@@ -632,7 +628,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
+<nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
       <a href="../PART_2/09_spatial_divison.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Divisão Espacial</span></span>

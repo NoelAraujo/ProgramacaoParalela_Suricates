@@ -129,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -156,9 +156,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
       <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -173,7 +173,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_1/00_intro_story.html" class="sidebar-item-text sidebar-link">Part 1 - A Caçada</a>
+            <a href="../PART_1/00_intro_story.html" class="sidebar-item-text sidebar-link">Parte 1</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -208,7 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_2/00_going_travelling.html" class="sidebar-item-text sidebar-link">Part 2 - Os Mapas</a>
+            <a href="../PART_2/00_going_travelling.html" class="sidebar-item-text sidebar-link">Parte 2</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -253,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../PART_3/00_going_for_work.html" class="sidebar-item-text sidebar-link">Part 3 - Ao Trabalho</a>
+            <a href="../PART_3/00_going_for_work.html" class="sidebar-item-text sidebar-link">Parte 3</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -307,7 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -439,14 +439,18 @@ Sintaxe: Serviços Remotos
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fu">rmprocs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>Task (done) @0x00007f419d7b4c90</code></pre>
+<pre><code>Task (done) @0x00007f3d6c4892d0</code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
 <p>Daisy atualizou seu desenho para ser mais técnica, e incluir o que aprendeu.</p>
-<p><img src="pipeline_process_pt.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pipeline_process_pt.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </section>
 <section id="nova-escavação" class="level2" data-number="17.2">
 <h2 data-number="17.2" class="anchored" data-anchor-id="nova-escavação"><span class="header-section-number">17.2</span> Nova Escavação</h2>
@@ -456,65 +460,53 @@ Sintaxe: Serviços Remotos
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">using</span> <span class="bu">Distributed</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="fu">addprocs</span>(<span class="fl">3</span>)</span>
 <span id="cb5-3"><a href="#cb5-3"></a></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="pp">@everywhere</span> <span class="kw">function</span> <span class="fu">etapa_1</span>(</span>
-<span id="cb5-5"><a href="#cb5-5"></a>                        qtd_camadas, tamanho_região,</span>
-<span id="cb5-6"><a href="#cb5-6"></a>                        RC_entrada, RC_saida)</span>
-<span id="cb5-7"><a href="#cb5-7"></a>    <span class="cf">while</span> <span class="cn">true</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a>        ponto_partida <span class="op">=</span> <span class="fu">take!</span>(RC_entrada)</span>
-<span id="cb5-9"><a href="#cb5-9"></a>        <span class="fu">println</span>(<span class="st">"[Começou] Primeira Etapa"</span>)</span>
-<span id="cb5-10"><a href="#cb5-10"></a></span>
-<span id="cb5-11"><a href="#cb5-11"></a>        pontos_escavação <span class="op">=</span> [ponto_partida]</span>
-<span id="cb5-12"><a href="#cb5-12"></a>        <span class="fu">escavar!</span>(pontos_escavação,</span>
-<span id="cb5-13"><a href="#cb5-13"></a>            qtd_camadas, tamanho_região)</span>
-<span id="cb5-14"><a href="#cb5-14"></a></span>
-<span id="cb5-15"><a href="#cb5-15"></a>        <span class="fu">put!</span>(RC_saida, pontos_escavação)</span>
-<span id="cb5-16"><a href="#cb5-16"></a>        <span class="fu">println</span>(<span class="st">"[Terminado] Primeira Etapa"</span>)</span>
-<span id="cb5-17"><a href="#cb5-17"></a>    <span class="cf">end</span></span>
-<span id="cb5-18"><a href="#cb5-18"></a><span class="kw">end</span></span>
-<span id="cb5-19"><a href="#cb5-19"></a></span>
-<span id="cb5-20"><a href="#cb5-20"></a><span class="pp">@everywhere</span> <span class="kw">function</span> <span class="fu">etapa_2</span>(</span>
-<span id="cb5-21"><a href="#cb5-21"></a>                        qtd_camadas, tamanho_região,</span>
-<span id="cb5-22"><a href="#cb5-22"></a>                        RC_entrada, RC_saida)</span>
-<span id="cb5-23"><a href="#cb5-23"></a>    <span class="cf">while</span> <span class="cn">true</span></span>
-<span id="cb5-24"><a href="#cb5-24"></a>        <span class="co"># recebe as etapas anteriores</span></span>
-<span id="cb5-25"><a href="#cb5-25"></a>        pontos_escavação <span class="op">=</span> <span class="fu">take!</span>(RC_entrada)</span>
-<span id="cb5-26"><a href="#cb5-26"></a>        <span class="fu">println</span>(<span class="st">"[Começou] Segundo Etapa"</span>)</span>
-<span id="cb5-27"><a href="#cb5-27"></a></span>
-<span id="cb5-28"><a href="#cb5-28"></a>        <span class="fu">escavar!</span>(pontos_escavação,</span>
-<span id="cb5-29"><a href="#cb5-29"></a>            qtd_camadas, tamanho_região)</span>
-<span id="cb5-30"><a href="#cb5-30"></a></span>
-<span id="cb5-31"><a href="#cb5-31"></a>        <span class="fu">put!</span>(RC_saida, pontos_escavação)</span>
-<span id="cb5-32"><a href="#cb5-32"></a>        <span class="fu">println</span>(<span class="st">"[Terminado] Segundo Etapa"</span>)</span>
-<span id="cb5-33"><a href="#cb5-33"></a>    <span class="cf">end</span></span>
-<span id="cb5-34"><a href="#cb5-34"></a><span class="kw">end</span></span>
-<span id="cb5-35"><a href="#cb5-35"></a></span>
-<span id="cb5-36"><a href="#cb5-36"></a><span class="pp">@everywhere</span> <span class="pp">@inline</span> <span class="kw">function</span> <span class="fu">escavar!</span>(</span>
-<span id="cb5-37"><a href="#cb5-37"></a>    pontos_escavação, qtd_camadas,</span>
-<span id="cb5-38"><a href="#cb5-38"></a>    tamanho_região)</span>
-<span id="cb5-39"><a href="#cb5-39"></a></span>
-<span id="cb5-40"><a href="#cb5-40"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span>qtd_camadas</span>
-<span id="cb5-41"><a href="#cb5-41"></a>        ultima_posicao <span class="op">=</span> pontos_escavação[<span class="kw">end</span>]</span>
-<span id="cb5-42"><a href="#cb5-42"></a></span>
-<span id="cb5-43"><a href="#cb5-43"></a>        esquerda <span class="op">=</span> ultima_posicao <span class="op">-</span> <span class="fl">1</span></span>
-<span id="cb5-44"><a href="#cb5-44"></a>        meio <span class="op">=</span> ultima_posicao</span>
-<span id="cb5-45"><a href="#cb5-45"></a>        direita <span class="op">=</span> ultima_posicao <span class="op">+</span> <span class="fl">1</span></span>
-<span id="cb5-46"><a href="#cb5-46"></a></span>
-<span id="cb5-47"><a href="#cb5-47"></a>        <span class="cf">if</span> esquerda <span class="op">&lt;</span> <span class="fl">1</span></span>
-<span id="cb5-48"><a href="#cb5-48"></a>            possiveis_posições <span class="op">=</span> [direita,</span>
-<span id="cb5-49"><a href="#cb5-49"></a>                meio]</span>
-<span id="cb5-50"><a href="#cb5-50"></a>        <span class="cf">elseif</span> direita <span class="op">&gt;</span> tamanho_região</span>
-<span id="cb5-51"><a href="#cb5-51"></a>            possiveis_posições <span class="op">=</span> [meio,</span>
-<span id="cb5-52"><a href="#cb5-52"></a>                esquerda]</span>
-<span id="cb5-53"><a href="#cb5-53"></a>        <span class="cf">else</span></span>
-<span id="cb5-54"><a href="#cb5-54"></a>            possiveis_posições <span class="op">=</span> [esquerda,</span>
-<span id="cb5-55"><a href="#cb5-55"></a>                meio,</span>
-<span id="cb5-56"><a href="#cb5-56"></a>                direita]</span>
-<span id="cb5-57"><a href="#cb5-57"></a>        <span class="cf">end</span></span>
-<span id="cb5-58"><a href="#cb5-58"></a>        aonde_escavar <span class="op">=</span> <span class="fu">rand</span>(possiveis_posições)</span>
-<span id="cb5-59"><a href="#cb5-59"></a>        <span class="fu">push!</span>(pontos_escavação, aonde_escavar)</span>
-<span id="cb5-60"><a href="#cb5-60"></a>    <span class="cf">end</span></span>
-<span id="cb5-61"><a href="#cb5-61"></a>    <span class="cf">return</span> <span class="cn">nothing</span></span>
-<span id="cb5-62"><a href="#cb5-62"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="pp">@everywhere</span> <span class="kw">function</span> <span class="fu">etapa_1</span>(qtd_camadas, tamanho_região, RC_entrada, RC_saida)</span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="cf">while</span> <span class="cn">true</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>        ponto_partida <span class="op">=</span> <span class="fu">take!</span>(RC_entrada)</span>
+<span id="cb5-7"><a href="#cb5-7"></a>        <span class="fu">println</span>(<span class="st">"[Começou] Primeira Etapa"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8"></a></span>
+<span id="cb5-9"><a href="#cb5-9"></a>        pontos_escavação <span class="op">=</span> [ponto_partida]</span>
+<span id="cb5-10"><a href="#cb5-10"></a>        <span class="fu">escavar!</span>(pontos_escavação, qtd_camadas, tamanho_região)</span>
+<span id="cb5-11"><a href="#cb5-11"></a></span>
+<span id="cb5-12"><a href="#cb5-12"></a>        <span class="fu">put!</span>(RC_saida, pontos_escavação)</span>
+<span id="cb5-13"><a href="#cb5-13"></a>        <span class="fu">println</span>(<span class="st">"[Terminado] Primeira Etapa"</span>)</span>
+<span id="cb5-14"><a href="#cb5-14"></a>    <span class="cf">end</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="kw">end</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a></span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="pp">@everywhere</span> <span class="kw">function</span> <span class="fu">etapa_2</span>(qtd_camadas, tamanho_região, RC_entrada, RC_saida)</span>
+<span id="cb5-18"><a href="#cb5-18"></a>    <span class="cf">while</span> <span class="cn">true</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a>        <span class="co"># recebe as etapas anteriores</span></span>
+<span id="cb5-20"><a href="#cb5-20"></a>        pontos_escavação <span class="op">=</span> <span class="fu">take!</span>(RC_entrada)</span>
+<span id="cb5-21"><a href="#cb5-21"></a>        <span class="fu">println</span>(<span class="st">"[Começou] Segundo Etapa"</span>)</span>
+<span id="cb5-22"><a href="#cb5-22"></a></span>
+<span id="cb5-23"><a href="#cb5-23"></a>        <span class="fu">escavar!</span>(pontos_escavação, qtd_camadas, tamanho_região)</span>
+<span id="cb5-24"><a href="#cb5-24"></a></span>
+<span id="cb5-25"><a href="#cb5-25"></a>        <span class="fu">put!</span>(RC_saida, pontos_escavação)</span>
+<span id="cb5-26"><a href="#cb5-26"></a>        <span class="fu">println</span>(<span class="st">"[Terminado] Segundo Etapa"</span>)</span>
+<span id="cb5-27"><a href="#cb5-27"></a>    <span class="cf">end</span></span>
+<span id="cb5-28"><a href="#cb5-28"></a><span class="kw">end</span></span>
+<span id="cb5-29"><a href="#cb5-29"></a></span>
+<span id="cb5-30"><a href="#cb5-30"></a><span class="pp">@everywhere</span> <span class="pp">@inline</span> <span class="kw">function</span> <span class="fu">escavar!</span>(pontos_escavação, qtd_camadas, tamanho_região)</span>
+<span id="cb5-31"><a href="#cb5-31"></a></span>
+<span id="cb5-32"><a href="#cb5-32"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span>qtd_camadas</span>
+<span id="cb5-33"><a href="#cb5-33"></a>        ultima_posicao <span class="op">=</span> pontos_escavação[<span class="kw">end</span>]</span>
+<span id="cb5-34"><a href="#cb5-34"></a></span>
+<span id="cb5-35"><a href="#cb5-35"></a>        esquerda <span class="op">=</span> ultima_posicao <span class="op">-</span> <span class="fl">1</span></span>
+<span id="cb5-36"><a href="#cb5-36"></a>        meio <span class="op">=</span> ultima_posicao</span>
+<span id="cb5-37"><a href="#cb5-37"></a>        direita <span class="op">=</span> ultima_posicao <span class="op">+</span> <span class="fl">1</span></span>
+<span id="cb5-38"><a href="#cb5-38"></a></span>
+<span id="cb5-39"><a href="#cb5-39"></a>        <span class="cf">if</span> esquerda <span class="op">&lt;</span> <span class="fl">1</span></span>
+<span id="cb5-40"><a href="#cb5-40"></a>            possiveis_posições <span class="op">=</span> [direita, meio]</span>
+<span id="cb5-41"><a href="#cb5-41"></a>        <span class="cf">elseif</span> direita <span class="op">&gt;</span> tamanho_região</span>
+<span id="cb5-42"><a href="#cb5-42"></a>            possiveis_posições <span class="op">=</span> [meio, esquerda]</span>
+<span id="cb5-43"><a href="#cb5-43"></a>        <span class="cf">else</span></span>
+<span id="cb5-44"><a href="#cb5-44"></a>            possiveis_posições <span class="op">=</span> [esquerda, meio, direita]</span>
+<span id="cb5-45"><a href="#cb5-45"></a>        <span class="cf">end</span></span>
+<span id="cb5-46"><a href="#cb5-46"></a>        aonde_escavar <span class="op">=</span> <span class="fu">rand</span>(possiveis_posições)</span>
+<span id="cb5-47"><a href="#cb5-47"></a>        <span class="fu">push!</span>(pontos_escavação, aonde_escavar)</span>
+<span id="cb5-48"><a href="#cb5-48"></a>    <span class="cf">end</span></span>
+<span id="cb5-49"><a href="#cb5-49"></a>    <span class="cf">return</span> <span class="cn">nothing</span></span>
+<span id="cb5-50"><a href="#cb5-50"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="mapa-de-profundidade" class="level2" data-number="17.3">
@@ -523,35 +515,31 @@ Sintaxe: Serviços Remotos
 <p>Baseada em sua experiência com detecção de bordas, Daisy decidiu criar um mapa pintado de vermelho aonde foi escavado, e quanto mais profundo, mais escuro ficam as cores.</p>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1"></a><span class="pp">@everywhere</span> <span class="im">using</span> <span class="bu">Images</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="pp">@everywhere</span> <span class="kw">function</span> <span class="fu">etapa_3</span>(</span>
-<span id="cb6-3"><a href="#cb6-3"></a>                        qtd_camadas, tamanho_região,</span>
-<span id="cb6-4"><a href="#cb6-4"></a>                        RC_entrada, RC_saida)</span>
-<span id="cb6-5"><a href="#cb6-5"></a>    <span class="cf">while</span> <span class="cn">true</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a>        <span class="co"># recebe o túnel completo</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a>        pontos_escavação <span class="op">=</span> <span class="fu">take!</span>(RC_entrada)</span>
-<span id="cb6-8"><a href="#cb6-8"></a>        <span class="fu">println</span>(<span class="st">"[Começou] Terceira Etapa"</span>)</span>
-<span id="cb6-9"><a href="#cb6-9"></a></span>
-<span id="cb6-10"><a href="#cb6-10"></a>        <span class="co"># mais profundo == mais escuro</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a>        alphas <span class="op">=</span> <span class="fu">range</span>(<span class="fl">1.0</span>, <span class="fl">0.25</span>, length <span class="op">=</span> <span class="fl">2</span>qtd_camadas)</span>
-<span id="cb6-12"><a href="#cb6-12"></a>        mapa <span class="op">=</span> [<span class="fu">RGBA</span>(<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>)</span>
-<span id="cb6-13"><a href="#cb6-13"></a>            for i <span class="op">∈</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>qtd_camadas, j <span class="op">∈</span> <span class="fl">1</span><span class="op">:</span>tamanho_região]</span>
-<span id="cb6-14"><a href="#cb6-14"></a></span>
-<span id="cb6-15"><a href="#cb6-15"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="fu">eachindex</span>(pontos_escavação)</span>
-<span id="cb6-16"><a href="#cb6-16"></a>            <span class="co"># mostra a divisão entre etapas</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a>            <span class="co"># com uma cor diferente</span></span>
-<span id="cb6-18"><a href="#cb6-18"></a>            <span class="cf">if</span> i <span class="op">==</span> qtd_camadas</span>
-<span id="cb6-19"><a href="#cb6-19"></a>                mapa[i, <span class="op">:</span>] <span class="op">.=</span> <span class="fu">RGBA</span>(<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">0.7</span>)</span>
-<span id="cb6-20"><a href="#cb6-20"></a>            <span class="cf">end</span></span>
-<span id="cb6-21"><a href="#cb6-21"></a></span>
-<span id="cb6-22"><a href="#cb6-22"></a>            mapa[i, pontos_escavação[i]] <span class="op">=</span> <span class="fu">RGBA</span>(<span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>,</span>
-<span id="cb6-23"><a href="#cb6-23"></a>                                                alphas[i])</span>
-<span id="cb6-24"><a href="#cb6-24"></a>        <span class="cf">end</span></span>
-<span id="cb6-25"><a href="#cb6-25"></a></span>
-<span id="cb6-26"><a href="#cb6-26"></a>        mapa_maior <span class="op">=</span> <span class="fu">imresize</span>(mapa, (<span class="fl">500</span>, <span class="fl">250</span>))</span>
-<span id="cb6-27"><a href="#cb6-27"></a>        <span class="fu">put!</span>(RC_saida, mapa_maior)</span>
-<span id="cb6-28"><a href="#cb6-28"></a>        <span class="fu">println</span>(<span class="st">"[Terminado] Terceira Etapa"</span>)</span>
-<span id="cb6-29"><a href="#cb6-29"></a>    <span class="cf">end</span></span>
-<span id="cb6-30"><a href="#cb6-30"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="pp">@everywhere</span> <span class="kw">function</span> <span class="fu">etapa_3</span>(qtd_camadas, tamanho_região, RC_entrada, RC_saida)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="cf">while</span> <span class="cn">true</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>        <span class="co"># recebe o túnel completo</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>        pontos_escavação <span class="op">=</span> <span class="fu">take!</span>(RC_entrada)</span>
+<span id="cb6-6"><a href="#cb6-6"></a>        <span class="fu">println</span>(<span class="st">"[Começou] Terceira Etapa"</span>)</span>
+<span id="cb6-7"><a href="#cb6-7"></a></span>
+<span id="cb6-8"><a href="#cb6-8"></a>        <span class="co"># mais profundo == mais escuro</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>        alphas <span class="op">=</span> <span class="fu">range</span>(<span class="fl">1.0</span>, <span class="fl">0.25</span>, length <span class="op">=</span> <span class="fl">2</span>qtd_camadas)</span>
+<span id="cb6-10"><a href="#cb6-10"></a>        mapa <span class="op">=</span> [<span class="fu">RGBA</span>(<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>)</span>
+<span id="cb6-11"><a href="#cb6-11"></a>            for i <span class="op">∈</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>qtd_camadas, j <span class="op">∈</span> <span class="fl">1</span><span class="op">:</span>tamanho_região]</span>
+<span id="cb6-12"><a href="#cb6-12"></a></span>
+<span id="cb6-13"><a href="#cb6-13"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="fu">eachindex</span>(pontos_escavação)</span>
+<span id="cb6-14"><a href="#cb6-14"></a>            <span class="co"># mostra a divisão entre etapas</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a>            <span class="co"># com uma cor diferente</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>            <span class="cf">if</span> i <span class="op">==</span> qtd_camadas</span>
+<span id="cb6-17"><a href="#cb6-17"></a>                mapa[i, <span class="op">:</span>] <span class="op">.=</span> <span class="fu">RGBA</span>(<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">0.7</span>)</span>
+<span id="cb6-18"><a href="#cb6-18"></a>            <span class="cf">end</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a></span>
+<span id="cb6-20"><a href="#cb6-20"></a>            mapa[i, pontos_escavação[i]] <span class="op">=</span> <span class="fu">RGBA</span>(<span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>, alphas[i])</span>
+<span id="cb6-21"><a href="#cb6-21"></a>        <span class="cf">end</span></span>
+<span id="cb6-22"><a href="#cb6-22"></a></span>
+<span id="cb6-23"><a href="#cb6-23"></a>        <span class="fu">put!</span>(RC_saida, mapa)</span>
+<span id="cb6-24"><a href="#cb6-24"></a>        <span class="fu">println</span>(<span class="st">"[Terminado] Terceira Etapa"</span>)</span>
+<span id="cb6-25"><a href="#cb6-25"></a>    <span class="cf">end</span></span>
+<span id="cb6-26"><a href="#cb6-26"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="fuli" class="level2" data-number="17.4">
@@ -580,7 +568,12 @@ Sintaxe: Serviços Remotos
 <span id="cb9-3"><a href="#cb9-3"></a></span>
 <span id="cb9-4"><a href="#cb9-4"></a><span class="fu">rmprocs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><img src="tunnel_map.png" class="img-fluid"></p>
+<p>Abaixo, segue um exemplo de túnel escavado da parte superior até a inferior, e a linha cinza indica a transição de um suricate para outro.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="tunnel_map.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 
 
 </section>
@@ -834,7 +827,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
       <a href="../PART_3/16_distributed_arrays.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><code>DistributedArray</code></span></span>
