@@ -345,7 +345,7 @@ Exemplo
 </div>
 <p>Você pode criar a variável de saída separadamente, e ela será utilizada como variável de entrada</p>
 <div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">criar_output!</span>(input, input)</span>
+<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">criar_output!</span>(input, output)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="fu">eachindex</span>(output)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        output[i] <span class="op">=</span> <span class="fl">2</span><span class="op">*</span>i</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
@@ -359,7 +359,7 @@ Exemplo
 </div>
 </div>
 </div>
-<p>Ela decidiu fazer isso, pois ela descobriu que em Julia, qualquer funções pode alterar o valor de vetores ou matrzes, mas para evitar confusão, é costume nomear funções que modificam suas entradas com um <code>!</code> no final do nome, assim, Daisy critou a função <code>calendario_mensal!</code>.</p>
+<p>Ela decidiu fazer isso, pois ela descobriu que em Julia, qualquer funçõa pode alterar o valor de vetores ou matrzes, mas para evitar confusão, é costume nomear funções que modificam suas entradas com um <code>!</code> no final do nome, assim, Daisy critou a função <code>calendario_mensal!</code>.</p>
 <p>Daisy queria aproveitar uma função para calcular a agenda semanal de todos os meses, mas Martin, seu mestre, explicou que isso não é uma boa ideia, já que cada mês tem uma quantidade diferente de semanas. Então, eles decidiram criar uma solução simples para fevereiro, que geralmente tem 28 dias ou 4 semanas de 7 dias. Daisy criou uma função que gerava um erro se a matriz com as respostas não tivesse as dimensões corretas, usando a macro <code>@assert</code> - essa macro garante que a função não funcione se as dimensões da matriz estiverem erradas.</p>
 <div class="callout-tip callout callout-style-simple callout-captioned">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
