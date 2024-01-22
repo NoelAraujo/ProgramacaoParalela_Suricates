@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Paralelismo com Suricates - 2&nbsp; function</title>
+<title>Paralelismo com Suricates - 2&nbsp; Popularidade</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -129,7 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../PART_1/00_intro_story.html">Parte 1</a></li><li class="breadcrumb-item"><a href="../PART_1/02_function.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>function</code></span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../PART_1/00_intro_story.html">Parte 1</a></li><li class="breadcrumb-item"><a href="../PART_1/02_function.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Popularidade</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -165,7 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../PART_1/02_function.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>function</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Popularidade</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -293,20 +293,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+   
+  <ul>
+  <li><a href="#functions" id="toc-functions" class="nav-link active" data-scroll-target="#functions"><span class="header-section-number">2.1</span> Functions</a></li>
+  <li><a href="#operação-elemento-a-elemento" id="toc-operação-elemento-a-elemento" class="nav-link" data-scroll-target="#operação-elemento-a-elemento"><span class="header-section-number">2.2</span> Operação Elemento-a-Elemento</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../PART_1/00_intro_story.html">Parte 1</a></li><li class="breadcrumb-item"><a href="../PART_1/02_function.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>function</code></span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../PART_1/00_intro_story.html">Parte 1</a></li><li class="breadcrumb-item"><a href="../PART_1/02_function.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Popularidade</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>function</code></span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Popularidade</span></h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -318,88 +324,349 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Daisy percebeu que seus códigos estavam ficando maiores e complexos, então ficou inevitável a criação de <code>funções</code>.</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>A popularidade do aplicativo para pedir permissão para caçar crescia exponencialmente entre outros suricates do clã, e junto a isso, a complexidade do código também aumentou. <code>Daisy</code> percebeu que a manutenção do programa estava se tornando uma tarefa cada vez mais desafiadora. Ela se via diante de uma encruzilhada: deixar seu querido aplicativo sucumbir à desordem ou enfrentar o desafio de simplificá-lo utilizando funções e métodos.</p>
+<p>Certa manhã, imersa em pensamentos, <code>Daisy</code> começou a projetar funções para realizar tarefas específicas dentro de seu aplicativo. Uma função para gerenciar o registro de usuários, outra para atualizar informações e uma terceira para lidar com a interface do usuário. Cada função era como um pequeno ajudante, especializado em uma única responsabilidade.</p>
+<p>À medida que o sol se punha no horizonte, Daisy finalmente concluiu sua jornada de simplificação. Seu aplicativo, agora reestruturado e elegantemente organizado, brilhava com eficiência renovada</p>
+<hr>
+<p><code>Daisy</code> percebeu que seus códigos estavam ficando maiores e complexos, então ficou inevitável a criação de <code>funções</code>. A seguir, ela criou a função chamada <code>calendario_semanal</code>, que recebe um vetor com os <code>dias_da_semana</code>, e verifica para cada dia se ela terá permissão para caçar.</p>
+<div id="17a1270c" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">using</span> <span class="bu">Random</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">function</span> <span class="fu">calendario_semanal</span>(dias)</span>
+<span id="cb1-3"><a href="#cb1-3"></a>    qtd <span class="op">=</span> <span class="fu">length</span>(dias)</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a>    <span class="co"># Daisy está pessimista </span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>    <span class="co"># (em nenhum dia ela poderá caçar)</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>    agenda <span class="op">=</span> [<span class="st">"não"</span> for dia <span class="kw">in</span> dias]</span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>qtd</span>
+<span id="cb1-10"><a href="#cb1-10"></a>        permissão <span class="op">=</span> <span class="fu">rand</span>() <span class="op">&gt;</span> <span class="fl">0.5</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>        <span class="cf">if</span> permissão</span>
+<span id="cb1-12"><a href="#cb1-12"></a>            agenda[i] <span class="op">=</span> <span class="st">"sim"</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>        <span class="cf">end</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>    <span class="cf">end</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a></span>
+<span id="cb1-16"><a href="#cb1-16"></a>    dias_caçada <span class="op">=</span> <span class="fu">findall</span>(agenda <span class="op">.==</span> <span class="st">"sim"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17"></a>    nomes_dias_caçada <span class="op">=</span> dias[dias_caçada]</span>
+<span id="cb1-18"><a href="#cb1-18"></a></span>
+<span id="cb1-19"><a href="#cb1-19"></a>    <span class="cf">return</span> nomes_dias_caçada</span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="kw">end</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a></span>
+<span id="cb1-22"><a href="#cb1-22"></a>dias_da_semana <span class="op">=</span> [<span class="st">"Seg"</span>, <span class="st">"Ter"</span>, <span class="st">"Qua"</span>, </span>
+<span id="cb1-23"><a href="#cb1-23"></a>                  <span class="st">"Qui"</span>, <span class="st">"Sex"</span>, <span class="st">"Sab"</span>, </span>
+<span id="cb1-24"><a href="#cb1-24"></a>                  <span class="st">"Dom"</span>]</span>
+<span id="cb1-25"><a href="#cb1-25"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">222</span>)</span>
+<span id="cb1-26"><a href="#cb1-26"></a><span class="fu">println</span>( <span class="st">"Dias que podem sair para caçar: "</span> )</span>
+<span id="cb1-27"><a href="#cb1-27"></a><span class="fu">println</span>( <span class="fu">calendario_semanal</span>(dias_da_semana) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Dias que podem sair para caçar: 
+["Ter", "Qua", "Sex"]</code></pre>
 </div>
-<div class="callout-title-container flex-fill">
-Sintaxe: Funções
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
+<p>Dentro de seu código, <code>Daisy</code> começou com uma visão pessimista, assumindo que passaria toda a semana em casa. Assim, o array <code>agenda_semanal</code> era preenchido com o valor não.</p>
+<p>No entanto, o programa de <code>Daisy</code> é resiliente e consulta seus pais para saber se tem permissão para sair da toca ou não. Se a resposta for afirmativa, ela atualiza sua agenda; caso contrário, pelo menos ela evita a frustração de criar expectativas.</p>
+<p>No desfecho, <code>Daisy</code> prefere não registrar em sua agenda os dias que passará em casa, para evitar desânimo. Portanto, ela deseja que a função retorne exclusivamente os dias nos quais poderá realizar suas caçadas. Em outras palavras, Daisy precisa localizar todos os índices no vetor <code>agenda_semanal</code> que contenham o valor <code>sim</code>. Depois de identificar esses índices, a função retorna apenas os dias da semana.</p>
+<section id="functions" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="functions"><span class="header-section-number">2.1</span> Functions</h2>
 <p>Existem 3 maneiras de criar funções em Julia.</p>
-<ul>
-<li>A primeira já foi apresentada no código, usando o <code>function</code>.</li>
-</ul>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">nome_função</span>(nome_input)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span>.</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
 </div>
-<ul>
-<li>A segunda maneira é apenas o nome da função. Essa sintaxe é útil para comandos de uma única linha.</li>
-</ul>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nome_função</span>(nome_input) <span class="op">=</span> <span class="op">...</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-title-container flex-fill">
+Declaração Padrão
 </div>
-<ul>
-<li>Terceira maneira é com funções anônimas, isto é, sem nomes, que são indicadas com <code>-&gt;</code>, e só possue variável de entrada.</li>
-</ul>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nome_input <span class="op">-&gt;</span> <span class="op">...</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div id="e461f21e" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">achar_domingos</span>(dias)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    idx_domingos <span class="op">=</span> <span class="dt">Int</span>[]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (idx, dia) <span class="kw">in</span> <span class="fu">enumerate</span>(dias) </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> dia <span class="op">==</span> <span class="st">"Dom"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">push!</span>(idx_domingos, idx)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> idx_domingos</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
-<p>Ela criou a função <code>calendario_semanal</code>, que recebe um vetor com os <code>dias_da_semana</code>, e verifica para cada dia se ela terá permissão para caçar.</p>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">function</span> <span class="fu">calendario_semanal</span>(dias_da_semana)</span>
-<span id="cb4-2"><a href="#cb4-2"></a>    qtd_dias <span class="op">=</span> <span class="fu">length</span>(dias_da_semana)</span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a>    <span class="co"># Daisy está pessimista (em nenhum dia ela poderá caçar)</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a>    agenda_semanal <span class="op">=</span> [<span class="st">"não"</span> for dia <span class="kw">in</span> dias_da_semana]</span>
-<span id="cb4-6"><a href="#cb4-6"></a></span>
-<span id="cb4-7"><a href="#cb4-7"></a>    <span class="cf">for</span> indice_do_dia <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>qtd_dias</span>
-<span id="cb4-8"><a href="#cb4-8"></a>        permissão <span class="op">=</span> <span class="fu">rand</span>() <span class="op">&lt;</span> <span class="fl">0.5</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a>        <span class="cf">if</span> permissão <span class="op">==</span> <span class="cn">true</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a>            agenda_semanal[indice_do_dia] <span class="op">=</span> <span class="st">"sim"</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a>        <span class="cf">end</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a>    <span class="cf">end</span></span>
-<span id="cb4-13"><a href="#cb4-13"></a></span>
-<span id="cb4-14"><a href="#cb4-14"></a>    dias_q_pode_caçar <span class="op">=</span> <span class="fu">findall</span>(agenda_semanal <span class="op">.==</span> <span class="st">"sim"</span>)</span>
-<span id="cb4-15"><a href="#cb4-15"></a>    nomes_dias_q_pode_caçar <span class="op">=</span> dias_da_semana[dias_q_pode_caçar]</span>
-<span id="cb4-16"><a href="#cb4-16"></a></span>
-<span id="cb4-17"><a href="#cb4-17"></a>    <span class="cf">return</span> nomes_dias_q_pode_caçar</span>
-<span id="cb4-18"><a href="#cb4-18"></a><span class="kw">end</span></span>
-<span id="cb4-19"><a href="#cb4-19"></a><span class="fu">calendario_semanal</span>(dias_da_semana)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
 </div>
-<p>Em seu código, Daisy começou pessimista, assumindo que em toda a semana ela ficará em casa. Mas então, ela não desiste, e pergunta aos pais se ela poderá ou não sair, se sim, ela atualiza sua agenda, senão, ela pelo menos não fica decepcionada.</p>
-<p>No final, Daisy não quer deixar anotado na sua agenda os dias que ficará em casa, para não ficar chateada. Então ela quer que a função retorne apenas os dias de caçada. Isso quer dizer, que ela precisa encontrar no vetor <code>agenda_semanal</code>, todos os indices que contém o valor <code>sim</code>.</p>
-<p>Depois de identificado os <code>indices</code> dos dias, a função retorna apenas o <code>nome</code> dos dias da semana.</p>
+<div class="callout-title-container flex-fill">
+Exercício 2.1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Complete a função a seguir para que ela retorne a permissão de caça com base em uma probabilidade fornecida como variável.</p>
+<div id="c3606ed9" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">pode_caçar</span>(probabilidade)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> probabilidade <span class="op">&lt;</span> ____ <span class="op">||</span> probabilidade <span class="op">&gt;</span> ______</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="pp">@error</span> <span class="st">"Probabiidade Inválida"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    permissão <span class="op">=</span> ________ <span class="op">&gt;</span> ________</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> __________</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ________</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ________</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solução 2.1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="1fa91066" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">pode_caçar</span>(probabilidade)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> probabilidade <span class="op">&lt;</span> <span class="fl">0</span> <span class="op">||</span> probabilidade <span class="op">&gt;</span> <span class="fl">1</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="pp">@error</span> <span class="st">"Probabiidade Inválida"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    permissão <span class="op">=</span> <span class="fu">rand</span>() <span class="op">&gt;</span> probabilidade</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> permissão</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">true</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="cn">false</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">pode_caçar</span>(probabilidade)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Declaração em Uma Linha
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><strong>A segunda maneira é apenas o nome da função.</strong></p>
+<p>Esta forma é conveniente para funções simples que têm uma única expressão como corpo. O exemplo a seguir é equivalente ao exemplo anterior, porém mais compacto.</p>
+<div id="6fbb7d21" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">achar_domingos</span>(dado) <span class="op">=</span> [idx for (idx, dia) <span class="kw">in</span> <span class="fu">enumerate</span>(dias) if dia <span class="op">==</span> <span class="st">"Dom"</span>];</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercício 2.2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Crie uma função, de uma linha, que retorne um array com os dias da semana.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solução 2.2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="bde7bbcb" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dias_semana</span>() <span class="op">=</span> [<span class="st">"Seg"</span>, <span class="st">"Ter"</span>, <span class="st">"Qua"</span>, <span class="st">"Qui"</span>, <span class="st">"Sex"</span>, <span class="st">"Sab"</span>, <span class="st">"Dom"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Função Anônima
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><strong>Terceira maneira é com funções anônimas, isto é, sem nomes, que são indicadas com <code>-&gt;</code></strong>.</p>
+<p>São úteis quando você precisa passar <em>uma função como argumento para outra função</em> ou quando deseja criar funções temporárias. Esse cenário acontece quando precisamos passar funções como entradas, aqui mostramos a função <code>map</code> - que será explicada na próxima atividade.</p>
+<div id="2f1311ed" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dias <span class="op">=</span> [<span class="st">"Sab"</span>, <span class="st">"Dom"</span>, <span class="st">"Seg"</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(x <span class="op">-&gt;</span> x<span class="op">==</span><span class="st">"Dom"</span>, dias)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>É equivalente a criar uma função temporária</p>
+<div id="9e1b568b" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dias <span class="op">=</span> [<span class="st">"Sab"</span>, <span class="st">"Dom"</span>, <span class="st">"Seg"</span>]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">_temp</span>(x)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x<span class="op">==</span><span class="st">"Dom"</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">true</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">false</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(_temp, dias)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="operação-elemento-a-elemento" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="operação-elemento-a-elemento"><span class="header-section-number">2.2</span> Operação Elemento-a-Elemento</h2>
+<p>O ponto <code>.</code> antes de qualquer operador significa que o respectivo método será aplicado em todos os elementos do vetor. Esse ponto é a função <code>broadcast</code>.</p>
 <div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Sintaxe: Operação Elemento-a-Elemento
+broadcast
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<p>O ponto <code>.</code> antes de um operador significa que o operador será aplicada em todos os elementos do vetor. A seguir um exemplo com o operador comparação <code>==</code></p>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1"></a>A <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"a"</span>, <span class="st">"c"</span>]</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="pp">@show</span> A <span class="op">.==</span> <span class="st">"a"</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="pp">@show</span> <span class="fu">findall</span>(A <span class="op">.==</span> <span class="st">"a"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Comparações podem ser feitas com o comando <code>==</code> ou <code>isequal</code></p>
+<div id="81b443f4" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"a"</span>, <span class="st">"c"</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> A <span class="op">.==</span> <span class="st">"a"</span>;</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">isequal</span>.(A, <span class="st">"a"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>A .== "a" = Bool[1, 0, 1, 0]
-findall(A .== "a") = [1, 3]</code></pre>
+isequal.(A, "a") = Bool[1, 0, 1, 0]</code></pre>
+</div>
+</div>
+<p>Equivalente ao comando</p>
+<div id="b78c1c15" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>[elemento <span class="op">==</span> <span class="st">"a"</span> for elemento <span class="kw">in</span> A]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercício 2.3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Crie uma função <code>minha_comparação</code> que retorna <code>true</code>/<code>false</code> de tal forma que ela obtenha a saída desejada</p>
+<div id="e9bf4a86" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">minha_comparação</span>(<span class="st">"Seg"</span>, <span class="st">"SEG"</span>) <span class="co"># false</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">minha_comparação</span>.(<span class="st">"Seg"</span>, [<span class="st">"SEG"</span>, <span class="st">"Seg"</span>]) <span class="co"># Bool[0,1]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solução 2.3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="9741d265" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">minha_comparação</span>(a,b)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> a<span class="op">==</span>b</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">true</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">false</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>minha_comparação (generic function with 1 method)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercício 2.4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Escreva uma versão simplificada da função <code>calendario_semanal</code> de forma que elimite as variáveis <code>qtd</code>, <code>agenda</code>, <code>permissão</code> e <code>dias_caçada</code>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solução 2.4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="e285457f" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">calendario_semanal_simplificado</span>(dias)    </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    nomes_dias_caçada <span class="op">=</span> <span class="dt">String</span>[]</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fu">eachindex</span>(dias)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        <span class="co"># probabilidade maior que 50%</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="fu">rand</span>() <span class="op">&gt;</span> <span class="fl">0.5</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>            <span class="fu">push!</span>(nomes_dias_caçada, dias[i])</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> nomes_dias_caçada</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>dias_da_semana <span class="op">=</span> [<span class="st">"Seg"</span>, <span class="st">"Ter"</span>, <span class="st">"Qua"</span>, </span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Qui"</span>, <span class="st">"Sex"</span>, <span class="st">"Sab"</span>, </span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Dom"</span>]</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">222</span>)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="st">"Dias que podem sair para caçar: "</span> )</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="fu">calendario_semanal_simplificado</span>(dias_da_semana) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Dias que podem sair para caçar: 
+["Ter", "Qua", "Sex"]</code></pre>
 </div>
 </div>
 </div>
@@ -407,6 +674,7 @@ findall(A .== "a") = [1, 3]</code></pre>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -940,7 +1208,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-page-right">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
       <a href="../PART_1/01_for_if.html" class="pagination-link  aria-label=" &lt;span="" de="" casa&lt;="" span&gt;"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Sair de Casa</span></span>

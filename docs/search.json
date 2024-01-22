@@ -1,12 +1,13 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Paralelismo com Suricates",
+    "objectID": "PART_1/02_function.html",
+    "href": "PART_1/02_function.html",
+    "title": "2  Popularidade",
     "section": "",
-    "text": "Bem-vindo\nEsta é uma série de tutoriais sobre programação paralela em Julia, apresentados em formato de narrativa semelhante a uma história. Portanto, todo o código apresentado está interligado.\nEspero que goste e, mais importante, que aprenda algo novo.\n\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
+    "text": "2.1 Functions\nExistem 3 maneiras de criar funções em Julia.",
     "crumbs": [
-      "**Bem-vindo**"
+      "Parte 1",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Popularidade</span>"
     ]
   },
   {
@@ -15,16 +16,6 @@
     "title": "Parte 1",
     "section": "",
     "text": "Era uma vez, numa vasta savana adornada com capim alto e acácias dispersas, onde residia Daisy, uma suricata curiosa e destemida.\n\n\n\n\n\nEla se aventura no aprendizado da programação com o objetivo de se tornar uma hacker, transformando suas atividades diárias em programas intrigantes.\nAo longo deste texto, você encontrará breves relatos da vida de Daisy, entrelaçados com trechos de código que representam diversos aspectos da narrativa. Ambos se entrelaçam, e a compreensão do código ganha significado à luz das experiências de vida de Daisy.\n\n\n\n\n\n\nTodos os métodos apresentados na Parte 1 serão utilizadas de uma forma ou outra nos próximos capitulos.\n\n\n\nÉ altamente recomendável realizar todos os exercícios, mesmo que pareçam simples à primeira vista, pois eles têm o propósito de familiarizá-lo com a sintaxe de Julia.\nAdicionalmente, alguns trechos de código serão acompanhados pelos resultados exibidos abaixo do código-fonte, proporcionando a certeza de que seus resultados estão em conformidade com as expectativas. Por exemplo:\n\n@show \"Eu sou Daisy\"\npeso = 500 # em gramas\n@show peso/1000; # em kg\n\n\"Eu sou Daisy\" = \"Eu sou Daisy\"\npeso / 1000 = 0.5",
-    "crumbs": [
-      "Parte 1"
-    ]
-  },
-  {
-    "objectID": "PART_1/00_intro_story.html#a-história",
-    "href": "PART_1/00_intro_story.html#a-história",
-    "title": "Parte 1",
-    "section": "",
-    "text": "Todos os métodos apresentados na Parte 1 serão utilizadas de uma forma ou outra nos próximos capitulos.",
     "crumbs": [
       "Parte 1"
     ]
@@ -60,17 +51,6 @@
     "crumbs": [
       "Parte 1",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sair de Casa</span>"
-    ]
-  },
-  {
-    "objectID": "PART_1/02_function.html",
-    "href": "PART_1/02_function.html",
-    "title": "2  function",
-    "section": "",
-    "text": "Daisy percebeu que seus códigos estavam ficando maiores e complexos, então ficou inevitável a criação de funções.\n\n\n\n\n\n\nSintaxe: Funções\n\n\n\n\n\nExistem 3 maneiras de criar funções em Julia.\n\nA primeira já foi apresentada no código, usando o function.\n\n\nfunction nome_função(nome_input)\n    ....\nend\n\n\nA segunda maneira é apenas o nome da função. Essa sintaxe é útil para comandos de uma única linha.\n\n\nnome_função(nome_input) = ....\n\n\nTerceira maneira é com funções anônimas, isto é, sem nomes, que são indicadas com -&gt;, e só possue variável de entrada.\n\n\nnome_input -&gt; ....\n\n\n\n\nEla criou a função calendario_semanal, que recebe um vetor com os dias_da_semana, e verifica para cada dia se ela terá permissão para caçar.\n\nfunction calendario_semanal(dias_da_semana)\n    qtd_dias = length(dias_da_semana)\n\n    # Daisy está pessimista (em nenhum dia ela poderá caçar)\n    agenda_semanal = [\"não\" for dia in dias_da_semana]\n\n    for indice_do_dia in 1:qtd_dias\n        permissão = rand() &lt; 0.5\n        if permissão == true\n            agenda_semanal[indice_do_dia] = \"sim\"\n        end\n    end\n\n    dias_q_pode_caçar = findall(agenda_semanal .== \"sim\")\n    nomes_dias_q_pode_caçar = dias_da_semana[dias_q_pode_caçar]\n\n    return nomes_dias_q_pode_caçar\nend\ncalendario_semanal(dias_da_semana)\n\nEm seu código, Daisy começou pessimista, assumindo que em toda a semana ela ficará em casa. Mas então, ela não desiste, e pergunta aos pais se ela poderá ou não sair, se sim, ela atualiza sua agenda, senão, ela pelo menos não fica decepcionada.\nNo final, Daisy não quer deixar anotado na sua agenda os dias que ficará em casa, para não ficar chateada. Então ela quer que a função retorne apenas os dias de caçada. Isso quer dizer, que ela precisa encontrar no vetor agenda_semanal, todos os indices que contém o valor sim.\nDepois de identificado os indices dos dias, a função retorna apenas o nome dos dias da semana.\n\n\n\n\n\n\nSintaxe: Operação Elemento-a-Elemento\n\n\n\n\n\nO ponto . antes de um operador significa que o operador será aplicada em todos os elementos do vetor. A seguir um exemplo com o operador comparação ==\n\nA = [\"a\", \"b\", \"a\", \"c\"]\n@show A .== \"a\"\n@show findall(A .== \"a\");\n\nA .== \"a\" = Bool[1, 0, 1, 0]\nfindall(A .== \"a\") = [1, 3]",
-    "crumbs": [
-      "Parte 1",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>`function`</span>"
     ]
   },
   {
@@ -397,6 +377,48 @@
     "crumbs": [
       "Parte 3",
       "<span class='chapter-number'>18</span>  <span class='chapter-title'>Primeiro Teste</span>"
+    ]
+  },
+  {
+    "objectID": "PART_1/02_function.html#functions",
+    "href": "PART_1/02_function.html#functions",
+    "title": "2  Popularidade",
+    "section": "",
+    "text": "Declaração Padrão\n\n\n\n\n\n\nfunction achar_domingos(dias)\n    idx_domingos = Int[]\n    for (idx, dia) in enumerate(dias) \n        if dia == \"Dom\"\n            push!(idx_domingos, idx)\n        end\n    end\n    return idx_domingos\nend\n\n\n\n\n\n\n\n\n\n\nExercício 2.1\n\n\n\n\n\nComplete a função a seguir para que ela retorne a permissão de caça com base em uma probabilidade fornecida como variável.\n\nfunction pode_caçar(probabilidade)\n    if probabilidade &lt; ____ || probabilidade &gt; ______\n        @error \"Probabiidade Inválida\"\n    end\n\n    permissão = ________ &gt; ________\n    if __________\n        return ________\n    end\n    return ________\nend\n\n\n\n\n\n\n\n\n\n\nSolução 2.1\n\n\n\n\n\n\nfunction pode_caçar(probabilidade)\n    if probabilidade &lt; 0 || probabilidade &gt; 1\n        @error \"Probabiidade Inválida\"\n    end\n\n    permissão = rand() &gt; probabilidade\n    if permissão\n        return true\n    end\n    return false\nend\npode_caçar(probabilidade)\n\n\n\n\n\n\n\n\n\n\nDeclaração em Uma Linha\n\n\n\n\n\nA segunda maneira é apenas o nome da função.\nEsta forma é conveniente para funções simples que têm uma única expressão como corpo. O exemplo a seguir é equivalente ao exemplo anterior, porém mais compacto.\n\nachar_domingos(dado) = [idx for (idx, dia) in enumerate(dias) if dia == \"Dom\"];\n\n\n\n\n\n\n\n\n\n\nExercício 2.2\n\n\n\n\n\nCrie uma função, de uma linha, que retorne um array com os dias da semana.\n\n\n\n\n\n\n\n\n\nSolução 2.2\n\n\n\n\n\n\ndias_semana() = [\"Seg\", \"Ter\", \"Qua\", \"Qui\", \"Sex\", \"Sab\", \"Dom\"]\n\n\n\n\n\n\n\n\n\n\nFunção Anônima\n\n\n\n\n\nTerceira maneira é com funções anônimas, isto é, sem nomes, que são indicadas com -&gt;.\nSão úteis quando você precisa passar uma função como argumento para outra função ou quando deseja criar funções temporárias. Esse cenário acontece quando precisamos passar funções como entradas, aqui mostramos a função map - que será explicada na próxima atividade.\n\ndias = [\"Sab\", \"Dom\", \"Seg\"]\nmap(x -&gt; x==\"Dom\", dias)\n\nÉ equivalente a criar uma função temporária\n\ndias = [\"Sab\", \"Dom\", \"Seg\"]\nfunction _temp(x)\n    if x==\"Dom\"\n        return true\n    else\n        return false\n    end\nend\nmap(_temp, dias)",
+    "crumbs": [
+      "Parte 1",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Popularidade</span>"
+    ]
+  },
+  {
+    "objectID": "PART_1/02_function.html#operação-elemento-a-elemento",
+    "href": "PART_1/02_function.html#operação-elemento-a-elemento",
+    "title": "2  Popularidade",
+    "section": "2.2 Operação Elemento-a-Elemento",
+    "text": "2.2 Operação Elemento-a-Elemento\nO ponto . antes de qualquer operador significa que o respectivo método será aplicado em todos os elementos do vetor. Esse ponto é a função broadcast.\n\n\n\n\n\n\nbroadcast\n\n\n\n\n\nComparações podem ser feitas com o comando == ou isequal\n\nA = [\"a\", \"b\", \"a\", \"c\"]\n@show A .== \"a\";\n@show isequal.(A, \"a\");\n\nA .== \"a\" = Bool[1, 0, 1, 0]\nisequal.(A, \"a\") = Bool[1, 0, 1, 0]\n\n\nEquivalente ao comando\n\n[elemento == \"a\" for elemento in A]\n\n\n\n\n\n\n\n\n\n\nExercício 2.3\n\n\n\n\n\nCrie uma função minha_comparação que retorna true/false de tal forma que ela obtenha a saída desejada\n\n@show minha_comparação(\"Seg\", \"SEG\") # false\n@show minha_comparação.(\"Seg\", [\"SEG\", \"Seg\"]) # Bool[0,1]\n\n\n\n\n\n\n\n\n\n\nSolução 2.3\n\n\n\n\n\n\nfunction minha_comparação(a,b)\n    if a==b\n        return true\n    else\n        return false\n    end\nend\n\nminha_comparação (generic function with 1 method)\n\n\n\n\n\n\n\n\n\n\n\nExercício 2.4\n\n\n\n\n\nEscreva uma versão simplificada da função calendario_semanal de forma que elimite as variáveis qtd, agenda, permissão e dias_caçada.\n\n\n\n\n\n\n\n\n\nSolução 2.4\n\n\n\n\n\n\nfunction calendario_semanal_simplificado(dias)    \n    nomes_dias_caçada = String[]\n    for i in eachindex(dias)\n        # probabilidade maior que 50%\n        if rand() &gt; 0.5\n            push!(nomes_dias_caçada, dias[i])\n        end\n    end\n    return nomes_dias_caçada\nend\ndias_da_semana = [\"Seg\", \"Ter\", \"Qua\", \n                  \"Qui\", \"Sex\", \"Sab\", \n                  \"Dom\"]\nRandom.seed!(222)\nprintln( \"Dias que podem sair para caçar: \" )\nprintln( calendario_semanal_simplificado(dias_da_semana) )\n\nDias que podem sair para caçar: \n[\"Ter\", \"Qua\", \"Sex\"]",
+    "crumbs": [
+      "Parte 1",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Popularidade</span>"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Paralelismo com Suricates",
+    "section": "",
+    "text": "Bem-vindo\nEsta é uma série de tutoriais sobre programação paralela em Julia, apresentados em formato de narrativa semelhante a uma história. Portanto, todo o código apresentado está interligado.\nSe você já possui experiência em programação e está interessado em explorar a linguagem Julia por suas incríveis capacidades de programação paralela, este curso é ideal para você! Vamos focar especialmente na sintaxe básica de várias funcionalidade,, sem sobrecarregar com algoritmos paralelos mais complexos.\nEspero que goste e, mais importante, que aprenda algo novo.\n\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
+    "crumbs": [
+      "**Bem-vindo**"
+    ]
+  },
+  {
+    "objectID": "index.html#espero-que-goste-e-mais-importante-que-aprenda-algo-novo.",
+    "href": "index.html#espero-que-goste-e-mais-importante-que-aprenda-algo-novo.",
+    "title": "Paralelismo com Suricates",
+    "section": "Espero que goste e, mais importante, que aprenda algo novo.",
+    "text": "Espero que goste e, mais importante, que aprenda algo novo.\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
+    "crumbs": [
+      "**Bem-vindo**"
     ]
   }
 ]
