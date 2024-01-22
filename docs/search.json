@@ -1,13 +1,13 @@
 [
   {
-    "objectID": "PART_1/02_function.html",
-    "href": "PART_1/02_function.html",
-    "title": "2  Popularidade",
+    "objectID": "PART_1/03_map.html",
+    "href": "PART_1/03_map.html",
+    "title": "3  O Convite",
     "section": "",
-    "text": "2.1 Functions\nExistem 3 maneiras de criar funções em Julia.",
+    "text": "3.1 Explicando a mensagem\nVamos falar em detalhes sobre a função map que foi utilizada na atividade passada, porém sem muitos detalhes.\nOutra maneira de escrever o mesmo código é utilizando Função Anônima\nmap( x-&gt;replace(x, \"A\" =&gt; \"B\"), coleção)\nNesse exemplo, a função temporária possui apenas 1 comando (replace). E se o código possui várias linhas? Nesse cenário a leitura ficaria mais confusa, e existe outra sintaxe mais conveniente, o do",
     "crumbs": [
       "Parte 1",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Popularidade</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>O Convite</span>"
     ]
   },
   {
@@ -54,14 +54,36 @@
     ]
   },
   {
-    "objectID": "PART_1/03_map.html",
-    "href": "PART_1/03_map.html",
-    "title": "3  map",
+    "objectID": "PART_1/02_function.html",
+    "href": "PART_1/02_function.html",
+    "title": "2  Popularidade",
     "section": "",
-    "text": "Daisy está sempre procurando maneiras de melhorar seu código e torná-lo mais eficiente. Seu objetivo é melhorar continuamente, e se tornar uma programadora tão habilidosa quanto seu mestre, o lendário hacker suricate, Martin.\nEla descobriu a função map. Sua vantagem é que em vez de criar um vetor com vários não e modificar seus elementos, ela poderia usar o map para executar uma função e já criar os valores desejados.\n\n\n\n\n\n\nSintaxe: map\n\n\n\n\n\nA função map espera aplicar uma função f a cada elemento de uma coleção coll.\n\nf(x) = ....\nmap(f, coll)\n\n# or\nmap( x-&gt;f(x), coll)\n\nVocê normalmente não quer definir novas funções a cada vez que for usar esse comando, então existe a sintaxe do\n\nmap(coll) do x\n    f(x)\nend\n\n\n\n\nO novo código de Daisy ficou levemente mais curto, pois agora não precisa ser pessimista, criando um vetor com não e o modificando para incluir sim. Ela terá um vetor com sim ou não automaticamente.\n\nfunction calendario_semanal_map(dias_da_semana)\n\n    agenda = map(eachindex(dias_da_semana)) do indice_do_dia\n        permissão = rand() &lt; 0.5\n        if permissão == true\n            \"sim\"\n        else\n            \"não\"\n        end\n    end\n\n    dias_q_pode_caçar = findall( agenda .== \"sim\" )\n    nomes_dias_q_pode_caçar = dias_da_semana[dias_q_pode_caçar]\n    return nomes_dias_q_pode_caçar\nend\ncalendario_semanal_map(dias_da_semana)",
+    "text": "2.1 Functions\nExistem 3 maneiras de criar funções em Julia.",
     "crumbs": [
       "Parte 1",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>`map`</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Popularidade</span>"
+    ]
+  },
+  {
+    "objectID": "PART_1/02_function.html#functions",
+    "href": "PART_1/02_function.html#functions",
+    "title": "2  Popularidade",
+    "section": "",
+    "text": "Declaração Padrão\n\n\n\n\n\n\nfunction achar_domingos(dias)\n    idx_domingos = Int[]\n    for (idx, dia) in enumerate(dias) \n        if dia == \"Dom\"\n            push!(idx_domingos, idx)\n        end\n    end\n    return idx_domingos\nend\n\n\n\n\n\n\n\n\n\n\nExercício 2.1\n\n\n\n\n\nComplete a função a seguir para que ela retorne a permissão de caça com base em uma probabilidade fornecida como variável.\n\nfunction pode_caçar(probabilidade)\n    if probabilidade &lt; ____ || probabilidade &gt; ______\n        @error \"Probabiidade Inválida\"\n    end\n\n    permissão = ________ &gt; ________\n    if __________\n        return ________\n    end\n    return ________\nend\n\n\n\n\n\n\n\n\n\n\nSolução 2.1\n\n\n\n\n\n\nfunction pode_caçar(probabilidade)\n    if probabilidade &lt; 0 || probabilidade &gt; 1\n        @error \"Probabiidade Inválida\"\n    end\n\n    permissão = rand() &gt; probabilidade\n    if permissão\n        return true\n    end\n    return false\nend\npode_caçar(probabilidade)\n\n\n\n\n\n\n\n\n\n\nDeclaração em Uma Linha\n\n\n\n\n\nA segunda maneira é apenas o nome da função.\nEsta forma é conveniente para funções simples que têm uma única expressão como corpo. O exemplo a seguir é equivalente ao exemplo anterior, porém mais compacto.\n\nachar_domingos(dado) = [idx for (idx, dia) in enumerate(dias) if dia == \"Dom\"];\n\n\n\n\n\n\n\n\n\n\nExercício 2.2\n\n\n\n\n\nCrie uma função, de uma linha, que retorne um array com os dias da semana.\n\n\n\n\n\n\n\n\n\nSolução 2.2\n\n\n\n\n\n\ndias_semana() = [\"Seg\", \"Ter\", \"Qua\", \"Qui\", \"Sex\", \"Sab\", \"Dom\"]\n\n\n\n\n\n\n\n\n\n\nFunção Anônima\n\n\n\n\n\nTerceira maneira é com funções anônimas, isto é, sem nomes, que são indicadas com -&gt;.\nSão úteis quando você precisa passar uma função como argumento para outra função ou quando deseja criar funções temporárias. Esse cenário acontece quando precisamos passar funções como entradas, aqui mostramos a função map - que será explicada na próxima atividade.\n\ndias = [\"Sab\", \"Dom\", \"Seg\"]\nmap(x -&gt; x==\"Dom\", dias)\n\nÉ equivalente a criar uma função temporária\n\ndias = [\"Sab\", \"Dom\", \"Seg\"]\nfunction _temp(x)\n    if x==\"Dom\"\n        return true\n    else\n        return false\n    end\nend\nmap(_temp, dias)",
+    "crumbs": [
+      "Parte 1",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Popularidade</span>"
+    ]
+  },
+  {
+    "objectID": "PART_1/02_function.html#operação-elemento-a-elemento",
+    "href": "PART_1/02_function.html#operação-elemento-a-elemento",
+    "title": "2  Popularidade",
+    "section": "2.2 Operação Elemento-a-Elemento",
+    "text": "2.2 Operação Elemento-a-Elemento\nO ponto . antes de qualquer operador significa que o respectivo método será aplicado em todos os elementos do vetor. Esse ponto é a função broadcast.\n\n\n\n\n\n\nbroadcast\n\n\n\n\n\nComparações podem ser feitas com o comando == ou isequal\n\nA = [\"a\", \"b\", \"a\", \"c\"]\n@show A .== \"a\";\n@show isequal.(A, \"a\");\n\nA .== \"a\" = Bool[1, 0, 1, 0]\nisequal.(A, \"a\") = Bool[1, 0, 1, 0]\n\n\nEquivalente ao comando\n\n[elemento == \"a\" for elemento in A]\n\n\n\n\n\n\n\n\n\n\nExercício 2.3\n\n\n\n\n\nCrie uma função minha_comparação que retorna true/false de tal forma que ela obtenha a saída desejada\n\n@show minha_comparação(\"Seg\", \"SEG\") # false\n@show minha_comparação.(\"Seg\", [\"SEG\", \"Seg\"]) # Bool[0,1]\n\n\n\n\n\n\n\n\n\n\nSolução 2.3\n\n\n\n\n\n\nfunction minha_comparação(a,b)\n    if a==b\n        return true\n    else\n        return false\n    end\nend\n\nminha_comparação (generic function with 1 method)\n\n\n\n\n\n\n\n\n\n\n\nExercício 2.4\n\n\n\n\n\nEscreva uma versão simplificada da função calendario_semanal de forma que elimite as variáveis qtd, agenda, permissão e dias_caçada.\n\n\n\n\n\n\n\n\n\nSolução 2.4\n\n\n\n\n\n\nfunction calendario_semanal_simplificado(dias)    \n    nomes_dias_caçada = String[]\n    for i in eachindex(dias)\n        # probabilidade maior que 50%\n        if rand() &gt; 0.5\n            push!(nomes_dias_caçada, dias[i])\n        end\n    end\n    return nomes_dias_caçada\nend\ndias_da_semana = [\"Seg\", \"Ter\", \"Qua\", \n                  \"Qui\", \"Sex\", \"Sab\", \n                  \"Dom\"]\nRandom.seed!(222)\nprintln( \"Dias que podem sair para caçar: \" )\nprintln( calendario_semanal_simplificado(dias_da_semana) )\n\nDias que podem sair para caçar: \n[\"Ter\", \"Qua\", \"Sex\"]",
+    "crumbs": [
+      "Parte 1",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Popularidade</span>"
     ]
   },
   {
@@ -380,25 +402,25 @@
     ]
   },
   {
-    "objectID": "PART_1/02_function.html#functions",
-    "href": "PART_1/02_function.html#functions",
-    "title": "2  Popularidade",
+    "objectID": "PART_1/03_map.html#explicando-a-mensagem",
+    "href": "PART_1/03_map.html#explicando-a-mensagem",
+    "title": "3  O Convite",
     "section": "",
-    "text": "Declaração Padrão\n\n\n\n\n\n\nfunction achar_domingos(dias)\n    idx_domingos = Int[]\n    for (idx, dia) in enumerate(dias) \n        if dia == \"Dom\"\n            push!(idx_domingos, idx)\n        end\n    end\n    return idx_domingos\nend\n\n\n\n\n\n\n\n\n\n\nExercício 2.1\n\n\n\n\n\nComplete a função a seguir para que ela retorne a permissão de caça com base em uma probabilidade fornecida como variável.\n\nfunction pode_caçar(probabilidade)\n    if probabilidade &lt; ____ || probabilidade &gt; ______\n        @error \"Probabiidade Inválida\"\n    end\n\n    permissão = ________ &gt; ________\n    if __________\n        return ________\n    end\n    return ________\nend\n\n\n\n\n\n\n\n\n\n\nSolução 2.1\n\n\n\n\n\n\nfunction pode_caçar(probabilidade)\n    if probabilidade &lt; 0 || probabilidade &gt; 1\n        @error \"Probabiidade Inválida\"\n    end\n\n    permissão = rand() &gt; probabilidade\n    if permissão\n        return true\n    end\n    return false\nend\npode_caçar(probabilidade)\n\n\n\n\n\n\n\n\n\n\nDeclaração em Uma Linha\n\n\n\n\n\nA segunda maneira é apenas o nome da função.\nEsta forma é conveniente para funções simples que têm uma única expressão como corpo. O exemplo a seguir é equivalente ao exemplo anterior, porém mais compacto.\n\nachar_domingos(dado) = [idx for (idx, dia) in enumerate(dias) if dia == \"Dom\"];\n\n\n\n\n\n\n\n\n\n\nExercício 2.2\n\n\n\n\n\nCrie uma função, de uma linha, que retorne um array com os dias da semana.\n\n\n\n\n\n\n\n\n\nSolução 2.2\n\n\n\n\n\n\ndias_semana() = [\"Seg\", \"Ter\", \"Qua\", \"Qui\", \"Sex\", \"Sab\", \"Dom\"]\n\n\n\n\n\n\n\n\n\n\nFunção Anônima\n\n\n\n\n\nTerceira maneira é com funções anônimas, isto é, sem nomes, que são indicadas com -&gt;.\nSão úteis quando você precisa passar uma função como argumento para outra função ou quando deseja criar funções temporárias. Esse cenário acontece quando precisamos passar funções como entradas, aqui mostramos a função map - que será explicada na próxima atividade.\n\ndias = [\"Sab\", \"Dom\", \"Seg\"]\nmap(x -&gt; x==\"Dom\", dias)\n\nÉ equivalente a criar uma função temporária\n\ndias = [\"Sab\", \"Dom\", \"Seg\"]\nfunction _temp(x)\n    if x==\"Dom\"\n        return true\n    else\n        return false\n    end\nend\nmap(_temp, dias)",
+    "text": "map\n\n\n\n\n\nA função map espera aplicar uma função foo a cada elemento em uma coleção.\n\nfoo(x) = replace(x, \"A\" =&gt; \"B\")\nrespostas = map(foo, coleção)\n\nO retorno dessa função também é uma coleção. O código equivalente a esse exemplo seria\n\nfoo(x) = replace(x, \"A\" =&gt; \"B\")\nrespostas = []\nfor item in coleção\n    push!(respostas, foo(item))\nend\n\n\n\n\n\n\n\n\n\n\n\n\nExercício 3.1\n\n\n\n\n\nO código a seguir obtêm os dias da semana que Daisy pode sair pra caçar com uma função anônima dentro da função filter.\nEscreva um novo código, com for e if, afim de realizar a mesma operação que o filter\n\nfilter(x-&gt;!isequal(x, \"Em Casa\"), [\"Em Casa\", \"Em Casa\", \"Ter\"])\n\n1-element Vector{String}:\n \"Ter\"\n\n\n\n\n\n\n\n\n\n\n\nSolução 3.1\n\n\n\n\n\n\ndias_caçada = String[]\nfor dia in [\"Em Casa\", \"Em Casa\", \"Ter\"]\n    if !isequal(dia, \"Em Casa\") # if dia ≠ \"Em Casa\"\n        push!(dias_caçada, dia)\n    end\nend\n\n\n\n\n\n\n\n\n\n\n\ndo\n\n\n\n\n\nQualquer função cujo primeiro argumento é uma função (como é o caso da função map) pode ser reescrita como a sintaxe do, isto é, a função do argumento se torna uma função anônima em um bloco.\n\nmap(coleção) do x\n    replace(x, \"A\" =&gt; \"B\")\nend\n\nEm códigos com apenas um comando, essa sintaxe não é necessária, contudo, para funções com mais instruções, essa sintaxe se torna muito conveniente.\n\ncoleção = [\"A\", \"a\", \"B\", \"b\"]\nmap(coleção) do x\n    y = replace(x, \"A\" =&gt; \"B\")\n    z = replace(y, \"a\" =&gt; \"b\")\n    z\nend\n\n4-element Vector{String}:\n \"B\"\n \"b\"\n \"B\"\n \"b\"\n\n\nA versão alternativa com a sintaxe -&gt; requer a adição de begin e end\n\nmap( x-&gt; begin \n    y = replace(x, \"A\" =&gt; \"B\"); \n    z = replace(y, \"a\" =&gt; \"b\"); \n    z end, coleção)\n\n\n\n\n\n\n\n\n\n\nExercício 3.2\n\n\n\n\n\nEscreva um código, com o comando map, que permita Daisy caçar todas as Qua e Qui, mas nos outros dias, a suricata ficará em casa.\n\n\n\n\n\n\n\n\n\nSolução 3.2\n\n\n\n\n\n\ndias = [\"Seg\", \"Ter\", \"Qua\", \n        \"Qui\", \"Sex\", \"Sab\", \n        \"Dom\"]\ndias_caçada = map(dias) do dia\n    if dia in [\"Qua\", \"Qui\"]\n        \"pode caçar\"\n    else\n        \"fica em casa\"\n    end\nend\n\n\n\n\n\n\n\n\n\n\nPortanto, o código de Daisy esta dizendo implicitamente, que ele foi construído com uma Função Anônima, em homenagem ao grupo hacker Anonymous.",
     "crumbs": [
       "Parte 1",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Popularidade</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>O Convite</span>"
     ]
   },
   {
-    "objectID": "PART_1/02_function.html#operação-elemento-a-elemento",
-    "href": "PART_1/02_function.html#operação-elemento-a-elemento",
-    "title": "2  Popularidade",
-    "section": "2.2 Operação Elemento-a-Elemento",
-    "text": "2.2 Operação Elemento-a-Elemento\nO ponto . antes de qualquer operador significa que o respectivo método será aplicado em todos os elementos do vetor. Esse ponto é a função broadcast.\n\n\n\n\n\n\nbroadcast\n\n\n\n\n\nComparações podem ser feitas com o comando == ou isequal\n\nA = [\"a\", \"b\", \"a\", \"c\"]\n@show A .== \"a\";\n@show isequal.(A, \"a\");\n\nA .== \"a\" = Bool[1, 0, 1, 0]\nisequal.(A, \"a\") = Bool[1, 0, 1, 0]\n\n\nEquivalente ao comando\n\n[elemento == \"a\" for elemento in A]\n\n\n\n\n\n\n\n\n\n\nExercício 2.3\n\n\n\n\n\nCrie uma função minha_comparação que retorna true/false de tal forma que ela obtenha a saída desejada\n\n@show minha_comparação(\"Seg\", \"SEG\") # false\n@show minha_comparação.(\"Seg\", [\"SEG\", \"Seg\"]) # Bool[0,1]\n\n\n\n\n\n\n\n\n\n\nSolução 2.3\n\n\n\n\n\n\nfunction minha_comparação(a,b)\n    if a==b\n        return true\n    else\n        return false\n    end\nend\n\nminha_comparação (generic function with 1 method)\n\n\n\n\n\n\n\n\n\n\n\nExercício 2.4\n\n\n\n\n\nEscreva uma versão simplificada da função calendario_semanal de forma que elimite as variáveis qtd, agenda, permissão e dias_caçada.\n\n\n\n\n\n\n\n\n\nSolução 2.4\n\n\n\n\n\n\nfunction calendario_semanal_simplificado(dias)    \n    nomes_dias_caçada = String[]\n    for i in eachindex(dias)\n        # probabilidade maior que 50%\n        if rand() &gt; 0.5\n            push!(nomes_dias_caçada, dias[i])\n        end\n    end\n    return nomes_dias_caçada\nend\ndias_da_semana = [\"Seg\", \"Ter\", \"Qua\", \n                  \"Qui\", \"Sex\", \"Sab\", \n                  \"Dom\"]\nRandom.seed!(222)\nprintln( \"Dias que podem sair para caçar: \" )\nprintln( calendario_semanal_simplificado(dias_da_semana) )\n\nDias que podem sair para caçar: \n[\"Ter\", \"Qua\", \"Sex\"]",
+    "objectID": "PART_1/03_map.html#usando-o-map",
+    "href": "PART_1/03_map.html#usando-o-map",
+    "title": "3  O Convite",
+    "section": "3.2 Usando o map",
+    "text": "3.2 Usando o map\nDaisy decidiu usar a função map em seus códigos de agora em diante. A nova implementação da função calendario_semanal ficou\n\nfunction calendario_semanal(dias)\n\n    agenda = map(dias) do dia\n        if rand() &gt; 0.5\n            \"sim\"\n        else\n            \"não\"\n        end\n    end\n\n    dias_caçada = findall( agenda .== \"sim\" )\n    nomes_dias_caçada = dias_da_semana[dias_caçada]\n    return nomes_dias_caçada\nend\n\n\n\n\n\n\n\nExercício 3.3\n\n\n\n\n\nAltere a função anônima dentro do map, de tal forma que você possa substituir o comando findall pelo comando filter.\n\n\n\n\n\n\n\n\n\nSolução 3.3\n\n\n\n\n\n\nfunction calendario_semanal(dias)\n    agenda = map(dias) do dia\n        if rand() &gt; 0.5\n            dia\n        else\n            \"não\"\n        end\n    end\n\n    nomes_dias_caçada = filter(x-&gt;!isequal(x, \"não\"), agenda)\n    return nomes_dias_caçada\nend",
     "crumbs": [
       "Parte 1",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Popularidade</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>O Convite</span>"
     ]
   },
   {
@@ -407,16 +429,6 @@
     "title": "Paralelismo com Suricates",
     "section": "",
     "text": "Bem-vindo\nEsta é uma série de tutoriais sobre programação paralela em Julia, apresentados em formato de narrativa semelhante a uma história. Portanto, todo o código apresentado está interligado.\nSe você já possui experiência em programação e está interessado em explorar a linguagem Julia por suas incríveis capacidades de programação paralela, este curso é ideal para você! Vamos focar especialmente na sintaxe básica de várias funcionalidade,, sem sobrecarregar com algoritmos paralelos mais complexos.\nEspero que goste e, mais importante, que aprenda algo novo.\n\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
-    "crumbs": [
-      "**Bem-vindo**"
-    ]
-  },
-  {
-    "objectID": "index.html#espero-que-goste-e-mais-importante-que-aprenda-algo-novo.",
-    "href": "index.html#espero-que-goste-e-mais-importante-que-aprenda-algo-novo.",
-    "title": "Paralelismo com Suricates",
-    "section": "Espero que goste e, mais importante, que aprenda algo novo.",
-    "text": "Espero que goste e, mais importante, que aprenda algo novo.\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
     "crumbs": [
       "**Bem-vindo**"
     ]

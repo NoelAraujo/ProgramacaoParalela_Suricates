@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Paralelismo com Suricates - 3&nbsp; map</title>
+<title>Paralelismo com Suricates - 3&nbsp; O Convite</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -129,7 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../PART_1/00_intro_story.html">Parte 1</a></li><li class="breadcrumb-item"><a href="../PART_1/03_map.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><code>map</code></span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../PART_1/00_intro_story.html">Parte 1</a></li><li class="breadcrumb-item"><a href="../PART_1/03_map.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">O Convite</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -165,13 +165,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../PART_1/02_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>function</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Popularidade</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../PART_1/03_map.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><code>map</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">O Convite</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -293,20 +293,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+   
+  <ul>
+  <li><a href="#explicando-a-mensagem" id="toc-explicando-a-mensagem" class="nav-link active" data-scroll-target="#explicando-a-mensagem"><span class="header-section-number">3.1</span> Explicando a mensagem</a></li>
+  <li><a href="#usando-o-map" id="toc-usando-o-map" class="nav-link" data-scroll-target="#usando-o-map"><span class="header-section-number">3.2</span> Usando o <code>map</code></a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../PART_1/00_intro_story.html">Parte 1</a></li><li class="breadcrumb-item"><a href="../PART_1/03_map.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><code>map</code></span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../PART_1/00_intro_story.html">Parte 1</a></li><li class="breadcrumb-item"><a href="../PART_1/03_map.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">O Convite</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><code>map</code></span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">O Convite</span></h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -318,58 +324,280 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Daisy está sempre procurando maneiras de melhorar seu código e torná-lo mais eficiente. Seu objetivo é melhorar continuamente, e se tornar uma programadora tão habilidosa quanto seu mestre, o lendário hacker suricate, <code>Martin</code>.</p>
-<p>Ela descobriu a função <code>map</code>. Sua vantagem é que em vez de criar um vetor com vários <code>não</code> e modificar seus elementos, ela poderia usar o <code>map</code> para executar uma função e já criar os valores desejados.</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<p>Todos os dias, <code>Daisy</code> se sentava na entrada de sua toca subterrânea, olhando para a vasta extensão do deserto. Ela sonhava em se tornar uma programadora tão habilidosa quanto seu mestre, o lendário hacker suricata <code>Martin</code>. Com suas patas ágeis e seu intelecto aguçado, Martin havia se tornado uma lenda, conhecido por sua capacidade de romper firewalls e desvendar algoritmos complexos.</p>
+<p><code>Daisy</code> admirava <code>Martin</code> de longe, estudando todos os seus movimentos sempre que ele se conectava à rede. Ela analisava seu código, tentando decifrar os segredos por trás de seu brilhantismo. Mas, por mais que tentasse, os métodos de <code>Martin</code> permaneciam esquivos, envoltos em mistério. Seu estilo de programação parecia enigmático, sempre sucinto, limpo, elegante e eficiente.</p>
+<p>Um dia, enquanto <code>Daisy</code> estava em seu trabalho, e uma mensagem apareceu em sua tela. Era um convite, convidando-a para uma reunião secreta dos programadores mais habilidosos chamados <code>Anonymous Desert</code>, uma divisão de suricatos do grupo hacker <code>Anonymous</code>. Mas para isso, ela precisava resolver um desafio igualmente misterioso, ela precisa <em>criar um programa que falasse, mas sem usar palavras</em>.</p>
+<p><code>Daisy</code> mergulhou no desafio, sua mente correndo contra o tempo. Com um misto de empolgação e apreensão tomando conta dela, ela finalmente teve uma ideia. Como <code>Martin</code> fazia parte do grupo, ele talvez participou de um desafio parecido, e estudando seus códigos poderiam lhe fornecer alguma resposta.</p>
+<p>À medida que as linhas se confundiam e os algoritmos dançavam diante de seus olhos, ela se deparou com uma descoberta que a deixou surpresa. A estrutura do código de <code>Martin</code> era adornada com <code>funções anônimas</code>, e percebeu sua oportunidade. E se ela pudesse incorporar essas funções anônimas em seu próprio programa para “falar” o nome do grupo hacker? O programa zumbiria com uma linguagem oculta, uma conversa silenciosa que continha a essência das palavras sem falá-las em voz alta.</p>
+<p><code>Daisy</code> respirou fundo e respondeu o convite misterioso com uma mensagem igualmente intrigante. Ela retornou apenas 3 linhas de código.</p>
+<div class="callout callout-style-simple callout-important no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="d1d5d630" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>([<span class="st">"ser anonymous não é quebrar o código"</span>,  <span class="st">"ser anonymous é ser o código"</span>]) <span class="cf">do</span> text</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">replace</span>(text, <span class="st">"anonymous"</span> <span class="op">=&gt;</span> <span class="st">"?"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>2-element Vector{String}:
+ "ser ? não é quebrar o código"
+ "ser ? é ser o código"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<section id="explicando-a-mensagem" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="explicando-a-mensagem"><span class="header-section-number">3.1</span> Explicando a mensagem</h2>
+<p>Vamos falar em detalhes sobre a função <code>map</code> que foi utilizada na atividade passada, porém sem muitos detalhes.</p>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Sintaxe: <code>map</code>
+<code>map</code>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<p>A função <code>map</code> espera aplicar uma função <code>f</code> a cada elemento de uma coleção <code>coll</code>.</p>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x) <span class="op">=</span> <span class="op">...</span>.</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(f, coll)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>( <span class="fu">x-&gt;f</span>(x), coll)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A função <code>map</code> espera aplicar uma função <code>foo</code> a cada elemento em uma <code>coleção</code>.</p>
+<div id="c9ea1290" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">foo</span>(x) <span class="op">=</span> <span class="fu">replace</span>(x, <span class="st">"A"</span> <span class="op">=&gt;</span> <span class="st">"B"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>respostas <span class="op">=</span> <span class="fu">map</span>(foo, coleção)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Você normalmente não quer definir novas funções a cada vez que for usar esse comando, então existe a sintaxe <code>do</code></p>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(coll) <span class="cf">do</span> x</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">f</span>(x)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>O retorno dessa função também é uma coleção. O código equivalente a esse exemplo seria</p>
+<div id="4570d64d" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">foo</span>(x) <span class="op">=</span> <span class="fu">replace</span>(x, <span class="st">"A"</span> <span class="op">=&gt;</span> <span class="st">"B"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>respostas <span class="op">=</span> []</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> coleção</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">push!</span>(respostas, <span class="fu">foo</span>(item))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
-<p>O novo código de Daisy ficou levemente mais curto, pois agora não precisa ser pessimista, criando um vetor com <code>não</code> e o modificando para incluir <code>sim</code>. Ela terá um vetor com <code>sim</code> ou <code>não</code> automaticamente.</p>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">function</span> <span class="fu">calendario_semanal_map</span>(dias_da_semana)</span>
-<span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a>    agenda <span class="op">=</span> <span class="fu">map</span>(<span class="fu">eachindex</span>(dias_da_semana)) <span class="cf">do</span> indice_do_dia</span>
-<span id="cb3-4"><a href="#cb3-4"></a>        permissão <span class="op">=</span> <span class="fu">rand</span>() <span class="op">&lt;</span> <span class="fl">0.5</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a>        <span class="cf">if</span> permissão <span class="op">==</span> <span class="cn">true</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>            <span class="st">"sim"</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a>        <span class="cf">else</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a>            <span class="st">"não"</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a>        <span class="cf">end</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a>    <span class="cf">end</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a></span>
-<span id="cb3-12"><a href="#cb3-12"></a>    dias_q_pode_caçar <span class="op">=</span> <span class="fu">findall</span>( agenda <span class="op">.==</span> <span class="st">"sim"</span> )</span>
-<span id="cb3-13"><a href="#cb3-13"></a>    nomes_dias_q_pode_caçar <span class="op">=</span> dias_da_semana[dias_q_pode_caçar]</span>
-<span id="cb3-14"><a href="#cb3-14"></a>    <span class="cf">return</span> nomes_dias_q_pode_caçar</span>
-<span id="cb3-15"><a href="#cb3-15"></a><span class="kw">end</span></span>
-<span id="cb3-16"><a href="#cb3-16"></a><span class="fu">calendario_semanal_map</span>(dias_da_semana)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Outra maneira de escrever o mesmo código é utilizando <code>Função Anônima</code></p>
+<div id="339037ee" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>( <span class="fu">x-&gt;replace</span>(x, <span class="st">"A"</span> <span class="op">=&gt;</span> <span class="st">"B"</span>), coleção)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercício 3.1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O código a seguir obtêm os dias da semana que <code>Daisy</code> pode sair pra caçar com uma <code>função anônima</code> dentro da função <code>filter</code>.</p>
+<p>Escreva um novo código, com <code>for</code> e <code>if</code>, afim de realizar a mesma operação que o <code>filter</code></p>
+<div id="af64ea77" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(<span class="fu">x-&gt;!isequal</span>(x, <span class="st">"Em Casa"</span>), [<span class="st">"Em Casa"</span>, <span class="st">"Em Casa"</span>, <span class="st">"Ter"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>1-element Vector{String}:
+ "Ter"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solução 3.1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="800b4eb4" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dias_caçada <span class="op">=</span> <span class="dt">String</span>[]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dia <span class="kw">in</span> [<span class="st">"Em Casa"</span>, <span class="st">"Em Casa"</span>, <span class="st">"Ter"</span>]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> !<span class="fu">isequal</span>(dia, <span class="st">"Em Casa"</span>) <span class="co"># if dia ≠ "Em Casa"</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">push!</span>(dias_caçada, dia)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>Nesse exemplo, a função temporária possui apenas 1 comando (<code>replace</code>). E se o código possui várias linhas? Nesse cenário a leitura ficaria mais confusa, e existe outra sintaxe mais conveniente, o <code>do</code></p>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>do</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Qualquer função cujo primeiro argumento é uma função (como é o caso da função <code>map</code>) pode ser reescrita como a sintaxe <code>do</code>, isto é, a <em>função do argumento</em> se torna uma <em>função anônima</em> em um bloco.</p>
+<div id="c7a3bc8b" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(coleção) <span class="cf">do</span> x</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">replace</span>(x, <span class="st">"A"</span> <span class="op">=&gt;</span> <span class="st">"B"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Em códigos com apenas um comando, essa sintaxe não é necessária, contudo, para funções com mais instruções, essa sintaxe se torna muito conveniente.</p>
+<div id="a81ebfbd" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>coleção <span class="op">=</span> [<span class="st">"A"</span>, <span class="st">"a"</span>, <span class="st">"B"</span>, <span class="st">"b"</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(coleção) <span class="cf">do</span> x</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fu">replace</span>(x, <span class="st">"A"</span> <span class="op">=&gt;</span> <span class="st">"B"</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> <span class="fu">replace</span>(y, <span class="st">"a"</span> <span class="op">=&gt;</span> <span class="st">"b"</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    z</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>4-element Vector{String}:
+ "B"
+ "b"
+ "B"
+ "b"</code></pre>
+</div>
+</div>
+<p>A versão alternativa com a sintaxe <code>-&gt;</code> requer a adição de <code>begin</code> e <code>end</code></p>
+<div id="0850dbd1" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>( x<span class="op">-&gt;</span> <span class="cf">begin</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fu">replace</span>(x, <span class="st">"A"</span> <span class="op">=&gt;</span> <span class="st">"B"</span>); </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> <span class="fu">replace</span>(y, <span class="st">"a"</span> <span class="op">=&gt;</span> <span class="st">"b"</span>); </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    z <span class="cf">end</span>, coleção)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercício 3.2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Escreva um código, com o comando <code>map</code>, que permita <code>Daisy</code> caçar todas as <code>Qua</code> e <code>Qui</code>, mas nos outros dias, a suricata ficará em casa.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solução 3.2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="2d1a9c5c" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dias <span class="op">=</span> [<span class="st">"Seg"</span>, <span class="st">"Ter"</span>, <span class="st">"Qua"</span>, </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Qui"</span>, <span class="st">"Sex"</span>, <span class="st">"Sab"</span>, </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Dom"</span>]</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>dias_caçada <span class="op">=</span> <span class="fu">map</span>(dias) <span class="cf">do</span> dia</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> dia <span class="kw">in</span> [<span class="st">"Qua"</span>, <span class="st">"Qui"</span>]</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"pode caçar"</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"fica em casa"</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Portanto, o código de <code>Daisy</code> esta dizendo implicitamente, que ele foi construído com uma <code>Função Anônima</code>, em homenagem ao grupo hacker <code>Anonymous</code>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="usando-o-map" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="usando-o-map"><span class="header-section-number">3.2</span> Usando o <code>map</code></h2>
+<p><code>Daisy</code> decidiu usar a função <code>map</code> em seus códigos de agora em diante. A nova implementação da função <code>calendario_semanal</code> ficou</p>
+<div id="1ea65c4b" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">function</span> <span class="fu">calendario_semanal</span>(dias)</span>
+<span id="cb14-2"><a href="#cb14-2"></a></span>
+<span id="cb14-3"><a href="#cb14-3"></a>    agenda <span class="op">=</span> <span class="fu">map</span>(dias) <span class="cf">do</span> dia</span>
+<span id="cb14-4"><a href="#cb14-4"></a>        <span class="cf">if</span> <span class="fu">rand</span>() <span class="op">&gt;</span> <span class="fl">0.5</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>            <span class="st">"sim"</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a>        <span class="cf">else</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a>            <span class="st">"não"</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a>        <span class="cf">end</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a>    <span class="cf">end</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a></span>
+<span id="cb14-11"><a href="#cb14-11"></a>    dias_caçada <span class="op">=</span> <span class="fu">findall</span>( agenda <span class="op">.==</span> <span class="st">"sim"</span> )</span>
+<span id="cb14-12"><a href="#cb14-12"></a>    nomes_dias_caçada <span class="op">=</span> dias_da_semana[dias_caçada]</span>
+<span id="cb14-13"><a href="#cb14-13"></a>    <span class="cf">return</span> nomes_dias_caçada</span>
+<span id="cb14-14"><a href="#cb14-14"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercício 3.3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Altere a função anônima dentro do <code>map</code>, de tal forma que você possa substituir o comando <code>findall</code> pelo comando <code>filter</code>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solução 3.3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="1e35817c" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">calendario_semanal</span>(dias)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    agenda <span class="op">=</span> <span class="fu">map</span>(dias) <span class="cf">do</span> dia</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="fu">rand</span>() <span class="op">&gt;</span> <span class="fl">0.5</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>            dia</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"não"</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    nomes_dias_caçada <span class="op">=</span> <span class="fu">filter</span>(<span class="fu">x-&gt;!isequal</span>(x, <span class="st">"não"</span>), agenda)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> nomes_dias_caçada</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -903,10 +1131,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-page-right">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
       <a href="../PART_1/02_function.html" class="pagination-link  aria-label=" &lt;span="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>function</code></span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Popularidade</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
