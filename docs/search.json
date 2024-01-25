@@ -1,13 +1,13 @@
 [
   {
-    "objectID": "PART_1/03_map.html",
-    "href": "PART_1/03_map.html",
-    "title": "3  O Convite",
+    "objectID": "PART_1/04_inline.html",
+    "href": "PART_1/04_inline.html",
+    "title": "4  A Competição",
     "section": "",
-    "text": "3.1 Explicando a mensagem\nVamos falar em detalhes sobre a função map que foi utilizada na atividade passada, porém sem muitos detalhes.\nOutra maneira de escrever o mesmo código é utilizando Função Anônima\nmap( x-&gt;replace(x, \"A\" =&gt; \"B\"), coleção)\nNesse exemplo, a função temporária possui apenas 1 comando (replace). E se o código possui várias linhas? Nesse cenário a leitura ficaria mais confusa, e existe outra sintaxe mais conveniente, o do",
+    "text": "4.1 Documentação\nQualquer texto que precede um método será considerado um docstrings, ou documentação\nPara acessar o texto no REPL digite ?, e em seguida o nome da função.\n?qual_tipo\nPara textos mais longos, utiliza-se aspas triplas \"\"\" no começo e no final para delimitar literais de String que podem conter \" e ignorar a indentação inicial. Isso é particularmente útil quando você deseja definir uma String de várias linhas ou uma String que contém aspas.\ns = \"\"\"Isto é uma \"string\" que abrange\nvárias linhas e contém \"aspas\".\"\"\"\nExiste um padrão para escrita de docstrings disponivel na documentação",
     "crumbs": [
       "Parte 1",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>O Convite</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>A Competição</span>"
     ]
   },
   {
@@ -87,14 +87,36 @@
     ]
   },
   {
-    "objectID": "PART_1/04_inline.html",
-    "href": "PART_1/04_inline.html",
-    "title": "4  Inplace Operations",
+    "objectID": "PART_1/03_map.html",
+    "href": "PART_1/03_map.html",
+    "title": "3  O Convite",
     "section": "",
-    "text": "Daisy ficou emocionada com seu progresso na criação da sua agenda semanal, e decidiu fazer um programa para o mês inteiro. Porém, dessa vez, ela quer fazer algo diferente. Ela quer usar uma variável como Input, aonde serão armazenados os resultados.\n\n\n\n\n\n\nExemplo\n\n\n\n\n\nNo lugar de uma função criar a variável de retorno\n\nfunction criar_output(input)\n    linhas, colunas = size(input)\n    output = zeros(linhas, colunas)\n\n    for i eachindex(output)\n        output[i] = 2*i\n    end\n    return output\nend\n\nVocê pode criar a variável de saída separadamente, e ela será utilizada como variável de entrada\n\nfunction criar_output!(input, output)\n    for i eachindex(output)\n        output[i] = 2*i\n    end\n    return output\nend\n\nlinhas, colunas = size(input)\noutput = zeros(linhas, colunas)\ncriar_output!(input, input)\n\n\n\n\nEla decidiu fazer isso, pois ela descobriu que em Julia, qualquer funçõa pode alterar o valor de vetores ou matrzes, mas para evitar confusão, é costume nomear funções que modificam suas entradas com um ! no final do nome, assim, Daisy critou a função calendario_mensal!.\nDaisy queria aproveitar uma função para calcular a agenda semanal de todos os meses, mas Martin, seu mestre, explicou que isso não é uma boa ideia, já que cada mês tem uma quantidade diferente de semanas. Então, eles decidiram criar uma solução simples para fevereiro, que geralmente tem 28 dias ou 4 semanas de 7 dias. Daisy criou uma função que gerava um erro se a matriz com as respostas não tivesse as dimensões corretas, usando a macro @assert - essa macro garante que a função não funcione se as dimensões da matriz estiverem erradas.\n\n\n\n\n\n\nSintaxe: @assert\n\n\n\n\n\n@assert só se manifesta como um erro se a condição for false, do contrário, ela não faz nada.\n\nfunction teste_valor(x)\n    @assert x &gt; 5\n    return \"OK\"\nend\n@show teste_valor(10)\nbegin\n    try\n        teste_valor(1)\n    catch\n        println(\"Função falhou, e precisou de tratamento.\")\n    end\nend;\n\n\n\n\nMais uma dica do seu mestre, era para não armazenar sim ou não nas matrizes, já que isso ocupa muita memória, e em aplicativos mobile, Daisy deveria se preocupar em ter programas muito leves. A solução é armazenar apenas 0 ou 1. Contudo, essa solução não é perfeita, e se Daisy precisasse no futuro armazenar 0.0 e 1.0 ? Felizmente em Julia é possível resolver isso criando variáveis do tipo certo, no lugar de criar o valor 1, Daisy usou a função one(), que criar um 1 do tipo da variável que ele recebe na entrada, esse 1 correto, Daisy chamou de sim.\n\n\n\n\n\n\nSintaxe: one()\n\n\n\n\n\none recebe um tipo, se você não sabe o tipo de uma variável, pode descobri-lo com eltype.\n\n@show one(Int64)\n@show one(Float64)\n@show one(Bool)\n@show one(eltype(1.0))\n\n@show one(eltype(1.0)) == one(Float64);\n\none(Int64) = 1\none(Float64) = 1.0\none(Bool) = true\none(eltype(1.0)) = 1.0\none(eltype(1.0)) == one(Float64) = true\n\n\n\n\n\nDaisy então escreveu\n\nfunction agenda_mensal!(agenda_fevereiro)\n    qtd_semanas, qtd_dias = size(agenda_fevereiro)\n\n    # verifica que a matriz de entrada é de fevereiro\n    # se alguma confição for falsa, trava o código\n    @assert qtd_dias == 7\n    @assert qtd_semanas == 4\n\n    # o 'sim' pode ser de qualquer tipo\n    sim = one(eltype(agenda_fevereiro))\n\n    for i = 1:qtd_semanas\n        for j = 1:qtd_dias\n            permissão = rand() &lt; 0.5\n            if permissão == true\n                agenda_fevereiro[i,j] = sim\n            end\n        end\n    end\n    return nothing\nend\nagenda_fevereiro = zeros(Bool, 4, 7)\nagenda_mensal!(agenda_fevereiro)\n\ndisplay(agenda_fevereiro)",
+    "text": "3.1 Explicando a mensagem\nVamos falar em detalhes sobre a função map que foi utilizada na atividade passada, porém sem muitos detalhes.\nOutra maneira de escrever o mesmo código é utilizando Função Anônima\nmap( x-&gt;replace(x, \"A\" =&gt; \"B\"), coleção)\nNesse exemplo, a função temporária possui apenas 1 comando (replace). E se o código possui várias linhas? Nesse cenário a leitura ficaria mais confusa, e existe outra sintaxe mais conveniente, o do",
     "crumbs": [
       "Parte 1",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Inplace Operations</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>O Convite</span>"
+    ]
+  },
+  {
+    "objectID": "PART_1/03_map.html#explicando-a-mensagem",
+    "href": "PART_1/03_map.html#explicando-a-mensagem",
+    "title": "3  O Convite",
+    "section": "",
+    "text": "map\n\n\n\n\n\nA função map espera aplicar uma função foo a cada elemento em uma coleção.\n\nfoo(x) = replace(x, \"A\" =&gt; \"B\")\nrespostas = map(foo, coleção)\n\nO retorno dessa função também é uma coleção. O código equivalente a esse exemplo seria\n\nfoo(x) = replace(x, \"A\" =&gt; \"B\")\nrespostas = []\nfor item in coleção\n    push!(respostas, foo(item))\nend\n\n\n\n\n\n\n\n\n\n\n\n\nExercício 3.1\n\n\n\n\n\nO código a seguir obtêm os dias da semana que Daisy pode sair pra caçar com uma função anônima dentro da função filter.\nEscreva um novo código, com for e if, afim de realizar a mesma operação que o filter\n\nfilter(x-&gt;!isequal(x, \"Em Casa\"), [\"Em Casa\", \"Em Casa\", \"Ter\"])\n\n1-element Vector{String}:\n \"Ter\"\n\n\n\n\n\n\n\n\n\n\n\nSolução 3.1\n\n\n\n\n\n\ndias_caçada = String[]\nfor dia in [\"Em Casa\", \"Em Casa\", \"Ter\"]\n    if !isequal(dia, \"Em Casa\") # if dia ≠ \"Em Casa\"\n        push!(dias_caçada, dia)\n    end\nend\n\n\n\n\n\n\n\n\n\n\n\ndo\n\n\n\n\n\nQualquer função cujo primeiro argumento é uma função (como é o caso da função map) pode ser reescrita como a sintaxe do, isto é, a função do argumento se torna uma função anônima em um bloco.\n\nmap(coleção) do x\n    replace(x, \"A\" =&gt; \"B\")\nend\n\nEm códigos com apenas um comando, essa sintaxe não é necessária, contudo, para funções com mais instruções, essa sintaxe se torna muito conveniente.\n\ncoleção = [\"A\", \"a\", \"B\", \"b\"]\nmap(coleção) do x\n    y = replace(x, \"A\" =&gt; \"B\")\n    z = replace(y, \"a\" =&gt; \"b\")\n    z\nend\n\n4-element Vector{String}:\n \"B\"\n \"b\"\n \"B\"\n \"b\"\n\n\nA versão alternativa com a sintaxe -&gt; requer a adição de begin e end\n\nmap( x-&gt; begin \n    y = replace(x, \"A\" =&gt; \"B\"); \n    z = replace(y, \"a\" =&gt; \"b\"); \n    z end, coleção)\n\n\n\n\n\n\n\n\n\n\nExercício 3.2\n\n\n\n\n\nEscreva um código, com o comando map, que permita Daisy caçar todas as Qua e Qui, mas nos outros dias, a suricata ficará em casa.\n\n\n\n\n\n\n\n\n\nSolução 3.2\n\n\n\n\n\n\ndias = [\"Seg\", \"Ter\", \"Qua\", \n        \"Qui\", \"Sex\", \"Sab\", \n        \"Dom\"]\ndias_caçada = map(dias) do dia\n    if dia in [\"Qua\", \"Qui\"]\n        \"pode caçar\"\n    else\n        \"fica em casa\"\n    end\nend\n\n\n\n\n\n\n\n\n\n\nPortanto, o código de Daisy esta dizendo implicitamente, que ele foi construído com uma Função Anônima, em homenagem ao grupo hacker Anonymous.",
+    "crumbs": [
+      "Parte 1",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>O Convite</span>"
+    ]
+  },
+  {
+    "objectID": "PART_1/03_map.html#usando-o-map",
+    "href": "PART_1/03_map.html#usando-o-map",
+    "title": "3  O Convite",
+    "section": "3.2 Usando o map",
+    "text": "3.2 Usando o map\nDaisy decidiu usar a função map em seus códigos de agora em diante. A nova implementação da função calendario_semanal ficou\n\nfunction calendario_semanal(dias)\n\n    agenda = map(dias) do dia\n        if rand() &gt; 0.5\n            \"sim\"\n        else\n            \"não\"\n        end\n    end\n\n    dias_caçada = findall( agenda .== \"sim\" )\n    nomes_dias_caçada = dias_da_semana[dias_caçada]\n    return nomes_dias_caçada\nend\n\n\n\n\n\n\n\nExercício 3.3\n\n\n\n\n\nAltere a função anônima dentro do map, de tal forma que você possa substituir o comando findall pelo comando filter.\n\n\n\n\n\n\n\n\n\nSolução 3.3\n\n\n\n\n\n\nfunction calendario_semanal(dias)\n    agenda = map(dias) do dia\n        if rand() &gt; 0.5\n            dia\n        else\n            \"não\"\n        end\n    end\n\n    nomes_dias_caçada = filter(x-&gt;!isequal(x, \"não\"), agenda)\n    return nomes_dias_caçada\nend",
+    "crumbs": [
+      "Parte 1",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>O Convite</span>"
     ]
   },
   {
@@ -402,28 +424,6 @@
     ]
   },
   {
-    "objectID": "PART_1/03_map.html#explicando-a-mensagem",
-    "href": "PART_1/03_map.html#explicando-a-mensagem",
-    "title": "3  O Convite",
-    "section": "",
-    "text": "map\n\n\n\n\n\nA função map espera aplicar uma função foo a cada elemento em uma coleção.\n\nfoo(x) = replace(x, \"A\" =&gt; \"B\")\nrespostas = map(foo, coleção)\n\nO retorno dessa função também é uma coleção. O código equivalente a esse exemplo seria\n\nfoo(x) = replace(x, \"A\" =&gt; \"B\")\nrespostas = []\nfor item in coleção\n    push!(respostas, foo(item))\nend\n\n\n\n\n\n\n\n\n\n\n\n\nExercício 3.1\n\n\n\n\n\nO código a seguir obtêm os dias da semana que Daisy pode sair pra caçar com uma função anônima dentro da função filter.\nEscreva um novo código, com for e if, afim de realizar a mesma operação que o filter\n\nfilter(x-&gt;!isequal(x, \"Em Casa\"), [\"Em Casa\", \"Em Casa\", \"Ter\"])\n\n1-element Vector{String}:\n \"Ter\"\n\n\n\n\n\n\n\n\n\n\n\nSolução 3.1\n\n\n\n\n\n\ndias_caçada = String[]\nfor dia in [\"Em Casa\", \"Em Casa\", \"Ter\"]\n    if !isequal(dia, \"Em Casa\") # if dia ≠ \"Em Casa\"\n        push!(dias_caçada, dia)\n    end\nend\n\n\n\n\n\n\n\n\n\n\n\ndo\n\n\n\n\n\nQualquer função cujo primeiro argumento é uma função (como é o caso da função map) pode ser reescrita como a sintaxe do, isto é, a função do argumento se torna uma função anônima em um bloco.\n\nmap(coleção) do x\n    replace(x, \"A\" =&gt; \"B\")\nend\n\nEm códigos com apenas um comando, essa sintaxe não é necessária, contudo, para funções com mais instruções, essa sintaxe se torna muito conveniente.\n\ncoleção = [\"A\", \"a\", \"B\", \"b\"]\nmap(coleção) do x\n    y = replace(x, \"A\" =&gt; \"B\")\n    z = replace(y, \"a\" =&gt; \"b\")\n    z\nend\n\n4-element Vector{String}:\n \"B\"\n \"b\"\n \"B\"\n \"b\"\n\n\nA versão alternativa com a sintaxe -&gt; requer a adição de begin e end\n\nmap( x-&gt; begin \n    y = replace(x, \"A\" =&gt; \"B\"); \n    z = replace(y, \"a\" =&gt; \"b\"); \n    z end, coleção)\n\n\n\n\n\n\n\n\n\n\nExercício 3.2\n\n\n\n\n\nEscreva um código, com o comando map, que permita Daisy caçar todas as Qua e Qui, mas nos outros dias, a suricata ficará em casa.\n\n\n\n\n\n\n\n\n\nSolução 3.2\n\n\n\n\n\n\ndias = [\"Seg\", \"Ter\", \"Qua\", \n        \"Qui\", \"Sex\", \"Sab\", \n        \"Dom\"]\ndias_caçada = map(dias) do dia\n    if dia in [\"Qua\", \"Qui\"]\n        \"pode caçar\"\n    else\n        \"fica em casa\"\n    end\nend\n\n\n\n\n\n\n\n\n\n\nPortanto, o código de Daisy esta dizendo implicitamente, que ele foi construído com uma Função Anônima, em homenagem ao grupo hacker Anonymous.",
-    "crumbs": [
-      "Parte 1",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>O Convite</span>"
-    ]
-  },
-  {
-    "objectID": "PART_1/03_map.html#usando-o-map",
-    "href": "PART_1/03_map.html#usando-o-map",
-    "title": "3  O Convite",
-    "section": "3.2 Usando o map",
-    "text": "3.2 Usando o map\nDaisy decidiu usar a função map em seus códigos de agora em diante. A nova implementação da função calendario_semanal ficou\n\nfunction calendario_semanal(dias)\n\n    agenda = map(dias) do dia\n        if rand() &gt; 0.5\n            \"sim\"\n        else\n            \"não\"\n        end\n    end\n\n    dias_caçada = findall( agenda .== \"sim\" )\n    nomes_dias_caçada = dias_da_semana[dias_caçada]\n    return nomes_dias_caçada\nend\n\n\n\n\n\n\n\nExercício 3.3\n\n\n\n\n\nAltere a função anônima dentro do map, de tal forma que você possa substituir o comando findall pelo comando filter.\n\n\n\n\n\n\n\n\n\nSolução 3.3\n\n\n\n\n\n\nfunction calendario_semanal(dias)\n    agenda = map(dias) do dia\n        if rand() &gt; 0.5\n            dia\n        else\n            \"não\"\n        end\n    end\n\n    nomes_dias_caçada = filter(x-&gt;!isequal(x, \"não\"), agenda)\n    return nomes_dias_caçada\nend",
-    "crumbs": [
-      "Parte 1",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>O Convite</span>"
-    ]
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Paralelismo com Suricates",
@@ -431,6 +431,61 @@
     "text": "Bem-vindo\nEsta é uma série de tutoriais sobre programação paralela em Julia, apresentados em formato de narrativa semelhante a uma história. Portanto, todo o código apresentado está interligado.\nSe você já possui experiência em programação e está interessado em explorar a linguagem Julia por suas incríveis capacidades de programação paralela, este curso é ideal para você! Vamos focar especialmente na sintaxe básica de várias funcionalidade,, sem sobrecarregar com algoritmos paralelos mais complexos.\nEspero que goste e, mais importante, que aprenda algo novo.\n\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
     "crumbs": [
       "**Bem-vindo**"
+    ]
+  },
+  {
+    "objectID": "PART_1/04_inline.html#assert",
+    "href": "PART_1/04_inline.html#assert",
+    "title": "4  A Competição",
+    "section": "4.2 @assert",
+    "text": "4.2 @assert\n@assert é uma macro usada para verificar se uma determinada condição é verdadeira, se sim, a macro não faz nada. Senão, ela manifesta um erro\n\n\n\n\n\n\n@assert\n\n\n\n\n\n\nfunction teste_valor(x)\n    @assert x &gt; 5\n    return \"OK\"\nend\n@show teste_valor(10)\nbegin\n    try\n        teste_valor(1)\n    catch\n        println(\"Função falhou, e precisou de tratamento.\")\n    end\nend;\n\nteste_valor(10) = \"OK\"\nFunção falhou, e precisou de tratamento.\n\n\n\n\n\n\n\n\n\n\n\nExercício 4.2\n\n\n\n\n\nQual a condição para que a linha abaixo produza um erro\n\n@assert 1 == _____\n\n\n\n\n\n\n\n\n\n\nSolução 4.2\n\n\n\n\n\nQualquer valor que retorne uma comparação false, por exemplo, com um número qualquer diferente de 1, ou usar tipos que não tem comparação válidos (Integer e String por exemplo).\n\n@show @assert 1 == 0 # AssertionError \n@show @assert 1 == \"1\" # AssertionError",
+    "crumbs": [
+      "Parte 1",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>A Competição</span>"
+    ]
+  },
+  {
+    "objectID": "PART_1/04_inline.html#inline",
+    "href": "PART_1/04_inline.html#inline",
+    "title": "4  A Competição",
+    "section": "4.3 inline",
+    "text": "4.3 inline\n\n\n\n\n\n\nExemplo\n\n\n\n\n\nNo lugar de uma função criar a variável de retorno\n\nfunction criar_output(input)\n    linhas, colunas = size(input)\n    output = zeros(linhas, colunas)\n\n    for i eachindex(output)\n        output[i] = 2*i\n    end\n    return output\nend\n\nVocê pode criar a variável de saída separadamente, e ela será utilizada como variável de entrada\n\nfunction criar_output!(input, output)\n    for i eachindex(output)\n        output[i] = 2*i\n    end\n    return output\nend\n\nlinhas, colunas = size(input)\noutput = zeros(linhas, colunas)\ncriar_output!(input, input)\n\n\n\n\nEla decidiu fazer isso, pois ela descobriu que em Julia, qualquer funçõa pode alterar o valor de vetores ou matrzes, mas para evitar confusão, é costume nomear funções que modificam suas entradas com um ! no final do nome, assim, Daisy critou a função calendario_mensal!.\nDaisy queria aproveitar uma função para calcular a agenda semanal de todos os meses, mas Martin, seu mestre, explicou que isso não é uma boa ideia, já que cada mês tem uma quantidade diferente de semanas. Então, eles decidiram criar uma solução simples para fevereiro, que geralmente tem 28 dias ou 4 semanas de 7 dias. Daisy criou uma função que gerava um erro se a matriz com as respostas não tivesse as dimensões corretas, usando a macro @assert - essa macro garante que a função não funcione se as dimensões da matriz estiverem erradas.",
+    "crumbs": [
+      "Parte 1",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>A Competição</span>"
+    ]
+  },
+  {
+    "objectID": "PART_1/04_inline.html#tipos-genéricos",
+    "href": "PART_1/04_inline.html#tipos-genéricos",
+    "title": "4  A Competição",
+    "section": "4.4 Tipos Genéricos",
+    "text": "4.4 Tipos Genéricos\nAs funções one e zero são usadas para obter a representação do número um e do número zero, respectivamente, para um determinado tipo de dados. Isso é útil em muitas operações in-place, onde você deseja garantir que a operação respeite os tipos das variáveis que serão alteradas.\nO parâmetro de entrada em one(x)/zero(x) é o tipo desejado, se você não sabe o tipo de uma variável, pode descobri-lo com eltype.\n\n\n\n\n\n\none\n\n\n\n\n\n\n@show one(Int64)\n@show one(Float64)\n@show one(Bool)\n@show one(eltype(1.0)); ## equivalent to 'one(Float64)'\n\none(Int64) = 1\none(Float64) = 1.0\none(Bool) = true\none(eltype(1.0)) = 1.0\n\n\n\n\n\n\n\n\n\n\n\nExercício 4.5\n\n\n\n\n\nIdentifique o erro e a solução do código a seguir\n\nmes = zeros(Bool, 4, 7)\nu = eltype(mes)\nT = one(u)\nF = zeros(u)\n\n\n\n\n\n\n\n\n\n\nSolução 4.5\n\n\n\n\n\nExiste um erro de grafia para a criação da variável F. As funções zero e zeros retornam objetos diferentes, mesmo com nomes semelhantes. zero retorna um valor, e zeros retorna um vetor ou matriz.\n\nF = zeros(u) # errada\nF = zero(u) # certo",
+    "crumbs": [
+      "Parte 1",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>A Competição</span>"
+    ]
+  },
+  {
+    "objectID": "PART_1/04_inline.html#documentação",
+    "href": "PART_1/04_inline.html#documentação",
+    "title": "4  A Competição",
+    "section": "",
+    "text": "docstrings\n\n\n\n\n\n\n\"retorna tipo da matriz de entrada\"\nqual_tipo(x::Matrix) = eltype(x)\n\n\n\n\n\n\n\n\n\n\n\n\nExercício 4.1\n\n\n\n\n\nEscreva a docstring apropriado, baseada na finalidade do código a seguir, e acesse a documentação via REPL\n\n\"__________________________\"\nsalvar(a::String, b) =  write(\"$(a).txt\", b)\n\n\n\n\n\n\n\n\n\n\nSolução 4.1\n\n\n\n\n\n\n\"criar um arquivo `a`.txt e salvar o valor de `b`\"\nsalvar(a::String, b::String) =  write(\"$(a).txt\", b)\n\n\njulia&gt;?salvar\n\n\nhelp&gt;salvar",
+    "crumbs": [
+      "Parte 1",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>A Competição</span>"
+    ]
+  },
+  {
+    "objectID": "PART_1/04_inline.html#in-place",
+    "href": "PART_1/04_inline.html#in-place",
+    "title": "4  A Competição",
+    "section": "4.3 in-place",
+    "text": "4.3 in-place\nOperações in-place são aquelas que modificam diretamente os dados de entrada, em vez de criar novos dados. Isso pode ser útil para melhorar a eficiência do código, especialmente quando se trabalha com grandes conjuntos de dados, pois pode reduzir a quantidade de memória necessária, em especial com Manipulações Matriciais.\nEm Julia, as funções têm a capacidade de modificar qualquer um dos argumentos de entrada. Existe uma convenção na linguagem, que é uma regra não oficial, mas amplamente aceita, que estipula que as funções que modificam seus argumentos de entrada devem ser indicadas com um !. Isso serve para alertar os usuários sobre o comportamento potencialmente mutável da função.\n\n\n\n\n\n\n\nfunction letra_minuscula!(entrada, saida)\n    for (idx, texto) in enumerate(entrada)\n        saida[idx] = lowercase(texto)\n    end \n    return nothing\nend\nentrada = [\"SEG\", \"TER\", \"QUAR\"]\nsaida = fill(\"\", size(entrada))\n\nletra_minuscula!(entrada, saida)\ndisplay(saida)\n\n3-element Vector{String}:\n \"seg\"\n \"ter\"\n \"quar\"\n\n\n\n\n\nComo Daisy passou a matriz que será atualizada (mes), ela chamou sua função de agenda_fevereiro! e não agenda_fevereiro.\nImportante: A notação mais comum de operação in-place é com .=\n\n\n\n\n\n\n\nentrada = [\"SEG\", \"TER\", \"QUAR\"]\nentrada .= \"QUI\"\ndisplay(entrada)\n\n3-element Vector{String}:\n \"QUI\"\n \"QUI\"\n \"QUI\"\n\n\n\n\n\n\n\n\n\n\n\nExercício 4.3\n\n\n\n\n\nSimplifique o código a seguir\n\nA = [1 2; 3 4]\nB = [5 6; 7 8]\nfor i in eachindex(A)\n    A[i] += B[i]\nend\n\n\n\n\n\n\n\n\n\n\nSolução 4.3\n\n\n\n\n\n\nA = [1 2; 3 4]\nB = [5 6; 7 8]\nA .+= B\n\n\n\n\n\n\n\n\n\n\nExercício 4.4\n\n\n\n\n\nNo código a seguir, o . possui 2 significados, os identifique, explique, e reescreva uma função que realize a mesma operação, mas sem nenhum .\n\nentrada = [\"SEG\", \"TER\", \"QUAR\"]\nsaida = fill(\"\", size(entrada))\nsaida .= lowercase.(entrada)\n\n\n\n\n\n\n\n\n\n\nSolução 4.4\n\n\n\n\n\nO primeiro ., em .=, tem o sentido de operação é in-place. Enquanto o lowercase. indica a operação elemento-a-elemento.\nNota que funções que alteram valor de entrada precisam ter ! no nome.\n\nfunction obter_lowercase!(entrada, saida)\n    for (idx, texto) in enumerate(entrada)\n        saida[idx] = lowercase(texto)\n    end\n    return nothing\nend",
+    "crumbs": [
+      "Parte 1",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>A Competição</span>"
     ]
   }
 ]

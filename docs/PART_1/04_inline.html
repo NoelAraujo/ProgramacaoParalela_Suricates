@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Paralelismo com Suricates - 4&nbsp; Inplace Operations</title>
+<title>Paralelismo com Suricates - 4&nbsp; A Competição</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -129,7 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../PART_1/00_intro_story.html">Parte 1</a></li><li class="breadcrumb-item"><a href="../PART_1/04_inline.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inplace Operations</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../PART_1/00_intro_story.html">Parte 1</a></li><li class="breadcrumb-item"><a href="../PART_1/04_inline.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">A Competição</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -177,7 +177,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../PART_1/04_inline.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inplace Operations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">A Competição</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -293,20 +293,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+   
+  <ul>
+  <li><a href="#documentação" id="toc-documentação" class="nav-link active" data-scroll-target="#documentação"><span class="header-section-number">4.1</span> Documentação</a></li>
+  <li><a href="#assert" id="toc-assert" class="nav-link" data-scroll-target="#assert"><span class="header-section-number">4.2</span> <code>@assert</code></a></li>
+  <li><a href="#in-place" id="toc-in-place" class="nav-link" data-scroll-target="#in-place"><span class="header-section-number">4.3</span> <code>in-place</code></a></li>
+  <li><a href="#tipos-genéricos" id="toc-tipos-genéricos" class="nav-link" data-scroll-target="#tipos-genéricos"><span class="header-section-number">4.4</span> Tipos Genéricos</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../PART_1/00_intro_story.html">Parte 1</a></li><li class="breadcrumb-item"><a href="../PART_1/04_inline.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inplace Operations</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../PART_1/00_intro_story.html">Parte 1</a></li><li class="breadcrumb-item"><a href="../PART_1/04_inline.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">A Competição</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inplace Operations</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">A Competição</span></h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -318,141 +326,450 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Daisy ficou emocionada com seu progresso na criação da sua agenda semanal, e decidiu fazer um programa para o mês inteiro. Porém, dessa vez, ela quer fazer algo diferente. Ela quer usar uma variável como Input, aonde serão armazenados os resultados.</p>
-<div class="callout callout-style-simple callout-note callout-titled">
+<p><code>Daisy</code> acabara de receber a notícia de que havia passado no rigoroso processo de seleção para o tão aguardado evento de hackers. Essa era sua chance de mostrar suas habilidades e provar que era uma das melhores do jogo. Mal sabia ela que a aventura em que estava prestes a embarcar mudaria sua vida para sempre. A suricata foi envolvida por um mar de energia vibrante pelos seus pais, que fizeram questão de levaram ela para uma cidade vizinha. Ao chegar no destino, <code>Daisy</code> se depara com salão principal repleta de hackers talentosos, cada um com uma expressão determinada, em uma atmosfera cheia de expectativa, pois todos aguardavam ansiosamente os detalhes da competição.</p>
+<p>De repente, a sala ficou em silêncio quando uma figura alta e carismática subiu ao palco. Era o organizador do evento, um renomado hacker chamado <code>Phoenix</code>. Com um sorriso malicioso, <code>Phoenix</code> anunciou a competição: cada participante deveria selecionar seu programa favorito e melhorá-lo em três áreas principais: segurança, desempenho e conhecimento da linguagem utilizada. O vencedor receberia como prêmio uma viagem inesquecível com todas as despesas pagas.</p>
+<p><code>Phoenix</code> continuou: todos os competidores terão até o anoitecer para apresentar seus códigos. <code>Daisy</code> tinha em torno de 5 horas para realizar algo que não sabia por onde começar. Seu coração batia forte, um ansiedade que nunca conhecera até então lhe dominava. Seu nervosismo era visível a todos, ao ponto de algum suricata ir aos organizadores descrever o fato.</p>
+<p>No momento em que <code>Daisy</code> estava pensando em sua estratégia, um rosto familiar apareceu ao seu lado. Era <code>Martin</code>, seu hacker favorito, conhecido por seu brilhantismo inigualável e sua abordagem destemida no mundo digital. Era possível que foi um ato do destino, ou pura coincidência, mas o suricate responsável pela organização naquele momento era ele. Com seu sorriso característico e comportamento calmo, ele percebeu o pânico de <code>Daisy</code> e gentilmente colocou uma mão tranquilizadora em seu ombro trêmulo. Após umas palavras, <code>Martin</code> confessa que ele a convidou pela sua originalidade, pela independência, e que ela deveria seguir as instruções da competição, e não se preocupar com os demais concorrentes.<code>Daisy</code> assentiu com a cabeça, sentindo uma nova onda de determinação correndo em suas veias. As palavras de incentivo de <code>Martin</code> foram como um bálsamo calmante para seus nervos desgastados.</p>
+<p>O campo de batalha virtual tornou-se uma tela para sua arte. Quando a competição atingiu seu clímax, <code>Daisy</code> ainda hesitava se seu resultado era bom o suficiente. Atormentada, submeteu um código que lhe era familiar, em 2 vários sentidos, era seu código para pedir permissão para sair de casa aos seus pais, porém, ela entregou uma versão, que funcionaria para o mês inteiro, além de bloquear possíveis ataques maliciosos.</p>
+<div id="015fd6a7" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1"></a><span class="st">"""</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="st">    agenda_fevereiro!(mes; prob_permissao=0.5)</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="st">Atualiza matriz `mes` com dias de caçada.</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="st"># Argumentos</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="st">- `mes`: matriz de qualquer tipo, mas tamanho 4x7</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="st">- `prob_permissao`: probabilidade de sair de casa. Deve ser um valor dentro do intervalo [0,1]</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="st">"""</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="kw">function</span> <span class="fu">agenda_fevereiro!</span>(mes; prob_permissao<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb1-10"><a href="#cb1-10"></a>    <span class="pp">@assert</span> <span class="fu">validação</span>(mes, prob_permissao)</span>
+<span id="cb1-11"><a href="#cb1-11"></a>    <span class="fu">preparar!</span>(mes)</span>
+<span id="cb1-12"><a href="#cb1-12"></a></span>
+<span id="cb1-13"><a href="#cb1-13"></a>    T <span class="op">=</span> <span class="fu">one</span>(<span class="fu">eltype</span>(mes)) <span class="co"># 'true' em qualquer tipo</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>    <span class="cf">for</span> dia <span class="op">=</span> <span class="fu">eachindex</span>(mes)</span>
+<span id="cb1-15"><a href="#cb1-15"></a>        <span class="cf">if</span> <span class="fu">rand</span>() <span class="op">&gt;</span> prob_permissao</span>
+<span id="cb1-16"><a href="#cb1-16"></a>            mes[dia] <span class="op">=</span> T</span>
+<span id="cb1-17"><a href="#cb1-17"></a>        <span class="cf">end</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a>    <span class="cf">end</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a>    <span class="cf">return</span> <span class="cn">nothing</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="kw">end</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="kw">function</span> <span class="fu">validação</span>(mes, prob_permissao)</span>
+<span id="cb1-22"><a href="#cb1-22"></a>    <span class="cf">if</span> prob_permissao <span class="op">&lt;</span> <span class="fl">0</span> <span class="op">||</span> prob_permissao <span class="op">&gt;</span> <span class="fl">1</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>        <span class="pp">@error</span> <span class="st">" `prob_permissao` deveria ser no intervalo [0,1]"</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a>        <span class="cf">return</span> <span class="cn">false</span></span>
+<span id="cb1-25"><a href="#cb1-25"></a>    <span class="cf">end</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>    </span>
+<span id="cb1-27"><a href="#cb1-27"></a>    semanas, dias <span class="op">=</span> <span class="fu">size</span>(mes)</span>
+<span id="cb1-28"><a href="#cb1-28"></a>    <span class="cf">if</span> semanas <span class="op">≠</span> <span class="fl">4</span></span>
+<span id="cb1-29"><a href="#cb1-29"></a>        <span class="pp">@error</span> <span class="st">"`mes` deveria ter 4 linhas"</span></span>
+<span id="cb1-30"><a href="#cb1-30"></a>        <span class="cf">return</span> <span class="cn">false</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a>    <span class="cf">end</span></span>
+<span id="cb1-32"><a href="#cb1-32"></a>    <span class="cf">if</span> dias <span class="op">≠</span> <span class="fl">7</span></span>
+<span id="cb1-33"><a href="#cb1-33"></a>        <span class="pp">@error</span> <span class="st">"`mes` deveria ter 7 colunas"</span></span>
+<span id="cb1-34"><a href="#cb1-34"></a>        <span class="cf">return</span> <span class="cn">false</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a>    <span class="cf">end</span></span>
+<span id="cb1-36"><a href="#cb1-36"></a></span>
+<span id="cb1-37"><a href="#cb1-37"></a>    <span class="cn">true</span></span>
+<span id="cb1-38"><a href="#cb1-38"></a><span class="kw">end</span></span>
+<span id="cb1-39"><a href="#cb1-39"></a><span class="st">"""</span></span>
+<span id="cb1-40"><a href="#cb1-40"></a><span class="st">    preparar!(mes)</span></span>
+<span id="cb1-41"><a href="#cb1-41"></a><span class="st">se a matriz não estiver vazia, então 'limpa' com 'false'</span></span>
+<span id="cb1-42"><a href="#cb1-42"></a><span class="st">"""</span></span>
+<span id="cb1-43"><a href="#cb1-43"></a><span class="kw">function</span> <span class="fu">preparar!</span>(mes)</span>
+<span id="cb1-44"><a href="#cb1-44"></a>    F <span class="op">=</span> <span class="fu">zero</span>(<span class="fu">eltype</span>(mes)) <span class="co"># 'false' em qualquer tipo</span></span>
+<span id="cb1-45"><a href="#cb1-45"></a>    <span class="cf">if</span> !<span class="fu">all</span>(mes <span class="op">.==</span> F)</span>
+<span id="cb1-46"><a href="#cb1-46"></a>        <span class="fu">fill!</span>(mes, F)</span>
+<span id="cb1-47"><a href="#cb1-47"></a>    <span class="cf">end</span></span>
+<span id="cb1-48"><a href="#cb1-48"></a><span class="kw">end</span></span>
+<span id="cb1-49"><a href="#cb1-49"></a></span>
+<span id="cb1-50"><a href="#cb1-50"></a><span class="co"># teste</span></span>
+<span id="cb1-51"><a href="#cb1-51"></a>mes <span class="op">=</span> <span class="fu">zeros</span>(<span class="dt">Bool</span>, <span class="fl">4</span>, <span class="fl">7</span>)</span>
+<span id="cb1-52"><a href="#cb1-52"></a><span class="fu">agenda_fevereiro!</span>(mes)</span>
+<span id="cb1-53"><a href="#cb1-53"></a></span>
+<span id="cb1-54"><a href="#cb1-54"></a><span class="fu">display</span>(mes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>4×7 Matrix{Bool}:
+ 1  0  0  0  0  0  1
+ 1  0  0  1  1  1  0
+ 0  1  0  0  1  1  0
+ 1  1  0  1  0  1  0</code></pre>
+</div>
+</div>
+<hr>
+<p>Chegou a hora de traduzir o código de <code>Daisy</code>.</p>
+<section id="documentação" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="documentação"><span class="header-section-number">4.1</span> Documentação</h2>
+<p>Qualquer texto que precede um método será considerado um <code>docstrings</code>, ou documentação</p>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Exemplo
+<code>docstrings</code>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<p>No lugar de uma função criar a variável de retorno</p>
-<div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">criar_output</span>(input)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    linhas, colunas <span class="op">=</span> <span class="fu">size</span>(input)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> <span class="fu">zeros</span>(linhas, colunas)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="fu">eachindex</span>(output)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        output[i] <span class="op">=</span> <span class="fl">2</span><span class="op">*</span>i</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> output</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Você pode criar a variável de saída separadamente, e ela será utilizada como variável de entrada</p>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">criar_output!</span>(input, output)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="fu">eachindex</span>(output)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        output[i] <span class="op">=</span> <span class="fl">2</span><span class="op">*</span>i</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> output</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>linhas, colunas <span class="op">=</span> <span class="fu">size</span>(input)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> <span class="fu">zeros</span>(linhas, colunas)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">criar_output!</span>(input, input)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="60aa01e5" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="st">"retorna tipo da matriz de entrada"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qual_tipo</span>(x<span class="op">::</span><span class="dt">Matrix</span>) <span class="op">=</span> <span class="fu">eltype</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
-<p>Ela decidiu fazer isso, pois ela descobriu que em Julia, qualquer funçõa pode alterar o valor de vetores ou matrzes, mas para evitar confusão, é costume nomear funções que modificam suas entradas com um <code>!</code> no final do nome, assim, Daisy critou a função <code>calendario_mensal!</code>.</p>
-<p>Daisy queria aproveitar uma função para calcular a agenda semanal de todos os meses, mas Martin, seu mestre, explicou que isso não é uma boa ideia, já que cada mês tem uma quantidade diferente de semanas. Então, eles decidiram criar uma solução simples para fevereiro, que geralmente tem 28 dias ou 4 semanas de 7 dias. Daisy criou uma função que gerava um erro se a matriz com as respostas não tivesse as dimensões corretas, usando a macro <code>@assert</code> - essa macro garante que a função não funcione se as dimensões da matriz estiverem erradas.</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<p>Para acessar o texto no REPL digite <code>?</code>, e em seguida o nome da função.</p>
+<div id="3934738b" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>?qual_tipo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Sintaxe: <code>@assert</code>
+Exercício 4.1
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><code>@assert</code> só se manifesta como um erro se a condição for <code>false</code>, do contrário, ela não faz nada.</p>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">teste_valor</span>(x)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@assert</span> x <span class="op">&gt;</span> <span class="fl">5</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"OK"</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">teste_valor</span>(<span class="fl">10</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="cf">begin</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">teste_valor</span>(<span class="fl">1</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">catch</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"Função falhou, e precisou de tratamento."</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Escreva a <code>docstring</code> apropriado, baseada na finalidade do código a seguir, e acesse a documentação via REPL</p>
+<div id="fec14ac9" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="st">"__________________________"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">salvar</span>(a<span class="op">::</span><span class="dt">String</span>, b) <span class="op">=</span>  <span class="fu">write</span>(<span class="st">"</span><span class="sc">$</span>(a)<span class="st">.txt"</span>, b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
-<p>Mais uma dica do seu mestre, era para não armazenar <code>sim</code> ou <code>não</code> nas matrizes, já que isso ocupa muita memória, e em aplicativos mobile, Daisy deveria se preocupar em ter programas muito leves. A solução é armazenar apenas <code>0</code> ou <code>1</code>. Contudo, essa solução não é perfeita, e se Daisy precisasse no futuro armazenar <code>0.0</code> e <code>1.0</code> ? Felizmente em Julia é possível resolver isso criando variáveis do <em>tipo certo</em>, no lugar de criar o valor <code>1</code>, Daisy usou a função <code>one()</code>, que criar um <code>1</code> do tipo da variável que ele recebe na entrada, esse <code>1 correto</code>, Daisy chamou de <code>sim</code>.</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout callout-style-simple callout-warning no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Sintaxe: <code>one()</code>
+Solução 4.1
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><code>one</code> recebe um <em>tipo</em>, se você não sabe o tipo de uma variável, pode descobri-lo com <code>eltype</code>.</p>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">one</span>(<span class="dt">Int64</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">one</span>(<span class="dt">Float64</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">one</span>(<span class="dt">Bool</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">one</span>(<span class="fu">eltype</span>(<span class="fl">1.0</span>))</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">one</span>(<span class="fu">eltype</span>(<span class="fl">1.0</span>)) <span class="op">==</span> <span class="fu">one</span>(<span class="dt">Float64</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="dd0e289f" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="st">"criar um arquivo `a`.txt e salvar o valor de `b`"</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">salvar</span>(a<span class="op">::</span><span class="dt">String</span>, b<span class="op">::</span><span class="dt">String</span>) <span class="op">=</span>  <span class="fu">write</span>(<span class="st">"</span><span class="sc">$</span>(a)<span class="st">.txt"</span>, b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="b46dbcc8" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>julia<span class="op">&gt;</span>?salvar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cb43b801" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>help<span class="op">&gt;</span>salvar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>Para textos mais longos, utiliza-se aspas triplas <code>"""</code> no começo e no final para delimitar literais de <code>String</code> que podem conter <code>"</code> e ignorar a indentação inicial. Isso é particularmente útil quando você deseja definir uma <code>String</code> de várias linhas ou uma <code>String</code> que contém aspas.</p>
+<div id="6302bbca" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"""Isto é uma "string" que abrange</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="st">várias linhas e contém "aspas"."""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Existe um padrão para escrita de <code>docstrings</code> disponivel na <a href="https://docs.julialang.org/en/v1/manual/documentation/">documentação</a></p>
+</section>
+<section id="assert" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="assert"><span class="header-section-number">4.2</span> <code>@assert</code></h2>
+<p><code>@assert</code> é uma macro usada para verificar se uma determinada condição é verdadeira, se sim, a macro não faz nada. Senão, ela manifesta um erro</p>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>@assert</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div id="b2044674" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">teste_valor</span>(x)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@assert</span> x <span class="op">&gt;</span> <span class="fl">5</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"OK"</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">teste_valor</span>(<span class="fl">10</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="cf">begin</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">teste_valor</span>(<span class="fl">1</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">catch</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"Função falhou, e precisou de tratamento."</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>teste_valor(10) = "OK"
+Função falhou, e precisou de tratamento.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercício 4.2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Qual a condição para que a linha abaixo produza um erro</p>
+<div id="99bedf33" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@assert</span> <span class="fl">1</span> <span class="op">==</span> _____</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solução 4.2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Qualquer valor que retorne uma comparação <code>false</code>, por exemplo, com um número qualquer diferente de <code>1</code>, ou usar tipos que não tem comparação válidos (<code>Integer</code> e <code>String</code> por exemplo).</p>
+<div id="653b787f" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="pp">@assert</span> <span class="fl">1</span> <span class="op">==</span> <span class="fl">0</span> <span class="co"># AssertionError </span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="pp">@assert</span> <span class="fl">1</span> <span class="op">==</span> <span class="st">"1"</span> <span class="co"># AssertionError </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="in-place" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="in-place"><span class="header-section-number">4.3</span> <code>in-place</code></h2>
+<p>Operações <code>in-place</code> são aquelas que modificam diretamente os dados de entrada, em vez de criar novos dados. Isso pode ser útil para melhorar a eficiência do código, especialmente quando se trabalha com grandes conjuntos de dados, pois pode reduzir a quantidade de memória necessária, em especial com Manipulações Matriciais.</p>
+<p>Em Julia, as funções têm a capacidade de modificar qualquer um dos argumentos de entrada. Existe uma convenção na linguagem, que é uma regra não oficial, mas amplamente aceita, que estipula que as funções que modificam seus argumentos de entrada devem ser indicadas com um <code>!</code>. Isso serve para alertar os usuários sobre o comportamento potencialmente mutável da função.</p>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="3ec9d1c5" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">letra_minuscula!</span>(entrada, saida)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (idx, texto) <span class="kw">in</span> <span class="fu">enumerate</span>(entrada)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        saida[idx] <span class="op">=</span> <span class="fu">lowercase</span>(texto)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span> </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="cn">nothing</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>entrada <span class="op">=</span> [<span class="st">"SEG"</span>, <span class="st">"TER"</span>, <span class="st">"QUAR"</span>]</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>saida <span class="op">=</span> <span class="fu">fill</span>(<span class="st">""</span>, <span class="fu">size</span>(entrada))</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="fu">letra_minuscula!</span>(entrada, saida)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(saida)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>3-element Vector{String}:
+ "seg"
+ "ter"
+ "quar"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Como <code>Daisy</code> passou a matriz que será atualizada (<code>mes</code>), ela chamou sua função de <code>agenda_fevereiro!</code> e não <code>agenda_fevereiro</code>.</p>
+<p><strong>Importante</strong>: A notação mais comum de operação <code>in-place</code> é com <code>.=</code></p>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="37128ca2" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>entrada <span class="op">=</span> [<span class="st">"SEG"</span>, <span class="st">"TER"</span>, <span class="st">"QUAR"</span>]</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>entrada <span class="op">.=</span> <span class="st">"QUI"</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(entrada)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>3-element Vector{String}:
+ "QUI"
+ "QUI"
+ "QUI"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercício 4.3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Simplifique o código a seguir</p>
+<div id="206fa774" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> [<span class="fl">1</span> <span class="fl">2</span>; <span class="fl">3</span> <span class="fl">4</span>]</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> [<span class="fl">5</span> <span class="fl">6</span>; <span class="fl">7</span> <span class="fl">8</span>]</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="fu">eachindex</span>(A)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    A[i] <span class="op">+=</span> B[i]</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solução 4.3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="c2b2cbdb" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> [<span class="fl">1</span> <span class="fl">2</span>; <span class="fl">3</span> <span class="fl">4</span>]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> [<span class="fl">5</span> <span class="fl">6</span>; <span class="fl">7</span> <span class="fl">8</span>]</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>A <span class="op">.+=</span> B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercício 4.4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>No código a seguir, o <code>.</code> possui 2 significados, os identifique, explique, e reescreva uma função que realize a mesma operação, mas sem nenhum <code>.</code></p>
+<div id="18167a7c" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>entrada <span class="op">=</span> [<span class="st">"SEG"</span>, <span class="st">"TER"</span>, <span class="st">"QUAR"</span>]</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>saida <span class="op">=</span> <span class="fu">fill</span>(<span class="st">""</span>, <span class="fu">size</span>(entrada))</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>saida <span class="op">.=</span> <span class="fu">lowercase</span>.(entrada)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solução 4.4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O primeiro <code>.</code>, em <code>.=</code>, tem o sentido de operação é <code>in-place</code>. Enquanto o <code>lowercase.</code> indica a operação elemento-a-elemento.</p>
+<p>Nota que funções que alteram valor de entrada precisam ter <code>!</code> no nome.</p>
+<div id="2cfce14c" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">obter_lowercase!</span>(entrada, saida)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (idx, texto) <span class="kw">in</span> <span class="fu">enumerate</span>(entrada)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>        saida[idx] <span class="op">=</span> <span class="fu">lowercase</span>(texto)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="cn">nothing</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="tipos-genéricos" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="tipos-genéricos"><span class="header-section-number">4.4</span> Tipos Genéricos</h2>
+<p>As funções <code>one</code> e <code>zero</code> são usadas para obter a representação do número <code>um</code> e do número <code>zero</code>, respectivamente, para um <strong>determinado tipo de dados</strong>. Isso é útil em muitas operações <code>in-place</code>, onde você deseja garantir que a operação respeite os tipos das variáveis que serão alteradas.</p>
+<p>O parâmetro de entrada em <code>one(x)</code>/<code>zero(x)</code> é o <strong>tipo</strong> desejado, se você não sabe o tipo de uma variável, pode descobri-lo com <code>eltype</code>.</p>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>one</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div id="e30812a9" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">one</span>(<span class="dt">Int64</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">one</span>(<span class="dt">Float64</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">one</span>(<span class="dt">Bool</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">one</span>(<span class="fu">eltype</span>(<span class="fl">1.0</span>)); <span class="co">## equivalent to 'one(Float64)'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>one(Int64) = 1
 one(Float64) = 1.0
 one(Bool) = true
-one(eltype(1.0)) = 1.0
-one(eltype(1.0)) == one(Float64) = true</code></pre>
+one(eltype(1.0)) = 1.0</code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<p>Daisy então escreveu</p>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">agenda_mensal!</span>(agenda_fevereiro)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    qtd_semanas, qtd_dias <span class="op">=</span> <span class="fu">size</span>(agenda_fevereiro)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># verifica que a matriz de entrada é de fevereiro</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># se alguma confição for falsa, trava o código</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@assert</span> qtd_dias <span class="op">==</span> <span class="fl">7</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@assert</span> qtd_semanas <span class="op">==</span> <span class="fl">4</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># o 'sim' pode ser de qualquer tipo</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    sim <span class="op">=</span> <span class="fu">one</span>(<span class="fu">eltype</span>(agenda_fevereiro))</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="op">=</span> <span class="fl">1</span><span class="op">:</span>qtd_semanas</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="op">=</span> <span class="fl">1</span><span class="op">:</span>qtd_dias</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>            permissão <span class="op">=</span> <span class="fu">rand</span>() <span class="op">&lt;</span> <span class="fl">0.5</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> permissão <span class="op">==</span> <span class="cn">true</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>                agenda_fevereiro[i,j] <span class="op">=</span> sim</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="cn">nothing</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>agenda_fevereiro <span class="op">=</span> <span class="fu">zeros</span>(<span class="dt">Bool</span>, <span class="fl">4</span>, <span class="fl">7</span>)</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="fu">agenda_mensal!</span>(agenda_fevereiro)</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(agenda_fevereiro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercício 4.5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Identifique o erro e a solução do código a seguir</p>
+<div id="18bafc24" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>mes <span class="op">=</span> <span class="fu">zeros</span>(<span class="dt">Bool</span>, <span class="fl">4</span>, <span class="fl">7</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> <span class="fu">eltype</span>(mes)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fu">one</span>(u)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="fu">zeros</span>(u)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solução 4.5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Existe um erro de grafia para a criação da variável <code>F</code>. As funções <code>zero</code> e <code>zeros</code> retornam objetos diferentes, mesmo com nomes semelhantes. <code>zero</code> retorna um valor, e <code>zeros</code> retorna um vetor ou matriz.</p>
+<div id="69df5580" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="fu">zeros</span>(u) <span class="co"># errada</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="fu">zero</span>(u) <span class="co"># certo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -986,7 +1303,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-page-right">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
       <a href="../PART_1/03_map.html" class="pagination-link  aria-label=" &lt;span="" convite&lt;="" span&gt;"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">O Convite</span></span>
