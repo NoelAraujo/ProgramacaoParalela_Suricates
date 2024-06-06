@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.543">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Paralelismo com Suricates - 4&nbsp; A Competição</title>
+<title>Paralelismo com Suricates - 4&nbsp; Primeira Tarefa</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -82,12 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -96,7 +91,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -111,14 +105,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
+      <div class="navbar-brand-container">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Paralelismo com Suricates</span>
     </a>
   </div>
-        <div class="quarto-navbar-tools">
+        <div class="quarto-navbar-tools ms-auto">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
           <div id="quarto-search" class="" title="Search"></div>
@@ -126,31 +120,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../PART_1/00_intro_story.html">Parte 1</a></li><li class="breadcrumb-item"><a href="../PART_1/04_inline.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">A Competição</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../PART_1/00_intro_story.html">A Tempestade</a></li><li class="breadcrumb-item"><a href="../PART_1/04_inplace.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Primeira Tarefa</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>Bem-vindo</strong></span></a>
+ <span class="menu-text"><strong>Bem-vindo Suricate</strong></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../PART_1/00_intro_story.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Parte 1</span></a>
+ <span class="menu-text">A Tempestade</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -165,7 +167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../PART_1/02_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Popularidade</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Ombros Largos</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -176,14 +178,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../PART_1/04_inline.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">A Competição</span></span></a>
+  <a href="../PART_1/04_inplace.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Primeira Tarefa</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../PART_1/05_named_tuples.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tuplas Nomeadas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Mantimentos</span></span></a>
   </div>
 </li>
       </ul>
@@ -291,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -307,14 +309,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../PART_1/00_intro_story.html">Parte 1</a></li><li class="breadcrumb-item"><a href="../PART_1/04_inline.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">A Competição</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">A Competição</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Primeira Tarefa</span></h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-body">
+<div class="quarto-title-meta">
 
     
   
@@ -322,39 +324,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-
 </header>
 
-
-<p><code>Daisy</code> acabara de receber a notícia de que havia passado no rigoroso processo de seleção para o tão aguardado evento de hackers. Essa era sua chance de mostrar suas habilidades e provar que era uma das melhores do jogo. Mal sabia ela que a aventura em que estava prestes a embarcar mudaria sua vida para sempre. A suricata foi envolvida por um mar de energia vibrante pelos seus pais, que fizeram questão de levaram ela para uma cidade vizinha. Ao chegar no destino, <code>Daisy</code> se depara com salão principal repleta de hackers talentosos, cada um com uma expressão determinada, em uma atmosfera cheia de expectativa, pois todos aguardavam ansiosamente os detalhes da competição.</p>
-<p>De repente, a sala ficou em silêncio quando uma figura alta e carismática subiu ao palco. Era o organizador do evento, um renomado hacker chamado <code>Phoenix</code>. Com um sorriso malicioso, <code>Phoenix</code> anunciou a competição: cada participante deveria selecionar seu programa favorito e melhorá-lo em três áreas principais: segurança, desempenho e conhecimento da linguagem utilizada. O vencedor receberia como prêmio uma viagem inesquecível com todas as despesas pagas.</p>
-<p><code>Phoenix</code> continuou: todos os competidores terão até o anoitecer para apresentar seus códigos. <code>Daisy</code> tinha em torno de 5 horas para realizar algo que não sabia por onde começar. Seu coração batia forte, um ansiedade que nunca conhecera até então lhe dominava. Seu nervosismo era visível a todos, ao ponto de algum suricata ir aos organizadores descrever o fato.</p>
-<p>No momento em que <code>Daisy</code> estava pensando em sua estratégia, um rosto familiar apareceu ao seu lado. Era <code>Martin</code>, seu hacker favorito, conhecido por seu brilhantismo inigualável e sua abordagem destemida no mundo digital. Era possível que foi um ato do destino, ou pura coincidência, mas o suricate responsável pela organização naquele momento era ele. Com seu sorriso característico e comportamento calmo, ele percebeu o pânico de <code>Daisy</code> e gentilmente colocou uma mão tranquilizadora em seu ombro trêmulo. Após umas palavras, <code>Martin</code> confessa que ele a convidou pela sua originalidade, pela independência, e que ela deveria seguir as instruções da competição, e não se preocupar com os demais concorrentes.<code>Daisy</code> assentiu com a cabeça, sentindo uma nova onda de determinação correndo em suas veias. As palavras de incentivo de <code>Martin</code> foram como um bálsamo calmante para seus nervos desgastados.</p>
-<p>O campo de batalha virtual tornou-se uma tela para sua arte. Quando a competição atingiu seu clímax, <code>Daisy</code> ainda hesitava se seu resultado era bom o suficiente. Atormentada, submeteu um código que lhe era familiar, em 2 vários sentidos, era seu código para pedir permissão para sair de casa aos seus pais, porém, ela entregou uma versão, que funcionaria para o mês inteiro, além de bloquear possíveis ataques maliciosos.</p>
-<div id="015fd6a7" class="cell" data-execution_count="2">
+<p><code>Daisy</code> recebeu a confirmação de <code>Rocco</code> de que fora aceita para trabalhar no novo projeto militar. Na hora marcada, ela se apresentou nas instalações militares. Ao entrar no local elegante e de alta tecnologia onde trabalharia com <code>Eugenio</code>, <code>Daisy</code> não pôde evitar uma onda de excitação misturada com um certo nervosismo. Os corredores estavam repletos de monitores exibindo números, gráficos e mapas complexos, além de ter um design futurista, e com o zumbido constante de maquinário avançado em operação.</p>
+<p><code>Eugenio</code> cumprimentou <code>Daisy</code> com um sorriso caloroso. Ele a conduziu até sua área de trabalho compartilhada, uma sala repleta de computadores de última geração e equipamentos de ponta. O coração de <code>Daisy</code> disparou enquanto observava a variedade de ferramentas à sua disposição, ansiosa para mergulhar no seu primeiro projeto.</p>
+<p>Enquanto se acomodavam em suas respectivas estações de trabalho, <code>Eugenio</code> começou a explicar as complexidades e necessidades de um projeto militar. Como ponto de partida, <code>Daisy</code> precisaria se familiarizar em usar códigos de outros suricates, especialmente aquelas restritas por medidas de segurança. Isso significa confiar na documentação escrita por outros suricatos, além de ser mandatório criar a documentação dos seus próprios códigos.</p>
+<p>Outro desafio para <code>Daisy</code> será a validação de argumentos de entrada - um elemento crucial para a segurança e estabilidade do sistema. E, dada a importância do radar para a sobrevivência, seus códigos também precisarão estar funcionando no seu melhor desempenho.</p>
+<p>Enquanto o computador e o radar estão sendo instalados no topo de uma colina, <code>Daisy</code> recebe a tarefa de desenvolver uma função para gerenciar as entregas de suprimentos. Para evitar ataques de cobras (já que elas estão constantemente à espreita e até mesmo monitorando a atividade de rede dos suricatos), <code>Daisy</code> deve programar o cronograma de entregas para ser transmitido por um canal de rádio espião.</p>
+<p>As entregas de comida acontecerão em dias aleatórios da semana para evitar padrões que possam ser explorados pelos inimigos. No entanto, as tropas ainda precisam saber quando essas entregas ocorrerão. Os requisitos e funcionalidades para o programa de <code>Daisy</code> são:</p>
+<ol type="1">
+<li>As tropas devem sempre planejar uma previsão de entregas com 4 semanas de antecedência.</li>
+<li>As entregas devem ser feitas em dias imprevisíveis.</li>
+<li>A documentação para a funcionalidade deve estar disponível, embora seu funcionamento interno permaneça ultrassecreto.</li>
+<li>O código deve ser muito eficiente</li>
+</ol>
+<p>Felizmente, essa não era uma tarefa completamente nova para Daisy. Ela se lembrou do código que escreveu para seus pais quando começou a aprender Julia. A solução era semelhante, apenas aplicada a um problema diferente. Tudo o que ela precisava fazer era começar a digitar.</p>
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1"></a><span class="st">"""</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="st">    agenda_fevereiro!(mes; prob_permissao=0.5)</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="st">    calendario_suplementos!(mes; prob_entrega=0.5)</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="st">Atualiza matriz `mes` com dias de caçada.</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="st">Atualiza matriz `mes` com valores "True" para os dias de entrega de suplementos.</span></span>
 <span id="cb1-5"><a href="#cb1-5"></a><span class="st"># Argumentos</span></span>
 <span id="cb1-6"><a href="#cb1-6"></a><span class="st">- `mes`: matriz de qualquer tipo, mas tamanho 4x7</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="st">- `prob_permissao`: probabilidade de sair de casa. Deve ser um valor dentro do intervalo [0,1]</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="st">- `prob_entrega`: probabilidade diaria de uma entrega ocorrer. Deve ser um valor dentro do intervalo [0,1]</span></span>
 <span id="cb1-8"><a href="#cb1-8"></a><span class="st">"""</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="kw">function</span> <span class="fu">agenda_fevereiro!</span>(mes; prob_permissao<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb1-10"><a href="#cb1-10"></a>    <span class="pp">@assert</span> <span class="fu">validação</span>(mes, prob_permissao)</span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="kw">function</span> <span class="fu">calendario_suplementos!</span>(mes; prob_entrega<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb1-10"><a href="#cb1-10"></a>    <span class="pp">@assert</span> <span class="fu">validação</span>(mes, prob_entrega)</span>
 <span id="cb1-11"><a href="#cb1-11"></a>    <span class="fu">preparar!</span>(mes)</span>
 <span id="cb1-12"><a href="#cb1-12"></a></span>
 <span id="cb1-13"><a href="#cb1-13"></a>    T <span class="op">=</span> <span class="fu">one</span>(<span class="fu">eltype</span>(mes)) <span class="co"># 'true' em qualquer tipo</span></span>
 <span id="cb1-14"><a href="#cb1-14"></a>    <span class="cf">for</span> dia <span class="op">=</span> <span class="fu">eachindex</span>(mes)</span>
-<span id="cb1-15"><a href="#cb1-15"></a>        <span class="cf">if</span> <span class="fu">rand</span>() <span class="op">&gt;</span> prob_permissao</span>
+<span id="cb1-15"><a href="#cb1-15"></a>        <span class="cf">if</span> <span class="fu">rand</span>() <span class="op">&gt;</span> prob_entrega</span>
 <span id="cb1-16"><a href="#cb1-16"></a>            mes[dia] <span class="op">=</span> T</span>
 <span id="cb1-17"><a href="#cb1-17"></a>        <span class="cf">end</span></span>
 <span id="cb1-18"><a href="#cb1-18"></a>    <span class="cf">end</span></span>
 <span id="cb1-19"><a href="#cb1-19"></a>    <span class="cf">return</span> <span class="cn">nothing</span></span>
 <span id="cb1-20"><a href="#cb1-20"></a><span class="kw">end</span></span>
-<span id="cb1-21"><a href="#cb1-21"></a><span class="kw">function</span> <span class="fu">validação</span>(mes, prob_permissao)</span>
-<span id="cb1-22"><a href="#cb1-22"></a>    <span class="cf">if</span> prob_permissao <span class="op">&lt;</span> <span class="fl">0</span> <span class="op">||</span> prob_permissao <span class="op">&gt;</span> <span class="fl">1</span></span>
-<span id="cb1-23"><a href="#cb1-23"></a>        <span class="pp">@error</span> <span class="st">" `prob_permissao` deveria ser no intervalo [0,1]"</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="kw">function</span> <span class="fu">validação</span>(mes, prob_entrega)</span>
+<span id="cb1-22"><a href="#cb1-22"></a>    <span class="cf">if</span> prob_entrega <span class="op">&lt;</span> <span class="fl">0</span> <span class="op">||</span> prob_entrega <span class="op">&gt;</span> <span class="fl">1</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>        <span class="pp">@error</span> <span class="st">" `prob_entrega` deveria ser no intervalo [0,1]"</span></span>
 <span id="cb1-24"><a href="#cb1-24"></a>        <span class="cf">return</span> <span class="cn">false</span></span>
 <span id="cb1-25"><a href="#cb1-25"></a>    <span class="cf">end</span></span>
 <span id="cb1-26"><a href="#cb1-26"></a>    </span>
@@ -372,33 +380,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-38"><a href="#cb1-38"></a><span class="kw">end</span></span>
 <span id="cb1-39"><a href="#cb1-39"></a><span class="st">"""</span></span>
 <span id="cb1-40"><a href="#cb1-40"></a><span class="st">    preparar!(mes)</span></span>
-<span id="cb1-41"><a href="#cb1-41"></a><span class="st">se a matriz não estiver vazia, então 'limpa' com 'false'</span></span>
-<span id="cb1-42"><a href="#cb1-42"></a><span class="st">"""</span></span>
-<span id="cb1-43"><a href="#cb1-43"></a><span class="kw">function</span> <span class="fu">preparar!</span>(mes)</span>
-<span id="cb1-44"><a href="#cb1-44"></a>    F <span class="op">=</span> <span class="fu">zero</span>(<span class="fu">eltype</span>(mes)) <span class="co"># 'false' em qualquer tipo</span></span>
-<span id="cb1-45"><a href="#cb1-45"></a>    <span class="cf">if</span> !<span class="fu">all</span>(mes <span class="op">.==</span> F)</span>
-<span id="cb1-46"><a href="#cb1-46"></a>        <span class="fu">fill!</span>(mes, F)</span>
-<span id="cb1-47"><a href="#cb1-47"></a>    <span class="cf">end</span></span>
-<span id="cb1-48"><a href="#cb1-48"></a><span class="kw">end</span></span>
-<span id="cb1-49"><a href="#cb1-49"></a></span>
-<span id="cb1-50"><a href="#cb1-50"></a><span class="co"># teste</span></span>
-<span id="cb1-51"><a href="#cb1-51"></a>mes <span class="op">=</span> <span class="fu">zeros</span>(<span class="dt">Bool</span>, <span class="fl">4</span>, <span class="fl">7</span>)</span>
-<span id="cb1-52"><a href="#cb1-52"></a><span class="fu">agenda_fevereiro!</span>(mes)</span>
-<span id="cb1-53"><a href="#cb1-53"></a></span>
-<span id="cb1-54"><a href="#cb1-54"></a><span class="fu">display</span>(mes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-41"><a href="#cb1-41"></a></span>
+<span id="cb1-42"><a href="#cb1-42"></a><span class="st">se a matriz não estiver vazia, então 'limpa' com 'false'</span></span>
+<span id="cb1-43"><a href="#cb1-43"></a><span class="st">"""</span></span>
+<span id="cb1-44"><a href="#cb1-44"></a><span class="kw">function</span> <span class="fu">preparar!</span>(mes)</span>
+<span id="cb1-45"><a href="#cb1-45"></a>    F <span class="op">=</span> <span class="fu">zero</span>(<span class="fu">eltype</span>(mes)) <span class="co"># 'false' em qualquer tipo</span></span>
+<span id="cb1-46"><a href="#cb1-46"></a>    <span class="cf">if</span> !<span class="fu">all</span>(mes <span class="op">.==</span> F)</span>
+<span id="cb1-47"><a href="#cb1-47"></a>        <span class="fu">fill!</span>(mes, F)</span>
+<span id="cb1-48"><a href="#cb1-48"></a>    <span class="cf">end</span></span>
+<span id="cb1-49"><a href="#cb1-49"></a><span class="kw">end</span></span>
+<span id="cb1-50"><a href="#cb1-50"></a></span>
+<span id="cb1-51"><a href="#cb1-51"></a><span class="co"># teste</span></span>
+<span id="cb1-52"><a href="#cb1-52"></a>mes <span class="op">=</span> <span class="fu">zeros</span>(<span class="dt">Bool</span>, <span class="fl">4</span>, <span class="fl">7</span>)</span>
+<span id="cb1-53"><a href="#cb1-53"></a><span class="fu">calendario_suplementos!</span>(mes)</span>
+<span id="cb1-54"><a href="#cb1-54"></a></span>
+<span id="cb1-55"><a href="#cb1-55"></a><span class="fu">display</span>(mes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>4×7 Matrix{Bool}:
- 1  0  0  0  0  0  1
- 1  0  0  1  1  1  0
- 0  1  0  0  1  1  0
- 1  1  0  1  0  1  0</code></pre>
+ 0  1  1  0  0  1  0
+ 0  1  1  1  1  1  0
+ 1  1  0  0  1  1  0
+ 0  1  0  0  0  1  0</code></pre>
 </div>
 </div>
 <hr>
-<p>Chegou a hora de traduzir o código de <code>Daisy</code>.</p>
 <section id="documentação" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="documentação"><span class="header-section-number">4.1</span> Documentação</h2>
-<p>Qualquer texto que precede um método será considerado um <code>docstrings</code>, ou documentação</p>
+<p>Qualquer texto que precede um método será considerado uma documentação, ou <code>docstrings</code></p>
 <div class="callout callout-style-simple callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -411,15 +419,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div id="60aa01e5" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="st">"retorna tipo da matriz de entrada"</span></span>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="st">"retorna tipo da matriz de entrada"</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qual_tipo</span>(x<span class="op">::</span><span class="dt">Matrix</span>) <span class="op">=</span> <span class="fu">eltype</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
 <p>Para acessar o texto no REPL digite <code>?</code>, e em seguida o nome da função.</p>
-<div id="3934738b" class="cell" data-execution_count="4">
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>?qual_tipo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
@@ -435,8 +443,8 @@ Exercício 4.1
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Escreva a <code>docstring</code> apropriado, baseada na finalidade do código a seguir, e acesse a documentação via REPL</p>
-<div id="fec14ac9" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="st">"__________________________"</span></span>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="st">"__________________________"</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">salvar</span>(a<span class="op">::</span><span class="dt">String</span>, b) <span class="op">=</span>  <span class="fu">write</span>(<span class="st">"</span><span class="sc">$</span>(a)<span class="st">.txt"</span>, b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -454,25 +462,25 @@ Solução 4.1
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="dd0e289f" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="st">"criar um arquivo `a`.txt e salvar o valor de `b`"</span></span>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="st">"criar um arquivo `a.txt` e salvar o valor de `b`"</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">salvar</span>(a<span class="op">::</span><span class="dt">String</span>, b<span class="op">::</span><span class="dt">String</span>) <span class="op">=</span>  <span class="fu">write</span>(<span class="st">"</span><span class="sc">$</span>(a)<span class="st">.txt"</span>, b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b46dbcc8" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>julia<span class="op">&gt;</span>?salvar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>julia<span class="op">&gt;</span>?salvar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cb43b801" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>help<span class="op">&gt;</span>salvar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>help<span class="op">&gt;</span>salvar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
 <p>Para textos mais longos, utiliza-se aspas triplas <code>"""</code> no começo e no final para delimitar literais de <code>String</code> que podem conter <code>"</code> e ignorar a indentação inicial. Isso é particularmente útil quando você deseja definir uma <code>String</code> de várias linhas ou uma <code>String</code> que contém aspas.</p>
-<div id="6302bbca" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"""Isto é uma "string" que abrange</span></span>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"""Isto é uma "string" que abrange</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="st">várias linhas e contém "aspas"."""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Existe um padrão para escrita de <code>docstrings</code> disponivel na <a href="https://docs.julialang.org/en/v1/manual/documentation/">documentação</a></p>
+<p>Existe um padrão para escrita de <code>docstrings</code> disponivel na <a href="https://docs.julialang.org/en/v1/manual/documentation/">documentação de Julia</a>.</p>
 </section>
 <section id="assert" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="assert"><span class="header-section-number">4.2</span> <code>@assert</code></h2>
@@ -489,8 +497,8 @@ Solução 4.1
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div id="b2044674" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">teste_valor</span>(x)</span>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">teste_valor</span>(x)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@assert</span> x <span class="op">&gt;</span> <span class="fl">5</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"OK"</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
@@ -523,8 +531,8 @@ Exercício 4.2
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Qual a condição para que a linha abaixo produza um erro</p>
-<div id="99bedf33" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@assert</span> <span class="fl">1</span> <span class="op">==</span> _____</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@assert</span> <span class="fl">1</span> <span class="op">==</span> _____</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -542,8 +550,8 @@ Solução 4.2
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Qualquer valor que retorne uma comparação <code>false</code>, por exemplo, com um número qualquer diferente de <code>1</code>, ou usar tipos que não tem comparação válidos (<code>Integer</code> e <code>String</code> por exemplo).</p>
-<div id="653b787f" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="pp">@assert</span> <span class="fl">1</span> <span class="op">==</span> <span class="fl">0</span> <span class="co"># AssertionError </span></span>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="pp">@assert</span> <span class="fl">1</span> <span class="op">==</span> <span class="fl">0</span> <span class="co"># AssertionError </span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="pp">@assert</span> <span class="fl">1</span> <span class="op">==</span> <span class="st">"1"</span> <span class="co"># AssertionError </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -552,16 +560,16 @@ Solução 4.2
 </section>
 <section id="in-place" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="in-place"><span class="header-section-number">4.3</span> <code>in-place</code></h2>
-<p>Operações <code>in-place</code> são aquelas que modificam diretamente os dados de entrada, em vez de criar novos dados. Isso pode ser útil para melhorar a eficiência do código, especialmente quando se trabalha com grandes conjuntos de dados, pois pode reduzir a quantidade de memória necessária, em especial com Manipulações Matriciais.</p>
-<p>Em Julia, as funções têm a capacidade de modificar qualquer um dos argumentos de entrada. Existe uma convenção na linguagem, que é uma regra não oficial, mas amplamente aceita, que estipula que as funções que modificam seus argumentos de entrada devem ser indicadas com um <code>!</code>. Isso serve para alertar os usuários sobre o comportamento potencialmente mutável da função.</p>
+<p>Operações <code>in-place</code> são aquelas que modificam diretamente os dados de entrada, em vez de criar novos dados. Isso pode ser útil para melhorar a eficiência do código quando se trabalha com grandes conjuntos de dados, pois pode reduzir a quantidade de memória necessária, em especial com Manipulações Matriciais.</p>
+<p>Em Julia, as funções têm a capacidade de modificar qualquer um dos argumentos de entrada. Contudo, existe uma convenção na linguagem, que é uma regra que impede seus códigos de funcionar, mas é amplamente aceita, que estipula que as funções que modificam seus argumentos de entrada devem ser indicadas com um <code>!</code>. Isso serve para alertar os usuários sobre o comportamento potencialmente mutável da função.</p>
 <div class="callout callout-style-simple callout-tip no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div id="3ec9d1c5" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">letra_minuscula!</span>(entrada, saida)</span>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">letra_minuscula!</span>(entrada, saida)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (idx, texto) <span class="kw">in</span> <span class="fu">enumerate</span>(entrada)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        saida[idx] <span class="op">=</span> <span class="fu">lowercase</span>(texto)</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span> </span>
@@ -582,16 +590,17 @@ Solução 4.2
 </div>
 </div>
 </div>
-<p>Como <code>Daisy</code> passou a matriz que será atualizada (<code>mes</code>), ela chamou sua função de <code>agenda_fevereiro!</code> e não <code>agenda_fevereiro</code>.</p>
-<p><strong>Importante</strong>: A notação mais comum de operação <code>in-place</code> é com <code>.=</code></p>
+<p>Como <code>Daisy</code> recebey a matriz que será atualizada (<code>mes</code>), ela chamou sua função de <code>calendario_suplementos!</code> e não <code>calendario_suplementos</code>.</p>
 <div class="callout callout-style-simple callout-tip no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div id="37128ca2" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>entrada <span class="op">=</span> [<span class="st">"SEG"</span>, <span class="st">"TER"</span>, <span class="st">"QUAR"</span>]</span>
+<p><strong>Importante</strong></p>
+<p>A notação mais comum de operação <code>in-place</code> é com <code>.=</code></p>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>entrada <span class="op">=</span> [<span class="st">"SEG"</span>, <span class="st">"TER"</span>, <span class="st">"QUAR"</span>]</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>entrada <span class="op">.=</span> <span class="st">"QUI"</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(entrada)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -617,8 +626,8 @@ Exercício 4.3
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Simplifique o código a seguir</p>
-<div id="206fa774" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> [<span class="fl">1</span> <span class="fl">2</span>; <span class="fl">3</span> <span class="fl">4</span>]</span>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> [<span class="fl">1</span> <span class="fl">2</span>; <span class="fl">3</span> <span class="fl">4</span>]</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> [<span class="fl">5</span> <span class="fl">6</span>; <span class="fl">7</span> <span class="fl">8</span>]</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="fu">eachindex</span>(A)</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    A[i] <span class="op">+=</span> B[i]</span>
@@ -639,8 +648,8 @@ Solução 4.3
 </div>
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="c2b2cbdb" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> [<span class="fl">1</span> <span class="fl">2</span>; <span class="fl">3</span> <span class="fl">4</span>]</span>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb19" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> [<span class="fl">1</span> <span class="fl">2</span>; <span class="fl">3</span> <span class="fl">4</span>]</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> [<span class="fl">5</span> <span class="fl">6</span>; <span class="fl">7</span> <span class="fl">8</span>]</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>A <span class="op">.+=</span> B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -660,8 +669,8 @@ Exercício 4.4
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>No código a seguir, o <code>.</code> possui 2 significados, os identifique, explique, e reescreva uma função que realize a mesma operação, mas sem nenhum <code>.</code></p>
-<div id="18167a7c" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>entrada <span class="op">=</span> [<span class="st">"SEG"</span>, <span class="st">"TER"</span>, <span class="st">"QUAR"</span>]</span>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb20" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>entrada <span class="op">=</span> [<span class="st">"SEG"</span>, <span class="st">"TER"</span>, <span class="st">"QUAR"</span>]</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>saida <span class="op">=</span> <span class="fu">fill</span>(<span class="st">""</span>, <span class="fu">size</span>(entrada))</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>saida <span class="op">.=</span> <span class="fu">lowercase</span>.(entrada)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -682,8 +691,8 @@ Solução 4.4
 <div class="callout-body-container callout-body">
 <p>O primeiro <code>.</code>, em <code>.=</code>, tem o sentido de operação é <code>in-place</code>. Enquanto o <code>lowercase.</code> indica a operação elemento-a-elemento.</p>
 <p>Nota que funções que alteram valor de entrada precisam ter <code>!</code> no nome.</p>
-<div id="2cfce14c" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">obter_lowercase!</span>(entrada, saida)</span>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb21" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">obter_lowercase!</span>(entrada, saida)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (idx, texto) <span class="kw">in</span> <span class="fu">enumerate</span>(entrada)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>        saida[idx] <span class="op">=</span> <span class="fu">lowercase</span>(texto)</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
@@ -696,8 +705,8 @@ Solução 4.4
 </section>
 <section id="tipos-genéricos" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="tipos-genéricos"><span class="header-section-number">4.4</span> Tipos Genéricos</h2>
-<p>As funções <code>one</code> e <code>zero</code> são usadas para obter a representação do número <code>um</code> e do número <code>zero</code>, respectivamente, para um <strong>determinado tipo de dados</strong>. Isso é útil em muitas operações <code>in-place</code>, onde você deseja garantir que a operação respeite os tipos das variáveis que serão alteradas.</p>
-<p>O parâmetro de entrada em <code>one(x)</code>/<code>zero(x)</code> é o <strong>tipo</strong> desejado, se você não sabe o tipo de uma variável, pode descobri-lo com <code>eltype</code>.</p>
+<p>As funções <code>one</code> e <code>zero</code> são usadas para obter a representação do número <code>um</code> e do número <code>zero</code>, respectivamente, para um <strong>determinado tipo de dados</strong>. O parâmetro de entrada em ambas as funções é o <strong>tipo</strong> desejado, se você não sabe o tipo de uma variável, pode descobri-lo com <code>eltype</code>.</p>
+<p>Essas funções são essenciais para trabalhar corretamente com operações <code>in-place</code>, pois se deseja garantir que a operação respeite os tipos das variáveis que serão alteradas.</p>
 <div class="callout callout-style-simple callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -710,15 +719,17 @@ Solução 4.4
 </div>
 <div id="callout-11" class="callout-11-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div id="e30812a9" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">one</span>(<span class="dt">Int64</span>)</span>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb22" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">one</span>(<span class="dt">Int64</span>)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">one</span>(<span class="dt">Float64</span>)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">one</span>(<span class="dt">Bool</span>)</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">one</span>(<span class="fu">eltype</span>(<span class="fl">1.0</span>)); <span class="co">## equivalent to 'one(Float64)'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>one(Int64) = 1
-one(Float64) = 1.0
-one(Bool) = true
+one(Float64) = 1.0</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>one(Bool) = true
 one(eltype(1.0)) = 1.0</code></pre>
 </div>
 </div>
@@ -737,12 +748,12 @@ Exercício 4.5
 </div>
 <div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Identifique o erro e a solução do código a seguir</p>
-<div id="18bafc24" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>mes <span class="op">=</span> <span class="fu">zeros</span>(<span class="dt">Bool</span>, <span class="fl">4</span>, <span class="fl">7</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> <span class="fu">eltype</span>(mes)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fu">one</span>(u)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="fu">zeros</span>(u)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Identifique o erro e a aponte a respectiva solução do código a seguir</p>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb25" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>mes <span class="op">=</span> <span class="fu">zeros</span>(<span class="dt">Bool</span>, <span class="fl">4</span>, <span class="fl">7</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> <span class="fu">eltype</span>(mes)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fu">one</span>(u)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="fu">zeros</span>(u)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -760,9 +771,9 @@ Solução 4.5
 <div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Existe um erro de grafia para a criação da variável <code>F</code>. As funções <code>zero</code> e <code>zeros</code> retornam objetos diferentes, mesmo com nomes semelhantes. <code>zero</code> retorna um valor, e <code>zeros</code> retorna um vetor ou matriz.</p>
-<div id="69df5580" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="fu">zeros</span>(u) <span class="co"># errada</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="fu">zero</span>(u) <span class="co"># certo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb26" data-code-line-numbers="false"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="fu">zeros</span>(u) <span class="co"># errada</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="fu">zero</span>(u) <span class="co"># certo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -813,33 +824,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -908,15 +892,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  let localAlternateSentinel = 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -995,9 +977,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1007,17 +990,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1030,125 +1004,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1192,7 +1047,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1218,32 +1072,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1305,13 +1133,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../PART_1/03_map.html" class="pagination-link  aria-label=" &lt;span="" convite&lt;="" span&gt;"="">
+      <a href="../PART_1/03_map.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">O Convite</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../PART_1/05_named_tuples.html" class="pagination-link" aria-label="<span class='chapter-number'>5</span>&nbsp; <span class='chapter-title'>Tuplas Nomeadas</span>">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tuplas Nomeadas</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../PART_1/05_named_tuples.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Mantimentos</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1321,15 +1149,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">
-<p>2024</p>
-</div>
+    <div class="nav-footer-center">2024</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
-
 
 
 
